@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setIcon(R.drawable.get_healthy_app_logo);
     }
 
     @Override
