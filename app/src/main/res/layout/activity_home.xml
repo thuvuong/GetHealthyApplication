@@ -60,12 +60,16 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
+        android:textSize="40dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:text="Welcome to Get Healthy!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="101dp"
-        tools:ignore="MissingConstraints"
-        android:inputType="none"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/txtPrompt"
@@ -77,12 +81,16 @@
         android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:textSize="30dp"
         android:text="What would you like to do today?"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintBottom_toTopOf="@+id/btn_food"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGreeting"
-        android:inputType="none"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtGreeting" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
