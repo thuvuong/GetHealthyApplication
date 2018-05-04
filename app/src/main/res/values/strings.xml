@@ -21,6 +21,20 @@
     <string name="menu_action_log_out">Log out</string>
     <string name="menu_action_home">Home</string>
 
+
+    <string name="meal_log_btn">Meal Log</string>
+    <string name="food_txt">Food</string>
+    <string name="healthy_recipes_btn">Healthy Recipes</string>
+    <string name="breakfast_btn">Breakfast</string>
+    <string name="lunch_btn">Lunch</string>
+    <string name="dinner_btn">Dinner</string>
+    <string name="day_of_meal_breakfast">Day of Meal: Breakfast</string>
+    <string name="gordon_ramsay_s_scambled_eggs">Gordon Ramsay\'s Scambled Eggs</string>
+    <string name="beautiful_breakfast_tortillas">Beautiful Breakfast Tortillas</string>
+    <string name="my_brilliant_breakfast">My Brilliant Breakfast</string>
+    <string name="chef_gordon_ramsay">Chef: Gordon Ramsay</string>
+    <string name="chef_jamie_oliver">Chef: Jamie Oliver</string>
+
     <string name="asking_location">Where would you like to workout at?</string>
     <string name="asking_style">What type of workout?</string>
     <string name="location_gym">Gym</string>
@@ -28,4 +42,5 @@
     <string name="style_cardio">Cardio</string>
     <string name="style_weight_lifting">Weight Lifting</string>
     <string name="go_to">Go to</string>
+
 </resources>
