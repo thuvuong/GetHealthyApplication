@@ -22,8 +22,9 @@
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="142dp"
         android:text="@string/message" />
 
     <EditText
@@ -111,5 +112,5 @@
         android:layout_height="67dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/GetHealthyLogo" />
+        android:src="@drawable/gethealthylogo" />
 </RelativeLayout>
