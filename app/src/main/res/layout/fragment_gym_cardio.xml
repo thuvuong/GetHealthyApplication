@@ -8,32 +8,14 @@
     tools:context=".GymCardioFragment">
 
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="167dp"
-        android:layout_height="130dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/get_healthy_app_logo" />
-
-    <TextView
-        android:id="@+id/name_of_the_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/cardio_type"
-        android:layout_centerHorizontal="true"
-        android:text="@string/name_of_the_fragment"
-        android:textSize="35sp"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/cardio_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/gym_location"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-259dp"
-        android:text="@string/cardio"
+        android:layout_marginTop="92dp"
+        android:text="Cardio"
         android:textSize="30sp"
         android:textStyle="italic" />
 
@@ -43,25 +25,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="266dp"
-        android:text="@string/gym" />
+        android:layout_marginTop="153dp"
+        android:text="At the Gym"
+        android:textSize="18sp" />
 
     <RelativeLayout
         android:id="@+id/gym_cardio_instruction"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
-        <WebView
-            android:layout_width="match_parent"
-            android:layout_height="574dp"
+        <TextView
+            android:id="@+id/cardio_list_textview"
+            android:layout_width="319dp"
+            android:layout_height="308dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true">
-
-        </WebView>
-
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="37dp" />
     </RelativeLayout>
 </RelativeLayout>

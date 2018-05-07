@@ -80,32 +80,6 @@
         android:layout_marginBottom="254dp"
         android:text="@string/asking_style" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="160dp"
-        android:layout_height="86dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/get_healthy_app_logo" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/menu_action_home"
-        android:layout_alignParentLeft="true" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/menu_action_log_out"
-        android:layout_alignParentRight="true" />
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
