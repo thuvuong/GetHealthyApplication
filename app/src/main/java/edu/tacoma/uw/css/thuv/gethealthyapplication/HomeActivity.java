@@ -64,4 +64,12 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    /** Called when the user taps the Food button */
+    public void launchWorkoutActivity(View view) {
+        // Launch Food Activity when user click on Food button
+        Intent intent = new Intent(this, WorkoutActivity.class);
+        startActivity(intent);
+
+    }
+
 }
