@@ -4,15 +4,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome">Welcome!</string>
     <string name="message">Create a new Account:</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="password">Password</string>
-    <string name="height">Height</string>
-    <string name="weight">Weight</string>
-    <string name="sex">Sex</string>
+    <string name="first_name">Enter your first name</string>
+    <string name="last_name">Enter your last name</string>
+    <string name="password">Enter your password</string>
+    <string name="height">Enter your height</string>
+    <string name="weight">Enter your weight</string>
+    <string name="sex">Enter your sex</string>
     <string name="sign_up">Sign Up</string>
 
-    <string name="username">Username</string>
+    <string name="email">Enter your email</string>
     <string name="sign_in">Sign In</string>
     <string name="create_new_account">Create New Account</string>
     <string name="icon">icon</string>
