@@ -42,5 +42,12 @@
     <string name="style_cardio">Cardio</string>
     <string name="style_weight_lifting">Weight Lifting</string>
     <string name="go_to">Go to</string>
+    
+    <string name="name_of_the_fragment">Workout</string>
+    <string name="cardio">Cardio</string>
+    <string name="gym">At The Gym</string>
+    <string name="instruction">Complete two exercises from below</string>
+    <string name="instruction_minor">(30 minutes each)</string>
+
 
 </resources>
