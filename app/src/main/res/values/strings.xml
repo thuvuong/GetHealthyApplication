@@ -2,19 +2,19 @@
     <string name="app_name">Get Healthy Application</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="image_desc">This is the logo</string>
     <string name="welcome">Welcome!</string>
     <string name="message">Create a new Account:</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
-    <string name="email">Enter your e-mail address</string>
-    <string name="password">Password(longer than 5 character)</string>
-    <string name="height">Height</string>
-    <string name="weight">Weight</string>
-    <string name="sex">Sex</string>
+    <string name="first_name">Enter your first name</string>
+    <string name="last_name">Enter your last name</string>
+    <string name="username">Username</string>
+    <string name="password">Enter your password</string>
+    <string name="height">Enter your height</string>
+    <string name="weight">Enter your weight</string>
+    <string name="sex">Enter your sex</string>
+    <string name="image_desc">This is the description of our logo</string>
     <string name="sign_up">Sign Up</string>
 
-    <string name="username">Username</string>
+    <string name="email">Enter your email</string>
     <string name="sign_in">Sign In</string>
     <string name="create_new_account">Create New Account</string>
     <string name="icon">icon</string>
@@ -44,12 +44,5 @@
     <string name="style_cardio">Cardio</string>
     <string name="style_weight_lifting">Weight Lifting</string>
     <string name="go_to">Go to</string>
-    
-    <string name="name_of_the_fragment">Workout</string>
-    <string name="cardio">Cardio</string>
-    <string name="gym">At The Gym</string>
-    <string name="instruction">Complete two exercises from below</string>
-    <string name="instruction_minor">(30 minutes each)</string>
-
 
 </resources>
