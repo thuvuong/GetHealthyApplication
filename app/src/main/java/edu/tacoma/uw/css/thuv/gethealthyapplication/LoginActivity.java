@@ -1,4 +1,4 @@
-package authenticate;
+package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
