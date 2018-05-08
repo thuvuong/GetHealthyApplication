@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -93,6 +95,33 @@ public class RegistrationFragment extends Fragment {
         mHeight = (EditText) v.findViewById(R.id.text_height);
         mWeight = (EditText) v.findViewById(R.id.text_weight);
         mSex = (EditText) v.findViewById(R.id.text_sex);
+
+        Button signUpButton = (Button) v.findViewById(R.id.btn_sign_up);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email) || !email.contains("@")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else if (TextUtils.isEmpty(password) ||
+                        password.length() < 6) {
+
+                    Toast.makeText(v.getContext(), "Enter valid password"
+                                    + " (at leaste 6 characters)",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else {
+                    mListener.login(email, password);
+                }
+            }
+        });
 
         return v;
     }

@@ -1,6 +1,8 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.net.nsd.NsdManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,7 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+                implements RegistrationFragment.UserAddListener {
 
 
     private EditText mEmail;
@@ -66,4 +69,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
