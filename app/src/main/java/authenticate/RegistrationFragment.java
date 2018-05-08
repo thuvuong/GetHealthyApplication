@@ -1,4 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication;
+package authenticate;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
 
 /**

@@ -1,11 +1,13 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication;
+package authenticate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
-    public MainActivity() {
+public class LoginActivity extends AppCompatActivity {
+
+    public LoginActivity() {
 
     }
 
