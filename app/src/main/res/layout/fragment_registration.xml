@@ -1,100 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/registration_container"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".RegistrationFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="130dp"
+        android:layout_height="67dp"
+        android:src="@drawable/get_healthy_app_logo"
+        android:layout_gravity="center"
+        android:contentDescription="@string/image_desc"/>
 
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_message"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-106dp"
+        android:layout_gravity="center"
         android:text="@string/welcome"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_message"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="142dp"
-        android:text="@string/message"
-        android:layout_alignParentLeft="true"/>
+        android:text="@string/message" />
 
     <EditText
         android:id="@+id/text_fname"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_lname"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/text_lname"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_user_name"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/text_user_name"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_username"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_password"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/text_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/email"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/text_height"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_weight"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/height"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/text_password"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_height"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/text_weight"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/text_sex"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/weight"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/text_sex"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_sign_up"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
         android:hint="@string/sex"
         android:inputType="text" />
 
@@ -102,16 +94,7 @@
         android:id="@+id/btn_sign_up"
         android:layout_width="129dp"
         android:layout_height="37dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text="@string/sign_up" />
+        android:text="@string/sign_up"
+        android:layout_gravity="end"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="130dp"
-        android:layout_height="67dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/get_healthy_app_logo" />
-</RelativeLayout>
+</LinearLayout>

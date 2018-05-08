@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class RegistrationFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private final static String USER_ADD_URL
-            = "http://";
+            = "http://tcssandroidthuv.000webhostapp.com/addUser.php?";
 
     private EditText mFirstName;
     private EditText mLastName;
@@ -87,20 +88,29 @@ public class RegistrationFragment extends Fragment {
 
         mFirstName = (EditText) v.findViewById(R.id.text_fname);
         mLastName = (EditText) v.findViewById(R.id.text_lname);
-        mUsername = (EditText) v.findViewById(R.id.text_user_name);
-        mEmail = (EditText) v.findViewById(R.id.text_user_email);
+        mUsername = (EditText) v.findViewById(R.id.text_username);
+        mEmail = (EditText) v.findViewById(R.id.text_email);
         mPassword = (EditText) v.findViewById(R.id.text_password);
         mHeight = (EditText) v.findViewById(R.id.text_height);
         mWeight = (EditText) v.findViewById(R.id.text_weight);
         mSex = (EditText) v.findViewById(R.id.text_sex);
 
+        Button addUserButton = (Button) v.findViewById(R.id.btn_sign_up);
+        addUserButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String url = buildUserURL(v);
+                mListener.addUser(url);
+            }
+        });
+
         return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String url) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.addUser(url);
         }
     }
 
@@ -111,7 +121,7 @@ public class RegistrationFragment extends Fragment {
             mListener = (UserAddListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement AddUserListener");
         }
     }
 
@@ -133,7 +143,7 @@ public class RegistrationFragment extends Fragment {
      */
     public interface UserAddListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void addUser(String url);
     }
 
     private String buildUserURL(View v){
