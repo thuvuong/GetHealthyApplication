@@ -41,7 +41,14 @@ public class User implements Serializable {
                 final int theHeight, final int theWeight,
                 final boolean theSexFemale) {
 
-
+        // The values must be checked before being assigned here.
+        mEmail = theEmail;
+        mPassword = thePassword;
+        mFirstName = theFirstName;
+        mLastName = theLastName;
+        mHeight = theHeight;
+        mWeight = theWeight;
+        mSexFemale = theSexFemale;
     }
 
     /**
