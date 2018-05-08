@@ -88,7 +88,7 @@ public class RegistrationFragment extends Fragment {
 
         mFirstName = (EditText) v.findViewById(R.id.text_fname);
         mLastName = (EditText) v.findViewById(R.id.text_lname);
-        mUsername = (EditText) v.findViewById(R.id.text_user_name);
+        mUsername = (EditText) v.findViewById(R.id.text_username);
         mEmail = (EditText) v.findViewById(R.id.text_email);
         mPassword = (EditText) v.findViewById(R.id.text_password);
         mHeight = (EditText) v.findViewById(R.id.text_height);
