@@ -89,6 +89,15 @@ public class RegistrationFragment extends Fragment {
                     mEmail.requestFocus();
                 } else {
 
+                    Button addNewUser = (Button) v.findViewById(R.id.btn_sign_up);
+                    addNewUser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url = buildUserURL(v);
+                            mListener.addUser(url);
+                        }
+                    });
+
 
                     //                    login(email, password);
                 }
@@ -145,32 +154,32 @@ public class RegistrationFragment extends Fragment {
         StringBuilder sb = new StringBuilder(USER_ADD_URL);
 
         try{
-            String fname = mFirstName.getText().toString();
-            sb.append("first name=");
-            sb.append(URLEncoder.encode(fname, "UTF-8"));
-
-            String lname = mLastName.getText().toString();
-            sb.append("last name=");
-            sb.append(URLEncoder.encode(lname, "UTF-8"));
-
             String email = mEmail.getText().toString();
-            sb.append("email=");
+            sb.append("&email=");
             sb.append(URLEncoder.encode(email, "UTF-8"));
 
             String password = mPassword.getText().toString();
-            sb.append("password=");
+            sb.append("&password=");
             sb.append(URLEncoder.encode(password, "UTF-8"));
+
+            String fname = mFirstName.getText().toString();
+            sb.append("&firstname=");
+            sb.append(URLEncoder.encode(fname, "UTF-8"));
+
+            String lname = mLastName.getText().toString();
+            sb.append("&lastname=");
+            sb.append(URLEncoder.encode(lname, "UTF-8"));
 
             String height = mHeight.getText().toString();
             sb.append("height=");
             sb.append(URLEncoder.encode(height, "UTF-8"));
 
             String weight = mWeight.getText().toString();
-            sb.append("weight=");
+            sb.append("&weight=");
             sb.append(URLEncoder.encode(weight, "UTF-8"));
 
             String sex = mSex.getText().toString();
-            sb.append("sex=");
+            sb.append("&sex=");
             sb.append(URLEncoder.encode(sex, "UTF-8"));
 
             Log.i(TAG, sb.toString());
