@@ -133,67 +133,6 @@ public class SigninFragment extends Fragment{
         }
     }
 
-    public void addUser(String url){
-        AddUserTask task = new AddUserTask();
-        task.execute(new String[]{url.toString()});
-
-        getActivity().getSupportFragmentManager().popBackStackImmediate();
-    }
-
-    private class AddUserTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... urls){
-            String response = "";
-            HttpURLConnection urlConnection = null;
-            for (String url : urls){
-                try{
-                    URL urlObject = new URL(url);
-                    urlConnection = (HttpURLConnection) urlObject.openConnection();
-
-                    InputStream content = urlConnection.getInputStream();
-
-                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                    String s = "";
-                    while((s = buffer.readLine()) != null){
-                        response += s;
-                    }
-                }catch(Exception e){
-                    response = "Unable to register. Reason: "
-                            + e.getMessage();
-                }finally {
-                    if (urlConnection != null){
-                        urlConnection.disconnect();
-                    }
-                }
-            }
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String result){
-            try{
-                JSONObject jsonObject = new JSONObject(result);
-                String status = (String) jsonObject.get("result");
-                if(status.equals("success")){
-                    Toast.makeText(getActivity().getApplicationContext(), "Successfully Registered!",
-                            Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getActivity().getApplicationContext(), "Failed to register",
-                            Toast.LENGTH_LONG).show();
-                }
-            }catch(JSONException e){
-                Toast.makeText(getActivity().getApplicationContext(), "Something wrong with the data" +
-                        e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
 
 
 

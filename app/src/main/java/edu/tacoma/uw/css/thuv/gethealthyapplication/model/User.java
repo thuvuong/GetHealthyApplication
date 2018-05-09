@@ -68,7 +68,7 @@ public class User implements Serializable {
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObj = jArray.getJSONObject(i);
-                User course = new User(jObj.getString(User.EMAIL),
+                User user = new User(jObj.getString(User.EMAIL),
                         jObj.getString(User.PASSWORD),
                         jObj.getString(User.FIRST_NAME),
                         jObj.getString(User.LAST_NAME),
@@ -76,7 +76,7 @@ public class User implements Serializable {
                         jObj.getInt(User.WEIGHT),
                         jObj.getBoolean(User.SEX));
 
-                userList.add(course);
+                userList.add(user);
             }
         }
 
