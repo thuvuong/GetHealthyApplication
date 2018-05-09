@@ -33,7 +33,6 @@ public class RegistrationFragment extends Fragment {
 
     private EditText mFirstName;
     private EditText mLastName;
-    private EditText mUsername;
     private EditText mEmail;
     private EditText mPassword;
     private EditText mWeight;
@@ -88,7 +87,9 @@ public class RegistrationFragment extends Fragment {
 
                     mEmail.requestFocus();
                 } else {
-                    login(email, password);
+
+
+                    //                    login(email, password);
                 }
             }
         });
@@ -96,10 +97,10 @@ public class RegistrationFragment extends Fragment {
         return v;
     }
 
-    public void login(final String theEmail, final String thePassword) {
-        Intent i = new Intent(getActivity(), HomeActivity.class);
-        startActivity(i);
-    }
+//    public void login(final String theEmail, final String thePassword) {
+//        Intent i = new Intent(getActivity(), HomeActivity.class);
+//        startActivity(i);
+//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String url) {
@@ -150,10 +151,6 @@ public class RegistrationFragment extends Fragment {
             String lname = mLastName.getText().toString();
             sb.append("last name=");
             sb.append(URLEncoder.encode(lname, "UTF-8"));
-
-            String username = mUsername.getText().toString();
-            sb.append("username=");
-            sb.append(URLEncoder.encode(username, "UTF-8"));
 
             String email = mEmail.getText().toString();
             sb.append("email=");
