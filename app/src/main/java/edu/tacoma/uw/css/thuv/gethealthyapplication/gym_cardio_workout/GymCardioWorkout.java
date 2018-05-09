@@ -12,11 +12,11 @@ public class GymCardioWorkout implements Serializable {
     public static final String ID = "id";
     public static final String TITLE = "title";
 
-    int mId;
+    String mId;
     String mTitle;
 
 
-    public GymCardioWorkout(int mId, String mTitle) {
+    public GymCardioWorkout(String mId, String mTitle) {
         this.mId = mId;
         this.mTitle = mTitle;
 
@@ -31,7 +31,7 @@ public class GymCardioWorkout implements Serializable {
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                GymCardioWorkout workout = new GymCardioWorkout(obj.getInt(GymCardioWorkout.ID), obj.getString(GymCardioWorkout.TITLE));
+                GymCardioWorkout workout = new GymCardioWorkout(obj.getString(GymCardioWorkout.ID), obj.getString(GymCardioWorkout.TITLE));
                 workoutList.add(workout);
             }
 
@@ -45,7 +45,7 @@ public class GymCardioWorkout implements Serializable {
         return this.mTitle;
     }
 
-    public int getId() {
+    public String getId() {
         return this.mId;
     }
 
@@ -53,7 +53,7 @@ public class GymCardioWorkout implements Serializable {
         this.mTitle = mTitle;
     }
 
-    public void setId(int mId) {
+    public void setId(String mId) {
         this.mId = mId;
     }
 

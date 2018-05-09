@@ -11,15 +11,16 @@ import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
 
+
 public class WorkoutActivity extends AppCompatActivity implements GymCardioFragment.OnFragmentInteractionListener,
         WorkoutFragment.OnFragmentInteractionListener, GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
-
+    public TextView mTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
