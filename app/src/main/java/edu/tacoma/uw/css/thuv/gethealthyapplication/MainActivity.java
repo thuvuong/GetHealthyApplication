@@ -8,7 +8,6 @@ public class MainActivity extends AppCompatActivity implements
             RegistrationFragment.UserAddListener, SigninFragment.OnFragmentInteractionListener{
 
     public MainActivity() {
-
     }
 
     @Override

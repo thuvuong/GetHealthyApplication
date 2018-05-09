@@ -9,7 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-public class WorkoutActivity extends AppCompatActivity implements GymCardioFragment.OnFragmentInteractionListener, WorkoutFragment.OnFragmentInteractionListener{
+import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
+
+public class WorkoutActivity extends AppCompatActivity implements GymCardioFragment.OnFragmentInteractionListener,
+        WorkoutFragment.OnFragmentInteractionListener, GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,11 @@ public class WorkoutActivity extends AppCompatActivity implements GymCardioFragm
     }
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(GymCardioWorkout item) {
 
     }
 }
