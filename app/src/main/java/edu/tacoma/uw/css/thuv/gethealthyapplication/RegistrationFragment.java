@@ -29,7 +29,7 @@ import static android.content.ContentValues.TAG;
 public class RegistrationFragment extends Fragment {
 
     private final static String USER_ADD_URL
-            = "http://tcssandroidthuv.000webhostapp.com/addUser.php?";
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addUser.php?";
 
     private EditText mFirstName;
     private EditText mLastName;
@@ -71,27 +71,8 @@ public class RegistrationFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                String email = mEmail.getText().toString();
-                String password = mPassword.getText().toString();
-
-                if (TextUtils.isEmpty(email) || !email.contains("@")) {
-                    Toast.makeText(v.getContext(), "Enter valid email address",
-                            Toast.LENGTH_SHORT).show();
-
-                    mEmail.requestFocus();
-                } else if (TextUtils.isEmpty(password) ||
-                        password.length() < 6) {
-
-                    Toast.makeText(v.getContext(), "Enter valid password"
-                                    + " (at leaste 6 characters)",
-                            Toast.LENGTH_SHORT).show();
-
-                    mEmail.requestFocus();
-                } else {
-
-
-                    //                    login(email, password);
-                }
+                String url = buildUserURL(v);
+                mListener.addUser(url);
             }
         });
 
@@ -146,11 +127,11 @@ public class RegistrationFragment extends Fragment {
 
         try{
             String fname = mFirstName.getText().toString();
-            sb.append("first name=");
+            sb.append("fname=");
             sb.append(URLEncoder.encode(fname, "UTF-8"));
 
             String lname = mLastName.getText().toString();
-            sb.append("last name=");
+            sb.append("lname=");
             sb.append(URLEncoder.encode(lname, "UTF-8"));
 
             String email = mEmail.getText().toString();
