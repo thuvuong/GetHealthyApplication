@@ -29,7 +29,7 @@ import static android.content.ContentValues.TAG;
 public class RegistrationFragment extends Fragment {
 
     private final static String USER_ADD_URL
-            = "http://tcssandroidthuv.000webhostapp.com/addUser.php?";
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addUser.php?";
 
     private EditText mFirstName;
     private EditText mLastName;
@@ -101,6 +101,10 @@ public class RegistrationFragment extends Fragment {
 
                     //                    login(email, password);
                 }
+
+                // *** Yulin's code from the merge. ***
+//                String url = buildUserURL(v);
+//                mListener.addUser(url);
             }
         });
 
@@ -154,6 +158,16 @@ public class RegistrationFragment extends Fragment {
         StringBuilder sb = new StringBuilder(USER_ADD_URL);
 
         try{
+            // *** Yulin's code from the merge. ***
+//            String fname = mFirstName.getText().toString();
+//            sb.append("fname=");
+//            sb.append(URLEncoder.encode(fname, "UTF-8"));
+//
+//            String lname = mLastName.getText().toString();
+//            sb.append("lname=");
+//            sb.append(URLEncoder.encode(lname, "UTF-8"));
+
+
             String email = mEmail.getText().toString();
             sb.append("&email=");
             sb.append(URLEncoder.encode(email, "UTF-8"));
