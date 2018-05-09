@@ -45,18 +45,14 @@
         android:id="@+id/text_lname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/text_user_email"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/text_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:inputType="textPersonName"/>
-
-    <EditText
-        android:id="@+id/text_email"
+        android:id="@+id/text_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"

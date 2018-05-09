@@ -1,16 +1,10 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,13 +19,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
 
-    @Override
-    public void addUser(String url){
-        AddUserTask task = new AddUserTask();
-        task.execute(new String[]{url.toString()});
 
-        getSupportFragmentManager().popBackStackImmediate();
-    }
 
 
     public MainActivity() {
@@ -48,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements
                     .add(R.id.main_activity, new SigninFragment())
                     .commit();
         }
-
-
     }
 
     @Override
@@ -57,58 +43,9 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private class AddUserTask extends AsyncTask<String, Void, String>{
 
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
+    @Override
+    public void addUser(String url) {
 
-        @Override
-        protected String doInBackground(String... urls){
-            String response = "";
-            HttpURLConnection urlConnection = null;
-            for (String url : urls){
-                try{
-                    URL urlObject = new URL(url);
-                    urlConnection = (HttpURLConnection) urlObject.openConnection();
-
-                    InputStream content = urlConnection.getInputStream();
-
-                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                    String s = "";
-                    while((s = buffer.readLine()) != null){
-                        response += s;
-                    }
-                }catch(Exception e){
-                    response = "Unable to register. Reason: "
-                            + e.getMessage();
-                }finally {
-                    if (urlConnection != null){
-                        urlConnection.disconnect();
-                    }
-                }
-            }
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String result){
-            try{
-                JSONObject jsonObject = new JSONObject(result);
-                String status = (String) jsonObject.get("result");
-                if(status.equals("success")){
-                    Toast.makeText(getApplicationContext(), "Successfully Registered!",
-                            Toast.LENGTH_LONG).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "Failed to register",
-                            Toast.LENGTH_LONG).show();
-                }
-            }catch(JSONException e){
-                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
-                        e.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
     }
-
 }
