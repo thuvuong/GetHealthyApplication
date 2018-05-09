@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 
 import org.json.JSONException;
@@ -76,6 +79,11 @@ public class GymCardioWorkoutListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gymcardioworkout_list, container, false);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        TextView title = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbar.setTitle("");
+        title.setText("Workout: Cardio At The Gym");
 
         // Set the adapter
         if (view instanceof RecyclerView) {
