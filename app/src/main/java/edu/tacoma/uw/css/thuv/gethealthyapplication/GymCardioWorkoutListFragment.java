@@ -34,11 +34,11 @@ import static android.content.ContentValues.TAG;
  * interface.
  */
 public class GymCardioWorkoutListFragment extends Fragment {
-
+    public final static String TAG = "";
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
 
-    private static final String COURSE_URL
+    private static final String WORKOUT_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=gymcardioworkout";
 
     private RecyclerView mRecyclerView;
@@ -86,9 +86,9 @@ public class GymCardioWorkoutListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
+           // mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
             GymCardioWorkoutAsyncTask courseAsyncTask = new GymCardioWorkoutAsyncTask();
-            courseAsyncTask.execute(new String[]{COURSE_URL});
+            courseAsyncTask.execute(new String[]{WORKOUT_URL});
 
         }
         return view;
@@ -140,17 +140,16 @@ public class GymCardioWorkoutListFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-                    response = "Unable to download the list of courses, Reason: "
+                    response = "Unable to retrieve workouts, Reason: "
                             + e.getMessage();
-                }
-                finally {
+                } finally {
                     if (urlConnection != null)
                         urlConnection.disconnect();
                 }
             }
             return response;
-
         }
+
     }
 
     @Override

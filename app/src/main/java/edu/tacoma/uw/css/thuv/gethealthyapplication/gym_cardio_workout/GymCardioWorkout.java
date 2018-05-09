@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GymCardioWorkout implements Serializable {
-    public static final String ID = "0";
+    public static final String ID = "id";
     public static final String TITLE = "title";
 
     int mId;
@@ -23,11 +23,11 @@ public class GymCardioWorkout implements Serializable {
     }
 
 
-    public static List<GymCardioWorkout> parseWorkoutJSON(String courseJSON) throws JSONException {
+    public static List<GymCardioWorkout> parseWorkoutJSON(String workoutJSON) throws JSONException {
         List<GymCardioWorkout> workoutList = new ArrayList<GymCardioWorkout>();
-        if (courseJSON != null) {
+        if (workoutJSON != null) {
 
-            JSONArray arr = new JSONArray(courseJSON);
+            JSONArray arr = new JSONArray(workoutJSON);
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
