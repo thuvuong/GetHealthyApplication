@@ -1,13 +1,16 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,30 +24,20 @@ import static android.content.ContentValues.TAG;
  * Activities that contain this fragment must implement the
  * {@link RegistrationFragment.UserAddListener} interface
  * to handle interaction events.
- * Use the {@link RegistrationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class RegistrationFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     private final static String USER_ADD_URL
-            = "http://";
+            = "http://tcssandroidthuv.000webhostapp.com/addUser.php?";
 
     private EditText mFirstName;
     private EditText mLastName;
-    private EditText mUsername;
     private EditText mEmail;
     private EditText mPassword;
     private EditText mWeight;
     private EditText mHeight;
     private EditText mSex;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private UserAddListener mListener;
 
@@ -52,31 +45,10 @@ public class RegistrationFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RegistrationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RegistrationFragment newInstance(String param1, String param2) {
-        RegistrationFragment fragment = new RegistrationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -87,20 +59,54 @@ public class RegistrationFragment extends Fragment {
 
         mFirstName = (EditText) v.findViewById(R.id.text_fname);
         mLastName = (EditText) v.findViewById(R.id.text_lname);
-        mUsername = (EditText) v.findViewById(R.id.text_user_email);
+
         mEmail = (EditText) v.findViewById(R.id.text_user_email);
         mPassword = (EditText) v.findViewById(R.id.text_password);
         mHeight = (EditText) v.findViewById(R.id.text_height);
         mWeight = (EditText) v.findViewById(R.id.text_weight);
         mSex = (EditText) v.findViewById(R.id.text_sex);
 
+        Button signUpButton = (Button) v.findViewById(R.id.btn_sign_up);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email) || !email.contains("@")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else if (TextUtils.isEmpty(password) ||
+                        password.length() < 6) {
+
+                    Toast.makeText(v.getContext(), "Enter valid password"
+                                    + " (at leaste 6 characters)",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else {
+
+
+                    //                    login(email, password);
+                }
+            }
+        });
+
         return v;
     }
 
+//    public void login(final String theEmail, final String thePassword) {
+//        Intent i = new Intent(getActivity(), HomeActivity.class);
+//        startActivity(i);
+//    }
+
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String url) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.addUser(url);
         }
     }
 
@@ -111,7 +117,7 @@ public class RegistrationFragment extends Fragment {
             mListener = (UserAddListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement AddUserListener");
         }
     }
 
@@ -132,8 +138,7 @@ public class RegistrationFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface UserAddListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void addUser(String url);
     }
 
     private String buildUserURL(View v){
@@ -147,10 +152,6 @@ public class RegistrationFragment extends Fragment {
             String lname = mLastName.getText().toString();
             sb.append("last name=");
             sb.append(URLEncoder.encode(lname, "UTF-8"));
-
-            String username = mUsername.getText().toString();
-            sb.append("username=");
-            sb.append(URLEncoder.encode(username, "UTF-8"));
 
             String email = mEmail.getText().toString();
             sb.append("email=");
