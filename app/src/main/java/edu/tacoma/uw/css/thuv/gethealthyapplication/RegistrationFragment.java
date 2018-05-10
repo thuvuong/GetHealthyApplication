@@ -28,6 +28,8 @@ import static android.content.ContentValues.TAG;
  */
 public class RegistrationFragment extends Fragment {
 
+
+
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addUser.php?";
 
@@ -78,11 +80,6 @@ public class RegistrationFragment extends Fragment {
 
         return v;
     }
-
-//    public void login(final String theEmail, final String thePassword) {
-//        Intent i = new Intent(getActivity(), HomeActivity.class);
-//        startActivity(i);
-//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String url) {
