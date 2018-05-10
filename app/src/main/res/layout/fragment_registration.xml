@@ -59,18 +59,18 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/text_height"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/height"
-        android:inputType="number" />
-
-    <EditText
         android:id="@+id/text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/text_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/height"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/text_weight"

@@ -71,6 +71,26 @@ public class RegistrationFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email) || !email.contains("@")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else if (TextUtils.isEmpty(password) ||
+                        password.length() < 6) {
+
+                    Toast.makeText(v.getContext(), "Enter valid password"
+                                    + " (at leaste 6 characters)",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else {
+
+                }
+
                 String url = buildUserURL(v);
                 mListener.addUser(url);
             }
@@ -126,13 +146,6 @@ public class RegistrationFragment extends Fragment {
         StringBuilder sb = new StringBuilder(USER_ADD_URL);
 
         try{
-            String fname = mFirstName.getText().toString();
-            sb.append("fname=");
-            sb.append(URLEncoder.encode(fname, "UTF-8"));
-
-            String lname = mLastName.getText().toString();
-            sb.append("lname=");
-            sb.append(URLEncoder.encode(lname, "UTF-8"));
 
             String email = mEmail.getText().toString();
             sb.append("email=");
@@ -141,6 +154,14 @@ public class RegistrationFragment extends Fragment {
             String password = mPassword.getText().toString();
             sb.append("password=");
             sb.append(URLEncoder.encode(password, "UTF-8"));
+
+            String fname = mFirstName.getText().toString();
+            sb.append("firstname=");
+            sb.append(URLEncoder.encode(fname, "UTF-8"));
+
+            String lname = mLastName.getText().toString();
+            sb.append("lastname=");
+            sb.append(URLEncoder.encode(lname, "UTF-8"));
 
             String height = mHeight.getText().toString();
             sb.append("height=");
@@ -153,6 +174,7 @@ public class RegistrationFragment extends Fragment {
             String sex = mSex.getText().toString();
             sb.append("sex=");
             sb.append(URLEncoder.encode(sex, "UTF-8"));
+
 
             Log.i(TAG, sb.toString());
         }catch (Exception e){
