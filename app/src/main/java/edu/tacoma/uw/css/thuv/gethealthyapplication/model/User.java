@@ -28,18 +28,18 @@ public class User implements Serializable {
     private static final String SEX = "sex";
 
 
-    private String mEmail;
-    private String mPassword;
-    private String mFirstName;
-    private String mLastName;
-    private int mHeight;
-    private int mWeight;
-    private boolean mSexFemale;
+    String mEmail;
+    String mPassword;
+    String mFirstName;
+    String mLastName;
+    String mHeight;
+    String mWeight;
+    String mSexFemale;
 
     public User(final String theEmail, final String thePassword,
                 final String theFirstName, final String theLastName,
-                final int theHeight, final int theWeight,
-                final boolean theSexFemale) {
+                final String theHeight, final String theWeight,
+                final String theSexFemale) {
 
         // The values must be checked before being assigned here.
         mEmail = theEmail;
@@ -68,15 +68,15 @@ public class User implements Serializable {
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObj = jArray.getJSONObject(i);
-                User course = new User(jObj.getString(User.EMAIL),
+                User user = new User(jObj.getString(User.EMAIL),
                         jObj.getString(User.PASSWORD),
                         jObj.getString(User.FIRST_NAME),
                         jObj.getString(User.LAST_NAME),
-                        jObj.getInt(User.HEIGHT),
-                        jObj.getInt(User.WEIGHT),
-                        jObj.getBoolean(User.SEX));
+                        jObj.getString(User.HEIGHT),
+                        jObj.getString(User.WEIGHT),
+                        jObj.getString(User.SEX));
 
-                userList.add(course);
+                userList.add(user);
             }
         }
 
@@ -104,11 +104,11 @@ public class User implements Serializable {
         return mFirstName;
     }
 
-    protected int getHeight() {
+    protected String getHeight() {
         return mHeight;
     }
 
-    protected boolean isSexFemale() {
+    protected String isSexFemale() {
         return mSexFemale;
     }
 
@@ -120,7 +120,7 @@ public class User implements Serializable {
         return mPassword;
     }
 
-    protected int getWeight() {
+    protected String getWeight() {
         return mWeight;
     }
 
@@ -132,11 +132,11 @@ public class User implements Serializable {
         mFirstName = theFirstName;
     }
 
-    protected void setHeight(final int theHeight) {
+    protected void setHeight(final String theHeight) {
         mHeight = theHeight;
     }
 
-    protected void setSexFemale(final boolean theSexFemale) {
+    protected void setSexFemale(final String theSexFemale) {
         mSexFemale = theSexFemale;
     }
 
@@ -148,7 +148,7 @@ public class User implements Serializable {
         mPassword = thePassword;
     }
 
-    protected void setWeight(final int theWeight) {
+    protected void setWeight(final String theWeight) {
         mWeight = theWeight;
     }
 }
