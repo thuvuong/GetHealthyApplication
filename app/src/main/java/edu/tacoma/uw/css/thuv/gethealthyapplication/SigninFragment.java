@@ -34,6 +34,8 @@ import java.net.URL;
  */
 public class SigninFragment extends Fragment{
 
+    private final static String USER_LOG_IN_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/login.php?";
 
     private EditText mEmail;
     private EditText mPassword;
@@ -73,30 +75,33 @@ public class SigninFragment extends Fragment{
         mPassword = (EditText) getActivity().findViewById(R.id.password);
         mSignIn = (Button) getActivity().findViewById(R.id.sign_in);
 
-//        mSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String email = mEmail.getText().toString();
-//                String password = mPassword.getText().toString();
-//
-//                if (TextUtils.isEmpty(email) || !email.contains("@")) {
-//                    Toast.makeText(v.getContext(), "Enter valid email address",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    mEmail.requestFocus();
-//                } else if (TextUtils.isEmpty(password) ||
-//                        password.length() < 6) {
-//
-//                    Toast.makeText(v.getContext(), "Enter valid password"
-//                                    + " (at leaste 6 characters)",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    mEmail.requestFocus();
-//                } else {
-//                    login(email, password);
-//                }
-//            }
-//        });
+        mSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+
+                if (TextUtils.isEmpty(email) || !email.contains("@")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else if (TextUtils.isEmpty(password) ||
+                        password.length() < 6) {
+
+                    Toast.makeText(v.getContext(), "Enter valid password"
+                                    + " (at leaste 6 characters)",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else {
+//                    String url = buildUserUrl()
+
+                    login(email, password);
+                }
+
+            }
+        });
 
         mCreateNewAccount = (Button) v.findViewById(R.id.create_new_account);
         mCreateNewAccount.setOnClickListener(new View.OnClickListener() {
@@ -158,5 +163,4 @@ public class SigninFragment extends Fragment{
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }
