@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements
                 if(status.equals("success")){
                     Toast.makeText(getApplicationContext(), "Successfully Registered!",
                             Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(), "Failed to register",
                             Toast.LENGTH_LONG).show();
