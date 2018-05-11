@@ -20,8 +20,9 @@
             android:id="@+id/radio_gym"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/location_gym"
-            android:checked="true"/>
+            android:checked="false"
+            android:duplicateParentState="true"
+            android:text="@string/location_gym" />
 
         <RadioButton
             android:id="@+id/radio_home"
@@ -42,8 +43,9 @@
             android:id="@+id/btn_cardio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/style_cardio"
-            android:checked="true"/>
+            android:checked="false"
+            android:duplicateParentState="true"
+            android:text="@string/style_cardio" />
 
         <RadioButton
             android:id="@+id/btn_weight_lifting"
