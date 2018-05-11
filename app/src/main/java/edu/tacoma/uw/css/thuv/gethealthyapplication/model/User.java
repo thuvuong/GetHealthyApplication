@@ -34,7 +34,7 @@ public class User implements Serializable {
     String mLastName;
     String mHeight;
     String mWeight;
-    String mSexFemale;
+    String mSex;
 
     public User(final String theEmail, final String thePassword,
                 final String theFirstName, final String theLastName,
@@ -48,7 +48,7 @@ public class User implements Serializable {
         mLastName = theLastName;
         mHeight = theHeight;
         mWeight = theWeight;
-        mSexFemale = theSexFemale;
+        mSex = theSexFemale;
     }
 
     /**
@@ -109,7 +109,7 @@ public class User implements Serializable {
     }
 
     protected String isSexFemale() {
-        return mSexFemale;
+        return mSex;
     }
 
     protected String getLastName() {
@@ -137,7 +137,7 @@ public class User implements Serializable {
     }
 
     protected void setSexFemale(final String theSexFemale) {
-        mSexFemale = theSexFemale;
+        mSex = theSexFemale;
     }
 
     protected void setLastName(final String theLastName) {

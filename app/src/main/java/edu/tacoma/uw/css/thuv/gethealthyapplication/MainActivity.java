@@ -36,16 +36,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    @Override
     public void addUser(String url) {
         AddUserTask task = new AddUserTask();
         task.execute(new String[]{url.toString()});
+    }
 
-       getSupportFragmentManager().popBackStackImmediate();
+    @Override
+    public void logInUser(String url) {
+        LogInUserTask task = new LogInUserTask();
+        task.execute(new String[]{url.toString()});
     }
 
     private class AddUserTask extends AsyncTask<String, Void, String> {
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements
                     String s = "";
                     while((s = buffer.readLine()) != null){
                         response += s;
-                        response = response + "&";
                     }
                 }catch(Exception e){
                     response = "Unable to register. Reason: "
@@ -104,6 +102,61 @@ public class MainActivity extends AppCompatActivity implements
                         e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
+        }
+    }
+
+    private class LogInUserTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... urls){
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            for (String url : urls){
+                try{
+                    URL urlObject = new URL(url);
+                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+
+                    InputStream content = urlConnection.getInputStream();
+
+                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    String s = "";
+                    while((s = buffer.readLine()) != null){
+                        response += s;
+                        response = response + "&";
+                    }
+                }catch(Exception e){
+                    response = "Unable to log in. Reason: "
+                            + e.getMessage();
+                }finally {
+                    if (urlConnection != null){
+                        urlConnection.disconnect();
+                    }
+                }
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result){
+            try{
+                JSONObject jsonObject = new JSONObject(result);
+                String status = (String) jsonObject.get("result");
+                if(status.equals("success")){
+                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Failed to log in",
+                            Toast.LENGTH_LONG).show();
+                }
+            }catch(JSONException e){
+                Toast.makeText(getApplicationContext(), "Something wrong with the data" +
+                        e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

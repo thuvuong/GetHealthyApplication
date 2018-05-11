@@ -1,13 +1,12 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URLEncoder;
 
 
 /**
@@ -34,6 +26,11 @@ import java.net.URL;
  */
 public class SigninFragment extends Fragment{
 
+    private final static String TAG = "SigninFragment";
+
+
+    private final static String USER_LOG_IN_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/login.php?";
 
     private EditText mEmail;
     private EditText mPassword;
@@ -52,51 +49,45 @@ public class SigninFragment extends Fragment{
 
     }
 
-
-
-    public void login(final String theEmail, final String thePassword) {
-
-
-
-        Intent i = new Intent(getActivity(), HomeActivity.class);
-        startActivity(i);
-        getActivity();
-    }
-
+    /**
+     * Validates the email and password and makes sure it exist
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_signin, container, false);
 
-        mEmail = (EditText) getActivity().findViewById(R.id.email);
-        mPassword = (EditText) getActivity().findViewById(R.id.password);
-        mSignIn = (Button) getActivity().findViewById(R.id.sign_in);
+        mEmail = (EditText) v.findViewById(R.id.email);
+        mPassword = (EditText) v.findViewById(R.id.password);
+        mSignIn = (Button) v.findViewById(R.id.sign_in);
 
-//        mSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String email = mEmail.getText().toString();
-//                String password = mPassword.getText().toString();
-//
-//                if (TextUtils.isEmpty(email) || !email.contains("@")) {
-//                    Toast.makeText(v.getContext(), "Enter valid email address",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    mEmail.requestFocus();
-//                } else if (TextUtils.isEmpty(password) ||
-//                        password.length() < 6) {
-//
-//                    Toast.makeText(v.getContext(), "Enter valid password"
-//                                    + " (at leaste 6 characters)",
-//                            Toast.LENGTH_SHORT).show();
-//
-//                    mEmail.requestFocus();
-//                } else {
-//                    login(email, password);
-//                }
-//            }
-//        });
+        mSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+
+
+                if (TextUtils.isEmpty(email) || !email.contains("@")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address",
+                            Toast.LENGTH_SHORT).show();
+
+                    mEmail.requestFocus();
+                } else if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(v.getContext(), "Enter a password",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    String url = buildUserURL(v);
+                    mListener.logInUser(url);
+                }
+            }
+        });
 
         mCreateNewAccount = (Button) v.findViewById(R.id.create_new_account);
         mCreateNewAccount.setOnClickListener(new View.OnClickListener() {
@@ -109,17 +100,34 @@ public class SigninFragment extends Fragment{
         return v;
     }
 
+    private String buildUserURL(View v){
+        StringBuilder sb = new StringBuilder(USER_LOG_IN_URL);
+
+        try{
+
+            String email = mEmail.getText().toString();
+            sb.append("email=");
+            sb.append(URLEncoder.encode(email, "UTF-8"));
+
+            String password = mPassword.getText().toString();
+            sb.append("&password=");
+            sb.append(URLEncoder.encode(password, "UTF-8"));
+
+            Log.i(TAG, sb.toString());
+        }catch (Exception e){
+            Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
+        return sb.toString();
+    }
+
+
+
+
     public void launchRegister(View v){
         FragmentManager fragmentManager = getFragmentManager();
         RegistrationFragment rf = new RegistrationFragment();
         fragmentManager.beginTransaction().replace(R.id.main_activity, rf, null).commit();
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -156,7 +164,6 @@ public class SigninFragment extends Fragment{
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void logInUser(String uri);
     }
-
 }
