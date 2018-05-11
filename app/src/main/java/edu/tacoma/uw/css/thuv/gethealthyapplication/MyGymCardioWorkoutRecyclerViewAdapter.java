@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.support.v7.widget.RecyclerView;
@@ -12,24 +18,53 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardio
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link GymCardioWorkout} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
+ * A RecyclerView, which allows us to reuse the formatting for
+ * part of the style.
+ *
+ * @author Team 11
+ * @version May 10, 2018
  */
-public class MyGymCardioWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<MyGymCardioWorkoutRecyclerViewAdapter.ViewHolder> {
+public class MyGymCardioWorkoutRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyGymCardioWorkoutRecyclerViewAdapter.ViewHolder> {
 
+    /**
+     * The list of GymCardioWorkout exercises.
+     */
     private final List<GymCardioWorkout> mValues;
+
+    /**
+     * The listener for this adapter class to notify the activity on
+     * any changes.
+     */
     private final OnListFragmentInteractionListener mListener;
 
-    public MyGymCardioWorkoutRecyclerViewAdapter(List<GymCardioWorkout> items, OnListFragmentInteractionListener listener) {
+    /**
+     * Initalizing the member variables.
+     *
+     * @param items The given list of GymCardioWorkout exercises.
+     * @param listener The given listener.
+     */
+    public MyGymCardioWorkoutRecyclerViewAdapter(
+                        List<GymCardioWorkout> items,
+                        OnListFragmentInteractionListener listener) {
+
         mValues = items;
         mListener = listener;
     }
 
+    /**
+     * Storing the layout.
+     *
+     * @param parent The parent view group.
+     * @param viewType The specified view.
+     * @return The newly stored view holder.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_gymcardioworkout, parent, false);
+                .inflate(R.layout.fragment_gymcardioworkout, parent,
+                            false);
+
         return new ViewHolder(view);
     }
 
@@ -51,17 +86,30 @@ public class MyGymCardioWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<
         });
     }
 
+    /**
+     * Counts the number of items.
+     *
+     * @return The number of items.
+     */
     @Override
     public int getItemCount() {
         return mValues.size();
     }
 
+    /**
+     * Specifying how it should display a list of items.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
         public GymCardioWorkout mItem;
 
+        /**
+         * Initializing fields.
+         *
+         * @param view The given layout.
+         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
