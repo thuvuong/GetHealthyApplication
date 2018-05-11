@@ -100,13 +100,13 @@ public class SigninFragment extends Fragment{
                 String password = mPassword.getText().toString();
 
 
-                if (TextUtils.isEmpty(email) || !email.contains("@")) {
-                    Toast.makeText(v.getContext(), "Enter valid email address",
+                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address which contains an @ and a dot",
                             Toast.LENGTH_SHORT).show();
 
                     mEmail.requestFocus();
-                } else if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(v.getContext(), "Enter a password",
+                } else if (TextUtils.isEmpty(password) || password.length() < 6) {
+                    Toast.makeText(v.getContext(), "Enter valid password (at least 6 characters)",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     String url = buildUserURL(v);

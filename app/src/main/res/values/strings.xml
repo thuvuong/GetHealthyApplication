@@ -8,9 +8,9 @@
     <string name="last_name">Enter your last name</string>
     <string name="username">Username</string>
     <string name="password">Enter your password</string>
-    <string name="height">Enter your height</string>
-    <string name="weight">Enter your weight</string>
-    <string name="sex">Enter your sex</string>
+    <string name="height">Enter your height (in inches)</string>
+    <string name="weight">Enter your weight (in pounds)</string>
+    <string name="sex">Enter your sex (ex. Female) </string>
     <string name="image_desc">This is the description of our logo</string>
     <string name="sign_up">Sign Up</string>
 

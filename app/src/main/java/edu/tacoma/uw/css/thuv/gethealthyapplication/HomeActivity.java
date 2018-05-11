@@ -6,7 +6,10 @@
 
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -45,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         mTitle.setText("Home");
         getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+
     }
 
     /**
@@ -71,13 +75,17 @@ public class HomeActivity extends AppCompatActivity {
 
         switch (theItem.getItemId()) {
             case R.id.action_home:
-                Toast.makeText(this, "You have selected the Home action.",
-                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, HomeActivity.class);
+                startActivity(i);
+                finish();
                 return true;
 
             case R.id.action_log_out:
-                Toast.makeText(this, "You have selected the Log out action.",
-                        Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                return true;
+
 
             default:
                 return super.onOptionsItemSelected(theItem);

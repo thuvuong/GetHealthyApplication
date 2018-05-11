@@ -110,8 +110,25 @@ public class RegistrationFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                String url = buildUserURL(v);
-                mListener.addUser(url);
+                String email = mEmail.getText().toString();
+                String pwd = mPassword.getText().toString();
+                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
+                    Toast.makeText(v.getContext(), "Enter valid email address which contains an @ and a dot"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    mEmail.requestFocus();
+                }
+
+                else if (TextUtils.isEmpty(pwd) || pwd.length() < 6) {
+                    Toast.makeText(v.getContext(), "Enter valid password (at least 6 characters)"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                    mPassword.requestFocus();
+                }
+                else {
+                    String url = buildUserURL(v);
+                     mListener.addUser(url);
+                }
             }
         });
 

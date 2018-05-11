@@ -13,7 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
 
@@ -33,6 +38,7 @@ public class WorkoutActivity extends AppCompatActivity
     /** The title of the workout page.*/
     public TextView mTitle;
 
+    RadioButton gymBtn, cardioBtn;
     /**
      * Figuring how the activity should be oriented.
      *
@@ -59,25 +65,36 @@ public class WorkoutActivity extends AppCompatActivity
     }
 
     /**
-     * Launches the workout fragment.
+     * Launches the workout fragment from the fragment interaction
+     * if the gym and cardio are selected.
      *
      * @param v Provided specification for the layout.
      */
     public void launch(View v) {
-        GymCardioFragment gymCardioFragment = new GymCardioFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.workout_fragment_container,
-                        gymCardioFragment, null).commit();
+        onFragmentInteraction(Uri.EMPTY);
     }
 
+
     /**
-     * Empty interaction listener.
+     * An interaction listener to launch the fragment to show the list
+     * of cardio workout list at the gym when gym and cardio options are selected,
+     * only gym and cardio option is implemented so far.
      *
      * @param uri
      */
     @Override
     public void onFragmentInteraction(Uri uri) {
-
+        gymBtn = (RadioButton) findViewById(R.id.radio_gym);
+        cardioBtn = (RadioButton) findViewById(R.id.btn_cardio);
+        if (gymBtn.isChecked() && cardioBtn.isChecked()) {
+            GymCardioFragment gymCardioFragment = new GymCardioFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            gymCardioFragment, null).commit();
+        } else {
+            Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
+                    " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
