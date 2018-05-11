@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.app.FragmentTransaction;
@@ -7,9 +13,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class FoodActivity extends AppCompatActivity implements FoodFragment.OnFragmentInteractionListener,
-        HealthyRecipesFragment.OnFragmentInteractionListener, BreakfastFragment.OnFragmentInteractionListener{
+/**
+ * Organizes the different Food fragments.
+ *
+ * @author Team 11
+ * @version May 10, 2018
+ */
+public class FoodActivity extends AppCompatActivity
+                implements FoodFragment.OnFragmentInteractionListener,
+                HealthyRecipesFragment.OnFragmentInteractionListener,
+                BreakfastFragment.OnFragmentInteractionListener{
 
+    /**
+     * Displays a fragment.
+     *
+     * @param savedInstanceState The given data from the previous activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +41,10 @@ public class FoodActivity extends AppCompatActivity implements FoodFragment.OnFr
         }
     }
 
+    /**
+     * An empty method implementation to make the implemented
+     * fragments work properly.
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
 

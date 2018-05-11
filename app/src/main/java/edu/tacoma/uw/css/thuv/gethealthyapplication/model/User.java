@@ -1,5 +1,10 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.model;
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
 
+package edu.tacoma.uw.css.thuv.gethealthyapplication.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Defines the characteristics which define a user in out application.
  *
- *
+ * @author Team 11
+ * @version May 10, 2018
  */
 public class User implements Serializable {
 
@@ -27,21 +34,33 @@ public class User implements Serializable {
     private static final String WEIGHT = "weight";
     private static final String SEX = "sex";
 
+    /** The user's email.*/
+    private String mEmail;
 
-    String mEmail;
-    String mPassword;
-    String mFirstName;
-    String mLastName;
-    String mHeight;
-    String mWeight;
-    String mSex;
+    /** The user's password.*/
+    private String mPassword;
 
+    /** The user's first name.*/
+    private String mFirstName;
+
+    /** The user's last name.*/
+    private String mLastName;
+
+    /** The user's height.*/
+    private String mHeight;
+
+    /** The user's weight.*/
+    private String mWeight;
+
+    /** Specify if the user is a man or woman.*/
+    private String mSex;
+
+    /** Initializes the fields with the given parameters.*/
     public User(final String theEmail, final String thePassword,
                 final String theFirstName, final String theLastName,
                 final String theHeight, final String theWeight,
                 final String theSexFemale) {
 
-        // The values must be checked before being assigned here.
         mEmail = theEmail;
         mPassword = thePassword;
         mFirstName = theFirstName;
@@ -54,12 +73,12 @@ public class User implements Serializable {
     /**
      * Extracting useful information from the JSON string.
      *
-     * @param theUserJSON
-     * @return
+     * @param theUserJSON The list of users as a JSON code.
+     * @return A list of User objects.
      * @throws JSONException
      */
     public static List<User> parseUserJSON(final String theUserJSON)
-            throws JSONException {
+                                                throws JSONException {
 
         List<User> userList = new ArrayList<User>();
 
@@ -84,71 +103,59 @@ public class User implements Serializable {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-    // *** Getters and setters below. ***
-
     protected String getEmail() {
         return mEmail;
-    }
-
-    protected String getFirstName() {
-        return mFirstName;
-    }
-
-    protected String getHeight() {
-        return mHeight;
-    }
-
-    protected String isSexFemale() {
-        return mSex;
-    }
-
-    protected String getLastName() {
-        return mLastName;
     }
 
     private String getPassword() {
         return mPassword;
     }
 
+    protected String getFirstName() {
+        return mFirstName;
+    }
+
+    protected String getLastName() {
+        return mLastName;
+    }
+
+    protected String getHeight() {
+        return mHeight;
+    }
+
     protected String getWeight() {
         return mWeight;
+    }
+
+    protected String getSex() {
+        return mSex;
     }
 
     private void setEmail(final String theEmail) {
         mEmail = theEmail;
     }
 
+    private void setPassword(final String thePassword) {
+        mPassword = thePassword;
+    }
+
     protected void setFirstName(final String theFirstName) {
         mFirstName = theFirstName;
-    }
-
-    protected void setHeight(final String theHeight) {
-        mHeight = theHeight;
-    }
-
-    protected void setSexFemale(final String theSexFemale) {
-        mSex = theSexFemale;
     }
 
     protected void setLastName(final String theLastName) {
         mLastName = theLastName;
     }
 
-    private void setPassword(final String thePassword) {
-        mPassword = thePassword;
+    protected void setHeight(final String theHeight) {
+        mHeight = theHeight;
     }
 
     protected void setWeight(final String theWeight) {
         mWeight = theWeight;
+    }
+
+    protected void setSexFemale(final String theSexFemale) {
+        mSex = theSexFemale;
     }
 }

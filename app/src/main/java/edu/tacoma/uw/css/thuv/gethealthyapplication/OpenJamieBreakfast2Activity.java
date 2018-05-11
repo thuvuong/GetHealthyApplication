@@ -1,11 +1,28 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
+/**
+ * A activity which launches the Jamie Oliver video.
+ *
+ * @author Team 11
+ * @version May 10, 2018
+ */
 public class OpenJamieBreakfast2Activity extends AppCompatActivity {
 
+    /**
+     * Gathering how the activity should be oriented.
+     *
+     * @param savedInstanceState The given data from an activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

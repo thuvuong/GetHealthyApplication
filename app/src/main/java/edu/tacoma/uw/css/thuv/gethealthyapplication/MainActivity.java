@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Intent;
@@ -17,12 +23,27 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * A log in page where a user can log in, with an existing account,
+ * or create a new account.
+ *
+ * @author Team 11
+ * @version May 10, 2018
+ */
 public class MainActivity extends AppCompatActivity implements
-            RegistrationFragment.UserAddListener, SigninFragment.OnFragmentInteractionListener{
+                        RegistrationFragment.UserAddListener,
+                        SigninFragment.OnFragmentInteractionListener{
 
+    /** An empty constructor.*/
     public MainActivity() {
+
     }
 
+    /**
+     * Starting the sign in fragment.
+     *
+     * @param savedInstanceState The given data from an activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +56,34 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Creating a new user to the system.
+     *
+     * @param url The url which contains the characteristics about
+     *            the new user.
+     */
     @Override
     public void addUser(String url) {
         AddUserTask task = new AddUserTask();
         task.execute(new String[]{url.toString()});
     }
 
+    /**
+     * Allows an existing user to log in into the system.
+     *
+     * @param url The url which contains log in information
+     *            about the current user.
+     */
     @Override
     public void logInUser(String url) {
         LogInUserTask task = new LogInUserTask();
         task.execute(new String[]{url.toString()});
     }
 
+    /**
+     * Storing the new user information the databse by doing
+     * asynchronous loading.
+     */
     private class AddUserTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -54,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements
             super.onPreExecute();
         }
 
+        /**
+         * Checks the connection for each url.
+         *
+         * @param urls The urls.
+         * @return The parsed url filled with the new user information.
+         */
         @Override
         protected String doInBackground(String... urls){
             String response = "";
@@ -82,6 +125,11 @@ public class MainActivity extends AppCompatActivity implements
             return response;
         }
 
+        /**
+         * Checking whether the registration process went smoothly,
+         * or not; either way, the user will receive a toast message
+         * stating the result of the registration process.
+         */
         @Override
         protected void onPostExecute(String result){
             try{
@@ -105,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Checking if a specific user is in the data base.
+     */
     private class LogInUserTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -112,6 +163,12 @@ public class MainActivity extends AppCompatActivity implements
             super.onPreExecute();
         }
 
+        /**
+         * Parsing the url.
+         *
+         * @param urls The url containing user's log in information.
+         * @return The parsed url filled with the user's information.
+         */
         @Override
         protected String doInBackground(String... urls){
             String response = "";
@@ -141,6 +198,14 @@ public class MainActivity extends AppCompatActivity implements
             return response;
         }
 
+        /**
+         * If the user exists in the data base, it takes the user
+         * to the home page; else, the user is prompted to enter
+         * a valid log in information.
+         *
+         * @param result The result of whether the user exists in
+         *               the database.
+         */
         @Override
         protected void onPostExecute(String result){
             try{

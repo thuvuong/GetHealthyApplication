@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.app.FragmentManager;
@@ -12,11 +18,26 @@ import android.widget.TextView;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
 
 
-public class WorkoutActivity extends AppCompatActivity implements GymCardioFragment.OnFragmentInteractionListener,
-        WorkoutFragment.OnFragmentInteractionListener, GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
+/**
+ * The Workout activity which provides different types of exercises
+ * for different location workouts.
+ *
+ * @author Team 11
+ * @version May 10, 2018
+ */
+public class WorkoutActivity extends AppCompatActivity
+        implements GymCardioFragment.OnFragmentInteractionListener,
+        WorkoutFragment.OnFragmentInteractionListener,
+        GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
 
+    /** The title of the workout page.*/
     public TextView mTitle;
 
+    /**
+     * Figuring how the activity should be oriented.
+     *
+     * @param savedInstanceState The given data from another activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +58,33 @@ public class WorkoutActivity extends AppCompatActivity implements GymCardioFragm
         }
     }
 
+    /**
+     * Launches the workout fragment.
+     *
+     * @param v Provided specification for the layout.
+     */
     public void launch(View v) {
         GymCardioFragment gymCardioFragment = new GymCardioFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.workout_fragment_container, gymCardioFragment, null).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.workout_fragment_container,
+                        gymCardioFragment, null).commit();
     }
+
+    /**
+     * Empty interaction listener.
+     *
+     * @param uri
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
+    /**
+     * Empty interaction listener
+     *
+     * @param item
+     */
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
 

@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
@@ -32,40 +38,67 @@ import static android.content.ContentValues.TAG;
 
 /**
  * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
+ *
+ * @author Team 11
+ * @version May 10, 2018
  */
 public class GymCardioWorkoutListFragment extends Fragment {
-    public final static String TAG = "";
-    // TODO: Customize parameter argument names
+
+    public final static String TAG = "GymCardioWorkoutListFragment";
+
     private static final String ARG_COLUMN_COUNT = "column-count";
 
+    /** The url link which contains the list of workouts.*/
     private static final String WORKOUT_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=gymcardioworkout";
 
     private RecyclerView mRecyclerView;
-    // TODO: Customize parameters
+
+    /** The number of columns to display the current workout list.*/
     private int mColumnCount = 1;
+
+    /**
+     * The listener for this fragment to notify the activity which
+     * button was pressed.
+     */
     private OnListFragmentInteractionListener mListener;
+
+    /** The list of cardio gym workouts.*/
     private List<GymCardioWorkout> mWorkoutList;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
+     * fragment.
      */
     public GymCardioWorkoutListFragment() {
+
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static GymCardioWorkoutListFragment newInstance(int columnCount) {
-        GymCardioWorkoutListFragment fragment = new GymCardioWorkoutListFragment();
+    /**
+     * Creating a new instance of the GymCardioWorkoutListFragment object.
+     *
+     * @param columnCount The number of columns to display the
+     *                    current workout list.
+     *
+     * @return A new instance of the GymCardioWorkoutListFragment object.
+     */
+    public static GymCardioWorkoutListFragment newInstance
+                                                (int columnCount) {
+
+        GymCardioWorkoutListFragment fragment =
+                                new GymCardioWorkoutListFragment();
+
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
 
+    /**
+     * Figuring how the fragment should be oriented.
+     *
+     * @param savedInstanceState The given data from an activity.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +108,22 @@ public class GymCardioWorkoutListFragment extends Fragment {
         }
     }
 
+    /**
+     * Selecting the layout of this fragment.
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gymcardioworkout_list, container, false);
+
+        View view = inflater.inflate(
+                        R.layout.fragment_gymcardioworkout_list,
+                        container, false);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         TextView title = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -90,27 +135,41 @@ public class GymCardioWorkoutListFragment extends Fragment {
             Context context = view.getContext();
             mRecyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-           // mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
-            GymCardioWorkoutAsyncTask courseAsyncTask = new GymCardioWorkoutAsyncTask();
-            courseAsyncTask.execute(new String[]{WORKOUT_URL});
+                mRecyclerView.setLayoutManager(
+                                new LinearLayoutManager(context));
 
+            } else {
+                mRecyclerView.setLayoutManager(
+                        new GridLayoutManager(context, mColumnCount));
+
+            }
+            GymCardioWorkoutAsyncTask courseAsyncTask =
+                                    new GymCardioWorkoutAsyncTask();
+
+            courseAsyncTask.execute(new String[]{WORKOUT_URL});
         }
         return view;
     }
 
-    private class GymCardioWorkoutAsyncTask extends AsyncTask<String, Void, String> {
+    /**
+     * Setting up the asynchronous loading from the server database.
+     */
+    private class GymCardioWorkoutAsyncTask
+                            extends AsyncTask<String, Void, String> {
 
+        /**
+         * Displays the list of workouts.
+         *
+         * @param result The result of the attempt to retrieve the
+         *               list of workouts.
+         */
         @Override
         protected void onPostExecute(String result) {
-            Log.i(TAG, "onPostExecute");
 
             if (result.startsWith("Unable to")) {
-                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(getActivity().getApplicationContext(),
+                        result, Toast.LENGTH_SHORT).show();
+
                 return;
             }
 
@@ -118,18 +177,26 @@ public class GymCardioWorkoutListFragment extends Fragment {
                 mWorkoutList = GymCardioWorkout.parseWorkoutJSON(result);
             }
             catch (JSONException e) {
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(getActivity().getApplicationContext(),
+                        e.getMessage(), Toast.LENGTH_SHORT).show();
+
                 return;
             }
 
-// Everything is good, show the list of courses.
+            // Everything is good, show the list of courses.
             if (!mWorkoutList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
+                mRecyclerView.setAdapter(
+                        new MyGymCardioWorkoutRecyclerViewAdapter(
+                                mWorkoutList, mListener));
             }
-
         }
 
+        /**
+         * Grabs the list of workouts.
+         *
+         * @param urls The workout url.
+         * @return The workout list as  a String.
+         */
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
@@ -137,11 +204,13 @@ public class GymCardioWorkoutListFragment extends Fragment {
             for (String url : urls) {
                 try {
                     URL urlObject = new URL(url);
-                    urlConnection = (HttpURLConnection) urlObject.openConnection();
+                    urlConnection = (HttpURLConnection)
+                                        urlObject.openConnection();
 
                     InputStream content = urlConnection.getInputStream();
 
-                    BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                    BufferedReader buffer = new BufferedReader(
+                                    new InputStreamReader(content));
                     String s = "";
                     while ((s = buffer.readLine()) != null) {
                         response += s;
@@ -157,9 +226,14 @@ public class GymCardioWorkoutListFragment extends Fragment {
             }
             return response;
         }
-
     }
 
+    /**
+     * Setting up listener when the fragment is first attached
+     * to the activity.
+     *
+     * @param context The new activity where this fragment will be placed.
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -171,6 +245,10 @@ public class GymCardioWorkoutListFragment extends Fragment {
         }
     }
 
+    /**
+     * Disassociating with the current activity and stopping the
+     * listener.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -182,13 +260,8 @@ public class GymCardioWorkoutListFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(GymCardioWorkout item);
     }
 }

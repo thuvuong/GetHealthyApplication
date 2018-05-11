@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
@@ -8,49 +14,47 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GymCardioFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GymCardioFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Displays a list of workouts to do if our user wants to do a cardio
+ * workout in the gym.
+ *
+ * @author Team 11
+ * @version May 10, 2018
  */
 public class GymCardioFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    /**
+     * The listener for this fragment to notify the activity which
+     * button was pressed.
+     */
     private OnFragmentInteractionListener mListener;
 
+    /** Required empty public constructor.*/
     public GymCardioFragment() {
-        // Required empty public constructor
+
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Creating a new instance of the parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment GymCardioFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static GymCardioFragment newInstance(String param1, String param2) {
+    public static GymCardioFragment newInstance(String param1,
+                                                String param2) {
+
         GymCardioFragment fragment = new GymCardioFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
+    /**
+     * Filling up the container with a new instance of this fragment.
+     *
+     * @param savedInstanceState The data given from an activity.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +63,16 @@ public class GymCardioFragment extends Fragment {
                     .replace(R.id.workout_fragment_container, new GymCardioWorkoutListFragment())
                     .commit();
         }
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
+    /**
+     * Picking the layout of this fragment.
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +80,6 @@ public class GymCardioFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_gym_cardio, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -90,6 +97,10 @@ public class GymCardioFragment extends Fragment {
         }
     }
 
+    /**
+     * Disassociating with the current activity and stopping the
+     * listener.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -101,13 +112,8 @@ public class GymCardioFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

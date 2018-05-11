@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
@@ -16,46 +22,66 @@ import android.widget.Toast;
 
 import java.net.URLEncoder;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SigninFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
+ * The user log in fragment.
+ *
+ * @author Team 11
+ * @version May 10, 2018
  */
 public class SigninFragment extends Fragment{
 
     private final static String TAG = "SigninFragment";
 
-
+    /**
+     * This specific url allows us to check if a email and
+     * password exists in the database through the php file.
+     */
     private final static String USER_LOG_IN_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/login.php?";
 
+    /** Input space for a user's to place their email into.*/
     private EditText mEmail;
+
+    /** Input space for a user's to place their email into.*/
     private EditText mPassword;
+
+    /** Sign in button.*/
     private Button mSignIn;
+
+    /**
+     * Create an account button which leads the use to register
+     * for a new account.
+     */
     private Button mCreateNewAccount;
 
+    /**
+     * The listener for this fragment to notify the activity which
+     * button was pressed.
+     */
     private OnFragmentInteractionListener mListener;
 
+    /** Required empty public constructor.*/
     public SigninFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
     }
 
     /**
-     * Validates the email and password and makes sure it exist
+     * Figuring how the fragment should be oriented.
      *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
+     * @param savedInstanceState The given data from an activity.
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * Validates the email and password and makes sure it exist.
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,6 +126,12 @@ public class SigninFragment extends Fragment{
         return v;
     }
 
+    /**
+     * Builds a url based on the input values that the user provided.
+     *
+     * @param v The layout of this page.
+     * @return A url which contains the user log in information.
+     */
     private String buildUserURL(View v){
         StringBuilder sb = new StringBuilder(USER_LOG_IN_URL);
 
@@ -121,15 +153,23 @@ public class SigninFragment extends Fragment{
         return sb.toString();
     }
 
-
-
-
+    /**
+     * Launches the registeration fagment
+     *
+     * @param v The given layout.
+     */
     public void launchRegister(View v){
         FragmentManager fragmentManager = getFragmentManager();
         RegistrationFragment rf = new RegistrationFragment();
         fragmentManager.beginTransaction().replace(R.id.main_activity, rf, null).commit();
     }
 
+    /**
+     * Setting up listener when the fragment is first attached
+     * to the activity.
+     *
+     * @param context The new activity where this fragment will be placed.
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -141,11 +181,10 @@ public class SigninFragment extends Fragment{
         }
     }
 
-
-
-
-
-
+    /**
+     * Disassociating with the current activity and stopping the
+     * listener.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -157,10 +196,6 @@ public class SigninFragment extends Fragment{
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

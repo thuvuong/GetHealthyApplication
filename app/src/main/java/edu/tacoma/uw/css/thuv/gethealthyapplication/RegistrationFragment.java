@@ -1,3 +1,9 @@
+/*
+ * TCSS 450: Mobile Application Programming
+ * Professor: Menaka Abraham
+ * Assignment: Project Phase I
+ */
+
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
 import android.content.Context;
@@ -18,41 +24,72 @@ import java.net.URLEncoder;
 
 import static android.content.ContentValues.TAG;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RegistrationFragment.UserAddListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
+ * The user registration fragment.
+ *
+ * @author Team 11
+ * @version May 10, 2018
  */
 public class RegistrationFragment extends Fragment {
 
-
-
+    /**
+     * This specific url allows us to add a new user information
+     * through the php file.
+     */
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addUser.php?";
 
-    private EditText mFirstName;
-    private EditText mLastName;
+    /** Input space for the new user's to place their email into.*/
     private EditText mEmail;
+
+    /** Input space for the new user's to place their password into.*/
     private EditText mPassword;
+
+    /** Input space for the new user's to place their first name into.*/
+    private EditText mFirstName;
+
+    /** Input space for the new user's to place their last name into.*/
+    private EditText mLastName;
+
+    /** Input space for the new user's to place their weight into.*/
     private EditText mWeight;
+
+    /** Input space for the new user's to place their height into.*/
     private EditText mHeight;
+
+    /** Input space for the new user's to place their sex into.*/
     private EditText mSex;
 
+    /**
+     * The listener for this fragment to notify the activity which
+     * button was pressed.
+     */
     private UserAddListener mListener;
 
+    /** Required empty public constructor.*/
     public RegistrationFragment() {
-        // Required empty public constructor
+
     }
 
+    /**
+     * Figuring how the fragment should be oriented.
+     *
+     * @param savedInstanceState The given data from an activity.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     * Selecting the layout of this fragment.
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,13 +118,23 @@ public class RegistrationFragment extends Fragment {
         return v;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * The listener notifies the activity about the button being pressed.
+     *
+     * @param url The specifics website to go to.
+     */
     public void onButtonPressed(String url) {
         if (mListener != null) {
             mListener.addUser(url);
         }
     }
 
+    /**
+     * Setting up listener when the fragment is first attached
+     * to the activity.
+     *
+     * @param context The new activity where this fragment will be placed.
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -99,6 +146,10 @@ public class RegistrationFragment extends Fragment {
         }
     }
 
+    /**
+     * Disassociating with the current activity and stopping the
+     * listener.
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -110,15 +161,17 @@ public class RegistrationFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface UserAddListener {
         void addUser(String url);
     }
 
+    /**
+     * Builds a url based on the input values that the user provided.
+     *
+     * @param v The layout of this page.
+     * @return A url which contains the new user's private information.
+     */
     private String buildUserURL(View v){
         StringBuilder sb = new StringBuilder(USER_ADD_URL);
 
