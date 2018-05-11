@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
 
+
 /**
  * The Workout activity which provides different types of exercises
  * for different location workouts.
