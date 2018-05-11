@@ -31,6 +31,7 @@ public class GymCardioWorkout implements Serializable {
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
+
                 GymCardioWorkout workout = new GymCardioWorkout(obj.getString(GymCardioWorkout.ID),
                                                                 obj.getString(GymCardioWorkout.TITLE));
                 workoutList.add(workout);

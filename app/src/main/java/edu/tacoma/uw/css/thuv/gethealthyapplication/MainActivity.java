@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements
                             Toast.LENGTH_LONG).show();
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(i);
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Failed to register",
                             Toast.LENGTH_LONG).show();
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(getApplicationContext(), "Something wrong with the data" +
                         e.getMessage(), Toast.LENGTH_LONG).show();
             }
+
         }
     }
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.gym_cardio_workout.GymCardioWorkout;
 
+
 public class WorkoutActivity extends AppCompatActivity implements GymCardioFragment.OnFragmentInteractionListener,
         WorkoutFragment.OnFragmentInteractionListener, GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
 
