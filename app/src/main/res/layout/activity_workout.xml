@@ -6,26 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/workout_fragment_container"
-    tools:context=".WorkoutActivity">
+    tools:context=".workout.WorkoutActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/workout_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:layout_gravity="center"
-       >
+        app:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/workout_toolbar_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@android:color/background_light"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
+
     </android.support.v7.widget.Toolbar>
+
 </LinearLayout>

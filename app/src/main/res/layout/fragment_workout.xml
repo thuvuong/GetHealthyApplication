@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/workout_fragment"
-    tools:context=".WorkoutActivity">
+    tools:context=".workout.WorkoutActivity">
 
     <RadioGroup
         android:id="@+id/radio_location"
@@ -17,7 +17,7 @@
         android:layout_marginTop="182dp">
 
         <RadioButton
-            android:id="@+id/radio_gym"
+            android:id="@+id/gym_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -25,7 +25,7 @@
             android:text="@string/location_gym" />
 
         <RadioButton
-            android:id="@+id/radio_home"
+            android:id="@+id/home_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/location_home" />
@@ -40,7 +40,7 @@
         android:layout_marginBottom="182dp">
 
         <RadioButton
-            android:id="@+id/btn_cardio"
+            android:id="@+id/cardio_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -48,7 +48,7 @@
             android:text="@string/style_cardio" />
 
         <RadioButton
-            android:id="@+id/btn_weight_lifting"
+            android:id="@+id/weight_lifting_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/style_weight_lifting" />
@@ -82,14 +82,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="254dp"
         android:text="@string/asking_style" />
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="136dp">
-
-    </FrameLayout>
 
 </RelativeLayout>

@@ -16,7 +16,7 @@
 
     <string name="email">Enter your email</string>
     <string name="sign_in">Sign In</string>
-    <string name="create_new_account">Create New Account</string>
+    <string name="create_new_account">Create New Account Here</string>
     <string name="icon">icon</string>
 
     <string name="title_activity_home">HomeActivity</string>
@@ -44,5 +44,6 @@
     <string name="style_cardio">Cardio</string>
     <string name="style_weight_lifting">Weight Lifting</string>
     <string name="go_to">Go to</string>
+    <string name="menu_action_about">About</string>
 
 </resources>

@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".GymCardioWorkoutListFragment"
-    tools:listitem="@layout/fragment_gymcardioworkout"/>
+    tools:context=".workout.GymCardioWorkoutListFragment"
+    tools:listitem="@layout/fragment_gymcardioworkout" />

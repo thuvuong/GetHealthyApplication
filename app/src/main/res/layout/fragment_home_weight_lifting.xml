@@ -4,9 +4,8 @@
     android:id="@+id/home_weight_lifting_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeWeightLiftingFragment">
+    tools:context=".workout.HomeWeightLiftingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

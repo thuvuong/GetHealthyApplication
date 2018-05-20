@@ -1,15 +1,6 @@
-/*
- * TCSS 450: Mobile Application Programming
- * Professor: Menaka Abraham
- * Assignment: Project Phase I
- */
-
 package edu.tacoma.uw.css.thuv.gethealthyapplication;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -21,6 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.profile.ProfileActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.WorkoutActivity;
 
 /**
  * The home activity where the user can choose between the Food,
@@ -59,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
+        inflater.inflate(R.menu.home_menu, menu);
 
         return true;
     }
@@ -74,14 +70,13 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem theItem) {
 
         switch (theItem.getItemId()) {
-            case R.id.action_home:
-                Intent i = new Intent(this, HomeActivity.class);
-                startActivity(i);
-                finish();
+            case R.id.action_about:
+                Toast.makeText(HomeActivity.this,
+                        "This is an app to help you get healthy! ;)",
+                        Toast.LENGTH_LONG).show();
                 return true;
-
             case R.id.action_log_out:
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 return true;
@@ -100,6 +95,18 @@ public class HomeActivity extends AppCompatActivity {
     public void launchFoodActivity(View view) {
         // Launch Food Activity when user click on Food button
         Intent intent = new Intent(this, FoodActivity.class);
+        startActivity(intent);
+
+    }
+
+    /**
+     * Called when the user taps the Profile activity.
+     *
+     * @param view Specifics on how to display the profile activity.
+     */
+    public void launchProfileActivity(View view) {
+        // Launch Profile Activity when user click on Food button
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
 
     }

@@ -8,7 +8,7 @@
     android:paddingRight="16dp"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".RegistrationFragment">
+    tools:context="edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.RegistrationFragment">
 
 
     <ImageView

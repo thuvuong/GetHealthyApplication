@@ -4,50 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".food.FoodActivity">
 
     <Button
         android:id="@+id/meal_log_btn"
-        android:layout_width="174dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="112dp"
         android:text="@string/meal_log_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food_txt" />
-
-    <TextView
-        android:id="@+id/food_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/food_txt"
-        android:textSize="30sp"
+        android:textColor="#aa66cc"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="114dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_log_btn"
+        app:layout_constraintVertical_bias="0.02"
+        app:srcCompat="@drawable/mealog_logo" />
+
     <Button
         android:id="@+id/healthy_recipe_btn"
-        android:layout_width="174dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="190dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="44dp"
         android:text="@string/healthy_recipes_btn"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_log_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="59dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imageView6"
+        android:layout_width="114dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/get_healthy_app_logo"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_btn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/healthy_recipes_logo" />
+
 
 </android.support.constraint.ConstraintLayout>
