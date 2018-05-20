@@ -1,9 +1,3 @@
-/*
- * TCSS 450: Mobile Application Programming
- * Professor: Menaka Abraham
- * Assignment: Project Phase I
- */
-
 package edu.tacoma.uw.css.thuv.gethealthyapplication.model;
 
 import org.json.JSONArray;
@@ -18,7 +12,7 @@ import java.util.List;
  * Defines the characteristics which define a user in out application.
  *
  * @author Team 11
- * @version May 10, 2018
+ * @version May 19, 2018
  */
 public class User implements Serializable {
 

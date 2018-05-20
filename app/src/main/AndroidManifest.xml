@@ -8,10 +8,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/get_healthy_icon"
+        android:roundIcon="@mipmap/get_healthy_logo_transparent"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".authenticate.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,17 +21,14 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".FoodActivity" />
-        <activity android:name=".OpenGordonBreakfastActivity" />
-        <activity android:name=".OpenJamieBreakfast1Activity"/>
-        <activity android:name=".OpenJamieBreakfast2Activity">
-        </activity>
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".WorkoutActivity"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".food.FoodActivity" />
+        <activity android:name=".food.OpenGordonBreakfastActivity" />
+        <activity android:name=".food.OpenJamieBreakfast1Activity" />
+        <activity android:name=".food.OpenJamieBreakfast2Activity"></activity>
+        android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".workout.WorkoutActivity" />
+        <activity android:name=".profile.ProfileActivity"></activity>
     </application>
 
 </manifest>

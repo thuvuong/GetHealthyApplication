@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OpenJamieBreakfast2Activity">
+    tools:context=".food.OpenJamieBreakfast2Activity">
 
     <WebView
         android:id="@+id/jamie2_webView"
