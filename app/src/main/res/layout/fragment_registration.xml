@@ -15,9 +15,9 @@
         android:id="@+id/imageView"
         android:layout_width="130dp"
         android:layout_height="67dp"
-        android:src="@drawable/get_healthy_app_logo"
         android:layout_gravity="center"
-        android:contentDescription="@string/image_desc"/>
+        android:contentDescription="@string/image_desc"
+        android:src="@mipmap/get_healthy_logo_transparent" />
 
     <TextView
         android:id="@+id/welcome"
@@ -25,14 +25,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/welcome"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/text_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/message" />
+        android:text="@string/message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/green" />
 
     <EditText
         android:id="@+id/text_fname"
@@ -90,7 +93,9 @@
         android:id="@+id/btn_sign_up"
         android:layout_width="129dp"
         android:layout_height="37dp"
+        android:layout_gravity="end"
+        android:background="#50cef8"
         android:text="@string/sign_up"
-        android:layout_gravity="end"/>
+        android:textColor="@android:color/background_dark" />
 
 </LinearLayout>
