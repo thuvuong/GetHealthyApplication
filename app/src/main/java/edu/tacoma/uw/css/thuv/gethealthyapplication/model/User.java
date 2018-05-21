@@ -16,6 +16,20 @@ import java.util.List;
  */
 public class User implements Serializable {
 
+    /* 1 pound is approximately to 0.45 killograms.*/
+    private static final double CONVERSION_RATIO_LB_TO_KG = 1 / 2.2;
+
+    /* 1 inch is equal to 2.54 centimeters.*/
+    private static final double CONVERSION_RATIO_IN_TO_CM = 2.54 / 1;
+
+    /*
+     * BMR is the Basal Metabolic Rate which is an equation which
+     * is used to calculate the user's calories value.
+     */
+    private static final int BMR_FIRST_COEFFICIENT = 10;
+    private static final Double BMR_SECOND_COEFFICIENT = 6.25;
+
+
     /*
      * These constants are the same as the JSON names used
      * in the web service.
@@ -95,6 +109,24 @@ public class User implements Serializable {
 
         return userList;
     }
+
+
+    private double currentBMI() {
+        double result = 0;
+
+        double weight = Double.parseDouble(mWeight);
+        double height = Double.parseDouble(mHeight);
+
+
+
+
+
+        return result;
+    }
+
+
+
+
 
 
     protected String getEmail() {
