@@ -27,8 +27,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
  * @version May 10, 2018
  */
 public class WorkoutActivity extends AppCompatActivity
-        implements GymCardioFragment.OnFragmentInteractionListener,
-        WorkoutFragment.OnFragmentInteractionListener,
+        implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
@@ -131,7 +130,7 @@ public class WorkoutActivity extends AppCompatActivity
         weightLiftingBtn = (RadioButton) findViewById((R.id.weight_lifting_btn));
 
         if (gymBtn.isChecked() && cardioBtn.isChecked()) {
-            GymCardioFragment gymCardioFragment = new GymCardioFragment();
+            GymCardioWorkoutListFragment gymCardioFragment = new GymCardioWorkoutListFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.workout_fragment_container,
                             gymCardioFragment, null).addToBackStack(null).commit();
