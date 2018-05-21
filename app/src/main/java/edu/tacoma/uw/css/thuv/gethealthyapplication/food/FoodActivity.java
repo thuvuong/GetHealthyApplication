@@ -1,6 +1,8 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,6 +90,11 @@ public class FoodActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_log_out:
+                SharedPreferences sharedPreferences =
+                        getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN), false)
+                        .commit();
+
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();

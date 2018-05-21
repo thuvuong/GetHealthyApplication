@@ -1,7 +1,9 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
 
-import android.app.Activity;
+
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,9 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +26,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.data.GymCardioDB;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
 
 /**
@@ -63,7 +62,7 @@ public class GymCardioWorkoutListFragment extends Fragment {
     /** The list of cardio gym workouts.*/
     private List<GymCardioWorkout> mWorkoutList;
 
-
+    private GymCardioDB mGymCardioDB;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment.
@@ -122,10 +121,26 @@ public class GymCardioWorkoutListFragment extends Fragment {
                         new GridLayoutManager(context, mColumnCount));
 
             }
-            GymCardioWorkoutAsyncTask courseAsyncTask =
-                                    new GymCardioWorkoutAsyncTask();
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()) {
+                GymCardioWorkoutAsyncTask courseAsyncTask = new GymCardioWorkoutAsyncTask();
+                courseAsyncTask.execute(new String[]{WORKOUT_URL});
+            } else {
+                Toast.makeText(view.getContext(),
+                        "No network connection available. Displaying locally stored data",
+                        Toast.LENGTH_SHORT).show();
 
-            courseAsyncTask.execute(new String[]{WORKOUT_URL});
+                if (mGymCardioDB == null) {
+                    mGymCardioDB = new GymCardioDB(getActivity());
+                }
+                if (mWorkoutList == null) {
+                    mWorkoutList = mGymCardioDB.getGymCardioWorkouts();
+                }
+
+                mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
+            }
         }
         return view;
     }
@@ -136,6 +151,7 @@ public class GymCardioWorkoutListFragment extends Fragment {
     private class GymCardioWorkoutAsyncTask
                             extends AsyncTask<String, Void, String> {
 
+        private GymCardioDB mGymCardioDB;
         /**
          * Displays the list of workouts.
          *
@@ -163,12 +179,31 @@ public class GymCardioWorkoutListFragment extends Fragment {
             }
 
             // Everything is good, show the list of courses.
-            if (!mWorkoutList.isEmpty()) {
+           /* if (!mWorkoutList.isEmpty()) {
                 mRecyclerView.setAdapter(
                         new MyGymCardioWorkoutRecyclerViewAdapter(
                                 mWorkoutList, mListener));
+            }*/
+            // Everything is good, show the list of courses.
+            if (!mWorkoutList.isEmpty()) {
+
+                if (mGymCardioDB == null) {
+                    mGymCardioDB = new GymCardioDB(getActivity());
+                }
+
+                // Delete old data so that you can refresh the local
+                // database with the network data.
+                //mGymCardioDB.deleteCourses();
+
+                // Also, add to the local database
+                for (int i=0; i<mWorkoutList.size(); i++) {
+                    GymCardioWorkout gym_cardio = mWorkoutList.get(i);
+                    mGymCardioDB.insertGymCardioWorkout(gym_cardio.getTitle());
+                }
+                mRecyclerView.setAdapter(new MyGymCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
             }
         }
+
 
         /**
          * Grabs the list of workouts.

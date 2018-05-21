@@ -22,7 +22,7 @@ public class GymCardioWorkout implements Serializable {
     /** The title of the workout.*/
     private String mTitle;
     // image to display for each workout
-    private static int mImageID;
+   // private static int mImageID;
     private static List<GymCardioWorkout> mWorkoutList;
 
     /**
@@ -30,8 +30,8 @@ public class GymCardioWorkout implements Serializable {
      *
      * @param mTitle The title of the workout.
      */
-    public GymCardioWorkout(int imageID, String mTitle) {
-        this.mImageID = imageID;
+    public GymCardioWorkout( String mTitle) {
+        //this.mImageID = imageID;
         this.mTitle = mTitle;
         mWorkoutList = new ArrayList<GymCardioWorkout>();
 
@@ -55,7 +55,7 @@ public class GymCardioWorkout implements Serializable {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
 
-                GymCardioWorkout workout = new GymCardioWorkout(mImageID,
+                GymCardioWorkout workout = new GymCardioWorkout(
                                             obj.getString(GymCardioWorkout.TITLE));
 
                 workoutList.add(workout);
@@ -76,8 +76,8 @@ public class GymCardioWorkout implements Serializable {
     public String getTitle() {
         return mTitle;
     }
-    public int getImageId() { return mImageID;}
-    public void setImageId(int imageID) {mImageID = imageID;}
+    //public int getImageId() { return mImageID;}
+    //public void setImageId(int imageID) {mImageID = imageID;}
     public void setTitle(String theTitle) {
         mTitle = theTitle;
     }
