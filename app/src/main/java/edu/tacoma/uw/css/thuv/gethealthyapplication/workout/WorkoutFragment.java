@@ -74,7 +74,7 @@ public class WorkoutFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement SigninInteractionListener");
         }
     }
 

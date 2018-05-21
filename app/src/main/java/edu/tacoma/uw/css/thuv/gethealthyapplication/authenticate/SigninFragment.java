@@ -53,7 +53,7 @@ public class SigninFragment extends Fragment{
      * The listener for this fragment to notify the activity which
      * button was pressed.
      */
-    private OnFragmentInteractionListener mListener;
+    private SigninInteractionListener mListener;
 
     /** Required empty public constructor.*/
     public SigninFragment() {
@@ -83,7 +83,7 @@ public class SigninFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_signin, container, false);
-
+        getActivity().setTitle("Sign in");
         mEmail = (EditText) v.findViewById(R.id.email);
         mPassword = (EditText) v.findViewById(R.id.password);
         mSignIn = (Button) v.findViewById(R.id.sign_in);
@@ -105,7 +105,8 @@ public class SigninFragment extends Fragment{
                             Toast.LENGTH_SHORT).show();
                 } else {
                     String url = buildUserURL(v);
-                    mListener.logInUser(url);
+                    //mListener.logInUser(url);
+                    mListener.login(email, password);
                 }
             }
         });
@@ -155,7 +156,7 @@ public class SigninFragment extends Fragment{
     public void launchRegister(View v){
         FragmentManager fragmentManager = getFragmentManager();
         RegistrationFragment rf = new RegistrationFragment();
-        fragmentManager.beginTransaction().replace(R.id.main_activity, rf, null).commit();
+        fragmentManager.beginTransaction().replace(R.id.login_fragment_container, rf, null).commit();
     }
 
     /**
@@ -167,11 +168,11 @@ public class SigninFragment extends Fragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof SigninInteractionListener) {
+            mListener = (SigninInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement SigninInteractionListener");
         }
     }
 
@@ -191,7 +192,8 @@ public class SigninFragment extends Fragment{
      * to the activity and potentially other fragments contained in that
      * activity.
      */
-    public interface OnFragmentInteractionListener {
+    public interface SigninInteractionListener {
         void logInUser(String uri);
+        void login(String email, String password);
     }
 }

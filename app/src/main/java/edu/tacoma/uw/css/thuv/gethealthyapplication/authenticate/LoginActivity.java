@@ -1,6 +1,8 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,7 +29,10 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
  */
 public class LoginActivity extends AppCompatActivity implements
                         RegistrationFragment.UserAddListener,
-                        SigninFragment.OnFragmentInteractionListener{
+        SigninFragment.SigninInteractionListener {
+
+
+    private SharedPreferences mSharedPreferences;
 
     /** An empty constructor.*/
     public LoginActivity() {
@@ -44,11 +49,18 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(findViewById(R.id.main_activity) != null){
+        mSharedPreferences = getSharedPreferences(getString(R.string.LOGIN_PREFS)
+                , Context.MODE_PRIVATE);
+        if (!mSharedPreferences.getBoolean(getString(R.string.LOGGEDIN), false)) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_activity, new SigninFragment())
+                    .add(R.id.login_fragment_container, new SigninFragment())
                     .commit();
+        } else {
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+            finish();
         }
+
 
     }
 
@@ -74,6 +86,18 @@ public class LoginActivity extends AppCompatActivity implements
     public void logInUser(String url) {
         LogInUserTask task = new LogInUserTask();
         task.execute(new String[]{url.toString()});
+    }
+
+    @Override
+    public void login(String email, String pwd) {
+        mSharedPreferences
+                .edit()
+                .putBoolean(getString(R.string.LOGGEDIN), true)
+                .commit();
+
+        Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+        finish();
     }
 
     /**
