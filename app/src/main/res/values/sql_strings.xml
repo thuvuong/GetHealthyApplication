@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="CREATE_GYM_CARDIO_SQL">
-    CREATE TABLE IF NOT EXISTS GymCardio
-    (title TEXT PRIMARY KEY)
-</string>
+        CREATE TABLE IF NOT EXISTS GymCardio
+        (title TEXT PRIMARY KEY)
+    </string>
 
     <string name="DROP_GYM_CARDIO_SQL">
-    DROP TABLE IF EXISTS GymCardio
-</string>
+        DROP TABLE IF EXISTS GymCardio
+    </string>
+
+    <string name="CREATE_USER_SQL">
+        CREATE TABLE IF NOT EXISTS User
+        (email TEXT PRIMARY KEY, pwd TEXT, firstName TEXT,
+        lastname TEXT, height INTEGER, weight INTEGER,
+        sex TEXT, age INTEGER)
+    </string>
+
+    <string name="DROP_USER_SQL">
+        DROP TABLE IF EXISTS User
+    </string>
 
 </resources>

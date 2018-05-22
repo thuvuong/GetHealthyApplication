@@ -31,6 +31,7 @@ public class GymCardioDB {
 
     /**
      * Returns the list of courses from the local Course table.
+     *
      * @return list
      */
     public List<GymCardioWorkout> getGymCardioWorkouts() {
