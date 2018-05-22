@@ -11,6 +11,7 @@
     <string name="height">Enter your height (in inches)</string>
     <string name="weight">Enter your weight (in pounds)</string>
     <string name="sex">Enter your sex (ex. Female) </string>
+    <string name="age">Enter your age (ex. 21) </string>
     <string name="image_desc">This is the description of our logo</string>
     <string name="sign_up">Sign Up</string>
 
