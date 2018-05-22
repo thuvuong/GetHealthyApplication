@@ -28,6 +28,7 @@ public class User implements Serializable {
      */
     private static final int BMR_FIRST_COEFFICIENT = 10;
     private static final Double BMR_SECOND_COEFFICIENT = 6.25;
+    private static final int BMR_THIRD_COEFFICIENT = 5;
 
 
     /*
@@ -41,6 +42,7 @@ public class User implements Serializable {
     private static final String HEIGHT = "height";
     private static final String WEIGHT = "weight";
     private static final String SEX = "sex";
+    private static final String AGE = "age";
 
     /** The user's email.*/
     private String mEmail;
@@ -63,11 +65,13 @@ public class User implements Serializable {
     /** Specify if the user is a man or woman.*/
     private String mSex;
 
+    private String mAge;
+
     /** Initializes the fields with the given parameters.*/
     public User(final String theEmail, final String thePassword,
                 final String theFirstName, final String theLastName,
                 final String theHeight, final String theWeight,
-                final String theSexFemale) {
+                final String theSex, final String theAge) {
 
         mEmail = theEmail;
         mPassword = thePassword;
@@ -75,7 +79,8 @@ public class User implements Serializable {
         mLastName = theLastName;
         mHeight = theHeight;
         mWeight = theWeight;
-        mSex = theSexFemale;
+        mSex = theSex;
+        mAge = theAge;
     }
 
     /**
@@ -101,7 +106,8 @@ public class User implements Serializable {
                         jObj.getString(User.LAST_NAME),
                         jObj.getString(User.HEIGHT),
                         jObj.getString(User.WEIGHT),
-                        jObj.getString(User.SEX));
+                        jObj.getString(User.SEX),
+                        jObj.getString(User.AGE));
 
                 userList.add(user);
             }
@@ -111,14 +117,27 @@ public class User implements Serializable {
     }
 
 
+    /**
+     *
+     *
+     * @return
+     */
     private double currentBMI() {
         double result = 0;
 
         double weight = Double.parseDouble(mWeight);
         double height = Double.parseDouble(mHeight);
 
+        /*
+         * If the user is not specified to be a female, then we
+         * assume that the user is male.
+         */
+        boolean isFemale = mSex.equalsIgnoreCase("f");
 
 
+        result = BMR_FIRST_COEFFICIENT * weight * CONVERSION_RATIO_LB_TO_KG
+                + BMR_SECOND_COEFFICIENT * height * CONVERSION_RATIO_IN_TO_CM
+                - (BMR_THIRD_COEFFICIENT );
 
 
         return result;

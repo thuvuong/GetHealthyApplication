@@ -54,6 +54,8 @@ public class RegistrationFragment extends Fragment {
     /** Input space for the new user's to place their sex into.*/
     private EditText mSex;
 
+    private EditText mAge;
+
     /**
      * The listener for this fragment to notify the activity which
      * button was pressed.
@@ -98,6 +100,7 @@ public class RegistrationFragment extends Fragment {
         mHeight = (EditText) v.findViewById(R.id.text_height);
         mWeight = (EditText) v.findViewById(R.id.text_weight);
         mSex = (EditText) v.findViewById(R.id.text_sex);
+        mAge = (EditText) v.findViewById(R.id.text_age);
 
         Button signUpButton = (Button) v.findViewById(R.id.btn_sign_up);
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +114,7 @@ public class RegistrationFragment extends Fragment {
                 String height = mHeight.getText().toString();
                 String weight = mWeight.getText().toString();
                 String sex = mSex.getText().toString();
+                String age = mAge.getText().toString();
                 if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
                     Toast.makeText(v.getContext(), "Enter valid email address which contains an @ and a dot"
                             , Toast.LENGTH_SHORT)
@@ -141,6 +145,10 @@ public class RegistrationFragment extends Fragment {
                             .show();
                 } else if (TextUtils.isEmpty(sex)) {
                     Toast.makeText(v.getContext(), "Oops, you forgot to enter your sex"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                } else if (TextUtils.isEmpty(age)) {
+                    Toast.makeText(v.getContext(), "Oops, you forgot to enter your age"
                             , Toast.LENGTH_LONG)
                             .show();
                 }
@@ -230,6 +238,10 @@ public class RegistrationFragment extends Fragment {
             String sex = mSex.getText().toString();
             sb.append("&sex=");
             sb.append(URLEncoder.encode(sex, "UTF-8"));
+
+            String age = mAge.getText().toString();
+            sb.append("&age=");
+            sb.append(URLEncoder.encode(age, "UTF-8"));
 
 
             Log.i(TAG, sb.toString());
