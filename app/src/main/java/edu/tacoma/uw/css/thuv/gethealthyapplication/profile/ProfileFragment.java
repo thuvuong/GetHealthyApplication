@@ -20,8 +20,9 @@ public class ProfileFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /* Required empty public constructor.*/
     public ProfileFragment() {
-        // Required empty public constructor
+
     }
 
 
