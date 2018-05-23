@@ -49,6 +49,7 @@
 
     <string name="LOGIN_PREFS">edu.tacoma.uw.datalab.PREFS</string>
     <string name="LOGGEDIN">loggedin</string>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

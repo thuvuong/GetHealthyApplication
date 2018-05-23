@@ -37,20 +37,6 @@ public class FoodFragment extends Fragment {
     }
 
     /**
-     * Creating a new instance of the FoodFragment object.
-     *
-     * @param param1
-     * @param param2
-     * @return A new instance of the FoodFragment object.
-     */
-    public static FoodFragment newInstance(String param1, String param2) {
-        FoodFragment fragment = new FoodFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    /**
      * Setting up the fragment.
      *
      * @param savedInstanceState The given data from an activity.
