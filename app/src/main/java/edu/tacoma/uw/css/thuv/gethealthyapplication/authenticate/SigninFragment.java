@@ -156,7 +156,10 @@ public class SigninFragment extends Fragment{
     public void launchRegister(View v){
         FragmentManager fragmentManager = getFragmentManager();
         RegistrationFragment rf = new RegistrationFragment();
-        fragmentManager.beginTransaction().replace(R.id.login_fragment_container, rf, null).commit();
+        fragmentManager.beginTransaction()
+                .replace(R.id.login_fragment_container, rf, null)
+                .addToBackStack(null)
+                .commit();
     }
 
     /**
