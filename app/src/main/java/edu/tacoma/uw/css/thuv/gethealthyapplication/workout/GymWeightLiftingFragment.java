@@ -30,22 +30,6 @@ public class GymWeightLiftingFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GymWeightLiftingFragment.
-     */
-    public static GymWeightLiftingFragment newInstance(String param1,
-                                                       String param2) {
-        GymWeightLiftingFragment fragment = new GymWeightLiftingFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    /**
      * Gathering how the fragment should be oriented.
      *
      * @param savedInstanceState The given data from an activity.

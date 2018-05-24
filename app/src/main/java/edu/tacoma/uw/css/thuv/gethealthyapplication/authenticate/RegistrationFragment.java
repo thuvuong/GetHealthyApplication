@@ -154,7 +154,7 @@ public class RegistrationFragment extends Fragment {
                 }
                 else {
                     String url = buildUserURL(v);
-                     mListener.addUser(url);
+                    mListener.addUser(url);
                 }
             }
         });

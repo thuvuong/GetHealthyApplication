@@ -9,15 +9,4 @@
         DROP TABLE IF EXISTS GymCardio
     </string>
 
-    <string name="CREATE_USER_SQL">
-        CREATE TABLE IF NOT EXISTS User
-        (email TEXT PRIMARY KEY, pwd TEXT, firstName TEXT,
-        lastname TEXT, height INTEGER, weight INTEGER,
-        sex TEXT, age INTEGER)
-    </string>
-
-    <string name="DROP_USER_SQL">
-        DROP TABLE IF EXISTS User
-    </string>
-
 </resources>
