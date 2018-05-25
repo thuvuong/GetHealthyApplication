@@ -22,14 +22,16 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".food.FoodActivity" />
-        <activity android:name=".food.OpenGordonBreakfastActivity" />
-        <activity android:name=".food.OpenJamieBreakfast1Activity" />
-        <activity android:name=".food.OpenJamieBreakfast2Activity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".food.FoodActivity" /><![CDATA[
         android:theme="@style/AppTheme.NoActionBar"/>
+        ]]>
         <activity android:name=".workout.WorkoutActivity" />
-        <activity android:name=".profile.ProfileActivity"></activity>
+        <activity android:name=".profile.ProfileActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

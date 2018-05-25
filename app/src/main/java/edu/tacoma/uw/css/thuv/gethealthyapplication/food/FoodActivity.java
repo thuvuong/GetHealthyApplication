@@ -1,5 +1,6 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
 
 /**
  * Organizes the different Food fragments.
@@ -26,7 +28,10 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 public class FoodActivity extends AppCompatActivity
                 implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
-        BreakfastFragment.OnFragmentInteractionListener {
+        BreakfastListFragment.OnListFragmentInteractionListener,
+        BreakfastVideoFragment.OnFragmentInteractionListener{
+
+    public static final String VIDEO_OBJECT ="video_object";
 
     /**
      * Displays a fragment.
@@ -38,11 +43,11 @@ public class FoodActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.food_toolbar);
-        TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
+        //TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
 
-        mToolbar.setTitle("");
+        mToolbar.setTitle("Food ");
         setSupportActionBar(mToolbar);
-        mTitle.setText("Food");
+        //mTitle.setText("Food");
         getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
@@ -115,4 +120,18 @@ public class FoodActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+    @Override
+    public void selectVideo(BreakfastVideo item) {
+        Bundle args = new Bundle();
+        args.putSerializable(VIDEO_OBJECT, item);
+        BreakfastVideoFragment breakfastVideoFragment = new BreakfastVideoFragment();
+        breakfastVideoFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, breakfastVideoFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }

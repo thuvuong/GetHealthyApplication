@@ -19,8 +19,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
  * @author Team 11
  * @version May 10, 2018
  */
-public class HealthyRecipesFragment extends Fragment
-            implements BreakfastFragment.OnFragmentInteractionListener {
+public class HealthyRecipesFragment extends Fragment {
 
     /**
      * The listener for this fragment to notify the activity which
@@ -84,8 +83,8 @@ public class HealthyRecipesFragment extends Fragment
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_healthy_recipes, container,
                                     false);
-        TextView mTitle = (TextView) getActivity().findViewById(R.id.food_toolbar_tv);
-        mTitle.setText("Food: Healthy Recipes");
+       // TextView mTitle = (TextView) getActivity().findViewById(R.id.food_toolbar_tv);
+       // mTitle.setText("Food: Healthy Recipes");
         btnBreakfast = (Button) v.findViewById(R.id.breakfast_btn);
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +102,9 @@ public class HealthyRecipesFragment extends Fragment
      */
     public void launchBreakfast(View v) {
         FragmentManager fragmentManager = getFragmentManager();
-        BreakfastFragment breakfastFragment = new BreakfastFragment();
+        BreakfastListFragment breakfastListFragment = new BreakfastListFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, breakfastFragment, null)
+                .replace(R.id.fragment_container, breakfastListFragment, null)
                 .addToBackStack(null)
                 .commit();
     }
@@ -146,16 +145,6 @@ public class HealthyRecipesFragment extends Fragment
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    /**
-     * The listener method for the BreakfastFragment being implemented.
-     *
-     * @param uri The specifics on the click.
-     */
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     /**
