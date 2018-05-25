@@ -75,7 +75,6 @@ public class ProfileFragment extends Fragment {
 
         mExpectedWaterConsumption = (TextView) view.findViewById(R.id.text_expected_water_consumption_display);
 
-
         return view;
     }
 
@@ -155,6 +154,7 @@ public class ProfileFragment extends Fragment {
                         .show();
                 return;
             }
+
             try {
 
                 mUser = User.parseUserJSON(result);
@@ -167,8 +167,7 @@ public class ProfileFragment extends Fragment {
 
                 mExpectedWaterConsumption.setText(mUser.expectedWaterConsumption());
 
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
                         .show();
                 return;
