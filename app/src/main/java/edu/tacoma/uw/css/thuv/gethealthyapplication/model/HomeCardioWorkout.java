@@ -76,8 +76,6 @@ public class HomeCardioWorkout implements Serializable {
     public String getTitle() {
         return mTitle;
     }
-    //public int getImageId() { return mImageID;}
-    //public void setImageId(int imageID) {mImageID = imageID;}
     public void setTitle(String theTitle) {
         mTitle = theTitle;
     }

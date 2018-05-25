@@ -51,5 +51,20 @@
     <string name="LOGGEDIN">loggedin</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <string name="beverage_consumption">Beverage Consumption</string>
+    <string name="water">Water</string>
+    <string name="breakfirst_consume">Breakfirst</string>
+    <string name="lunch_consume">Lunch</string>
+    <string name="dinner_consume">Dinner</string>
+    <string name="food_name">Food name</string>
+    <string name="nutri">Nutrients from this meal</string>
+    <string name="vegi">Vegetable</string>
+    <string name="fruits">Fruits</string>
+    <string name="grains">Grains</string>
+    <string name="meat">Meats</string>
+    <string name="dairy_product">Dairy product</string>
+    <string name="time_message">Select a time to start your log</string>
+    <string name="unit">Oz</string>
+
 
 </resources>

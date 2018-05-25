@@ -60,7 +60,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
      */
     private OnListFragmentInteractionListener mListener;
 
-    /** The list of cardio gym workouts.*/
+    /** The list of cardio home workouts.*/
     private List<HomeCardioWorkout> mWorkoutList;
 
     private HomeCardioDB mHomeCardioDB;
@@ -145,6 +145,8 @@ public class HomeCardioWorkoutListFragment extends Fragment {
         }
         return view;
     }
+
+
 
     /**
      * Setting up the asynchronous loading from the server database.

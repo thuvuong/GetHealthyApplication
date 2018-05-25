@@ -31,6 +31,9 @@ public class FoodFragment extends Fragment {
     /** The button to open the food page.*/
     private Button btnFood;
 
+    /** The button to open the meal log.*/
+    private Button btnMealLog;
+
     /** Required empty public constructor.*/
     public FoodFragment() {
 
@@ -69,6 +72,13 @@ public class FoodFragment extends Fragment {
                 launchHealthyRecipes(v);
             }
         });
+        btnMealLog = (Button) v.findViewById(R.id.meal_log_btn);
+        btnMealLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchMealLog(v);
+            }
+        });
         return v;
     }
 
@@ -81,6 +91,16 @@ public class FoodFragment extends Fragment {
                 .addToBackStack(null)
                 .commit();
 
+    }
+
+    /** Called when the user taps the Meal Log button. */
+    public void launchMealLog(View v){
+        FragmentManager fragmentManager = getFragmentManager();
+        MealLogFragment mealLogFragment = new MealLogFragment();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, mealLogFragment, null)
+                .addToBackStack(null)
+                .commit();
     }
 
 

@@ -19,6 +19,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 
 
 /**
@@ -30,7 +31,8 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
  */
 public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
-        GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
+        GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        HomeCardioWorkoutListFragment.OnListFragmentInteractionListener{
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
     /**
@@ -144,13 +146,28 @@ public class WorkoutActivity extends AppCompatActivity
         } else if (gymBtn.isChecked() && weightLiftingBtn.isChecked()) {
 
         } else if (homeBtn.isChecked() && cardioBtn.isChecked()) {
-
+            HomeCardioWorkoutListFragment homeCardioFragment = new HomeCardioWorkoutListFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            homeCardioFragment, null).addToBackStack(null).commit();
         } else if (homeBtn.isChecked() && weightLiftingBtn.isChecked()) {
 
         } else {
             Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
                     " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
         }
+    }
+
+
+
+    /**
+     * Empty interaction listener
+     *
+     * @/param item
+     */
+    @Override
+    public void onListFragmentInteraction(HomeCardioWorkout item) {
+
     }
 
     /**

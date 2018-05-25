@@ -29,7 +29,11 @@ public class FoodActivity extends AppCompatActivity
                 implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
         BreakfastListFragment.OnListFragmentInteractionListener,
-        BreakfastVideoFragment.OnFragmentInteractionListener{
+        BreakfastVideoFragment.OnFragmentInteractionListener,
+        MealLogFragment.OnFragmentInteractionListener,
+        BreakfastMealFragment.OnFragmentInteractionListener,
+        LunchMealFragment.OnFragmentInteractionListener,
+        DinnerMealFragment.OnFragmentInteractionListener{
 
     public static final String VIDEO_OBJECT ="video_object";
 
@@ -134,4 +138,8 @@ public class FoodActivity extends AppCompatActivity
                 .commit();
     }
 
+    @Override
+    public void mealLog(Uri uri) {
+
+    }
 }
