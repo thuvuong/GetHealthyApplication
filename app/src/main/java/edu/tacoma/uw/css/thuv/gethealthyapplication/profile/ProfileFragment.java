@@ -1,6 +1,5 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.profile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -159,13 +158,13 @@ public class ProfileFragment extends Fragment {
 
                 mUser = User.parseUserJSON(result);
 
-                mCurrentBMI.setText(mUser.currentBMI());
-                mBMIRange.setText(mUser.healthyBMIRange());
-                mCurrentCalories.setText(mUser.currentCaloriesIntake());
+                mCurrentBMI.setText(mUser.getCurrentBMI());
+                mBMIRange.setText(mUser.getHealthyBMIRange());
+                mCurrentCalories.setText(mUser.getCurrentCaloriesIntake());
                 mCaloriesToConsumeToLoseWeight
-                        .setText(mUser.caloriesToConsumeToLoseWeight());
+                        .setText(mUser.GetCaloriesToConsumeToLoseWeight());
 
-                mExpectedWaterConsumption.setText(mUser.expectedWaterConsumption());
+                mExpectedWaterConsumption.setText(mUser.getExpectedWaterConsumption());
 
             } catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)

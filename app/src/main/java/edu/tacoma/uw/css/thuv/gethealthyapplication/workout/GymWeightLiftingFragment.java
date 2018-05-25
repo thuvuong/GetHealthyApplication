@@ -103,3 +103,43 @@ public class GymWeightLiftingFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
+
+/*
+Instructions:
+    Complete 3 Sets of 12 Repetitions with moderately
+    heavy weights for you for each exercise with a
+    (30 second) interval break between each set.
+
+Muscle Groups:
+    Biceps (Arms):
+        Bicep Pullups
+
+        Barbell Curls
+
+        Hammer Curls
+
+    Triceps (Arms):
+        Triceps Pulldown [using Cables and Pulleys machine]
+
+        Single Triceps Pull-down [using Cables and Pulleys machine]
+
+        Triceps Skull Crushers
+
+        Triceps Pushups [at the Dip Station]
+
+    Chest:
+        Flat Bench Press
+
+        Inclined Dumbbell Press
+
+        Dumbell Flies
+
+        Chest Cable Pulls [from low to high]
+
+    Shoulders:
+        Sitting Dumbbell Arnold Press
+
+
+
+
+*/

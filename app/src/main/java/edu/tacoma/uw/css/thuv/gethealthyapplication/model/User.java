@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class User implements Serializable {
 
-    /* 1 pound is approximately to 0.45 killograms.*/
+    /* 1 pound is approximately to 0.45 kilograms.*/
     private static final double CONVERSION_RATIO_LB_TO_KG = 1 / 2.2;
 
     /* 1 inch is equal to 2.54 centimeters.*/
@@ -74,11 +74,6 @@ public class User implements Serializable {
 
     private String mAge;
 
-    public User() {
-
-    }
-
-
     /** Initializes the fields with the given parameters.*/
     public User(final String theEmail, final String thePassword,
                 final String theFirstName, final String theLastName,
@@ -129,7 +124,7 @@ public class User implements Serializable {
      *
      * @return The user's current BMI in pounds per inches squared.
      */
-    public String currentBMI() {
+    public String getCurrentBMI() {
         double result = 0;
 
         double weight = Double.parseDouble(mWeight);
@@ -144,7 +139,7 @@ public class User implements Serializable {
         return stringResult;
     }
 
-    public String healthyBMIRange() {
+    public String getHealthyBMIRange() {
         return BMI_HEALTHY_RANGE;
     }
 
@@ -156,12 +151,12 @@ public class User implements Serializable {
      * @return The amount of calories the user should consume daily;
      *              the units are Calories per day.
      */
-    public String currentCaloriesIntake() {
-        return "" + caloriesCalulator() + " Calories/day";
+    public String getCurrentCaloriesIntake() {
+        return "" + caloriesCalculator() + " Calories/day";
     }
 
-    public String caloriesToConsumeToLoseWeight() {
-        double result = caloriesCalulator() *
+    public String GetCaloriesToConsumeToLoseWeight() {
+        double result = caloriesCalculator() *
                 PERCENTAGE_CALORIES_TO_CONSUME_TO_LOSE_WEIGHT;
 
         result = (double) Math.round(result);
@@ -171,7 +166,7 @@ public class User implements Serializable {
         return stringResult;
     }
 
-    private double caloriesCalulator() {
+    private double caloriesCalculator() {
         double result = 0;
 
         double weight = Double.parseDouble(mWeight);
@@ -205,7 +200,7 @@ public class User implements Serializable {
      *
      * @return The amount of water a user should consume in ounces.
      */
-    public String expectedWaterConsumption() {
+    public String getExpectedWaterConsumption() {
         int result = (int) Math.ceil(Double.parseDouble(mWeight) / 2);
         String stringResult = "" + result + " oz";
 
@@ -213,8 +208,7 @@ public class User implements Serializable {
     }
 
 
-
-
+    /* Getters and Setters below.*/
 
     public String getEmail() {
         return mEmail;
