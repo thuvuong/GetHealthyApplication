@@ -25,11 +25,11 @@ public class FoodVideo implements Serializable{
         this.category = category;
     }
 
-    public static List<FoodVideo> parseCourseJSON(String courseJSON) throws JSONException {
+    public static List<FoodVideo> parseCourseJSON(String videoJSON) throws JSONException {
         List<FoodVideo> foodVideoList = new ArrayList<FoodVideo>();
-        if (courseJSON != null) {
+        if (videoJSON != null) {
 
-            JSONArray arr = new JSONArray(courseJSON);
+            JSONArray arr = new JSONArray(videoJSON);
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
@@ -41,6 +41,16 @@ public class FoodVideo implements Serializable{
         }
 
         return foodVideoList;
+    }
+
+    public static List<FoodVideo> getVideosByCategory(String category, List<FoodVideo> list) {
+        List<FoodVideo> customList = new ArrayList<FoodVideo>();
+        for (int i=0; i<list.size(); i++) {
+            if (list.get(i).getCategory().equals(category)) {
+                customList.add(list.get(i));
+            }
+        }
+        return customList;
     }
 
     public String getCategory() {

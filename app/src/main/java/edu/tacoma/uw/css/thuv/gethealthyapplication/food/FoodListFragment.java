@@ -1,6 +1,7 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
 import android.content.Context;
+import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -47,7 +49,7 @@ public class FoodListFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private static final String TAG = "";
-
+    private String category;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -87,6 +89,7 @@ public class FoodListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            category = FoodActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
             FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
             String url = buildFoodURL(view);
             foodAsyncTask.execute(new String[]{url});
@@ -127,7 +130,12 @@ public class FoodListFragment extends Fragment {
 
         }
 
-
+        /** It checks to see if there was a problem with the URL(Network) which is when an
+         * exception is caught. It tries to call the parse Method and checks to see if it was successful.
+         * If not, it displays the exception.
+         *
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             Log.i(TAG, "onPostExecute");
@@ -141,6 +149,8 @@ public class FoodListFragment extends Fragment {
             try {
                 mFoodVideoList = FoodVideo.parseCourseJSON(result);
 
+                mFoodVideoList = FoodVideo.getVideosByCategory(category, mFoodVideoList);
+
             }
             catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
@@ -150,7 +160,6 @@ public class FoodListFragment extends Fragment {
 
 // Everything is good, show the list of courses.
             if (!mFoodVideoList.isEmpty()) {
-                mFoodVideo = mFoodVideoList.get(0);
                 mRecyclerView.setAdapter(new MyBreakfastRecyclerViewAdapter(mFoodVideoList, mListener));
             }
 
@@ -164,13 +173,11 @@ public class FoodListFragment extends Fragment {
         try {
             sb.append("cmd=");
 
-            sb.append(URLEncoder.encode(mFoodVideo.getCategory(), "UTF-8"));
+            sb.append(URLEncoder.encode("breakfast", "UTF-8"));
 
             Log.i(TAG, "Url is " +sb.toString());
             FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
             foodAsyncTask.execute(sb.toString());
-
-
         }
         catch(Exception e) {
             Toast.makeText(this.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
@@ -209,7 +216,6 @@ public class FoodListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-
         void selectVideo(FoodVideo item);
 
     }

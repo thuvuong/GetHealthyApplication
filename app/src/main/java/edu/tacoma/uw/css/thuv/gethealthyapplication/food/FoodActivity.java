@@ -28,7 +28,7 @@ public class FoodActivity extends AppCompatActivity
         HealthyRecipesFragment.OnFragmentInteractionListener,
         FoodListFragment.OnListFragmentInteractionListener,
         FoodVideoFragment.OnFragmentInteractionListener{
-
+    public static Bundle bundle = new Bundle();
     public static final String VIDEO_OBJECT ="video_object";
 
     /**

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
 /**
  * A fragment which presents healthy recipes for all three meals.
@@ -26,6 +27,7 @@ public class HealthyRecipesFragment extends Fragment {
      */
     private OnFragmentInteractionListener mListener;
 
+    public final static String BUTTON_SELECTED = "button_selected";
     /** The breakfast button.*/
     private Button btnBreakfast;
 
@@ -77,7 +79,7 @@ public class HealthyRecipesFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_healthy_recipes, container,
@@ -88,6 +90,7 @@ public class HealthyRecipesFragment extends Fragment {
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               FoodActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
                 launchMeal(v);
             }
         });
@@ -96,6 +99,8 @@ public class HealthyRecipesFragment extends Fragment {
         btnLunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "lunch");
                 launchMeal(v);
             }
         });
@@ -104,6 +109,7 @@ public class HealthyRecipesFragment extends Fragment {
         btnDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "dinner");
                 launchMeal(v);
             }
         });
@@ -116,6 +122,7 @@ public class HealthyRecipesFragment extends Fragment {
      * @param v The speicifcs of how the breakfast fragment should look.
      */
     public void launchMeal(View v) {
+
         FragmentManager fragmentManager = getFragmentManager();
         FoodListFragment foodListFragment = new FoodListFragment();
         fragmentManager.beginTransaction()
