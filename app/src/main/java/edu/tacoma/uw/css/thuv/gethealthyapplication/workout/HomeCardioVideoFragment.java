@@ -1,6 +1,5 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,23 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link BreakfastVideoFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * create an instance of this fragment.
+ * Use this fragment to display the video based on user selection
  */
-public class BreakfastVideoFragment extends Fragment {
+public class HomeCardioVideoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private BreakfastVideo mVideo;
-    public BreakfastVideoFragment() {
+    private HomeCardioVideo mVideo;
+    public HomeCardioVideoFragment() {
         // Required empty public constructor
     }
 
@@ -33,17 +28,17 @@ public class BreakfastVideoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVideo = (BreakfastVideo) getArguments().getSerializable(FoodActivity.VIDEO_OBJECT);
+        mVideo = (HomeCardioVideo) getArguments().getSerializable(WorkoutActivity.VIDEO_OBJECT);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_breakfast_video, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_cardio_video, container, false);
 
         String url = mVideo.getUrl();
-        WebView wv = (WebView) v.findViewById(R.id.breakfast_wv1);
+        WebView wv = (WebView) v.findViewById(R.id.home_cardio_wv1);
 
 //        wv.getSettings().setJavaScriptEnabled(true);
 //        wv.getSettings().setDomStorageEnabled(true);

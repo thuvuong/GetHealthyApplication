@@ -47,7 +47,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
 
     /** The url link which contains the list of workouts.*/
     private static final String WORKOUT_URL
-            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homecardioworkout";
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homecardiovideo";
 
     private RecyclerView mRecyclerView;
 
@@ -180,29 +180,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
 
                 return;
             }
-
-            // Everything is good, show the list of courses.
-           /* if (!mWorkoutList.isEmpty()) {
-                mRecyclerView.setAdapter(
-                        new MyGymCardioWorkoutRecyclerViewAdapter(
-                                mWorkoutList, mListener));
-            }*/
-            // Everything is good, show the list of courses.
             if (!mWorkoutList.isEmpty()) {
-
-                if (mHomeCardioDB == null) {
-                    mHomeCardioDB = new HomeCardioDB(getActivity());
-                }
-
-                // Delete old data so that you can refresh the local
-                // database with the network data.
-                //mGymCardioDB.deleteCourses();
-
-                // Also, add to the local database
-                for (int i=0; i<mWorkoutList.size(); i++) {
-                    HomeCardioWorkout home_cardio = mWorkoutList.get(i);
-                    mHomeCardioDB.insertHomeCardioWorkout(home_cardio.getTitle());
-                }
                 mRecyclerView.setAdapter(new MyHomeCardioWorkoutRecyclerViewAdapter(mWorkoutList, mListener));
             }
         }
@@ -279,6 +257,6 @@ public class HomeCardioWorkoutListFragment extends Fragment {
      * activity.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(HomeCardioWorkout item);
+        void selectVideo(HomeCardioWorkout item);
     }
 }

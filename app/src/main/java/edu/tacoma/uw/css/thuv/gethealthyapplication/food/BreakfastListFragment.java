@@ -54,7 +54,6 @@ public class BreakfastListFragment extends Fragment {
     public BreakfastListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static BreakfastListFragment newInstance(int columnCount) {
         BreakfastListFragment fragment = new BreakfastListFragment();

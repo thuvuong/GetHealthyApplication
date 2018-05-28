@@ -32,7 +32,10 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
-        HomeCardioWorkoutListFragment.OnListFragmentInteractionListener{
+        HomeCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        HomeCardioVideoFragment.OnFragmentInteractionListener{
+
+    public static final String VIDEO_OBJECT ="video_object";
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
     /**
@@ -159,16 +162,16 @@ public class WorkoutActivity extends AppCompatActivity
     }
 
 
-
     /**
      * Empty interaction listener
      *
-     * @/param item
+     * @param item
      */
     @Override
     public void onListFragmentInteraction(HomeCardioWorkout item) {
 
     }
+
 
     /**
      * Empty interaction listener
@@ -178,5 +181,19 @@ public class WorkoutActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
 
+    }
+
+
+
+    @Override
+    public void selectVideo(HomeCardioWorkout item) {
+        Bundle args = new Bundle();
+        args.putSerializable(VIDEO_OBJECT, item);
+        HomeCardioVideoFragment homeCardioVideoFragment = new HomeCardioVideoFragment();
+        homeCardioVideoFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, homeCardioVideoFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
-    android:name="edu.tacoma.uw.css.thuv.gethealthyapplication.GymCardioWorkoutListFragment"
+    android:name="edu.tacoma.uw.css.thuv.gethealthyapplication.HomeCardioWorkoutListFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".workout.GymCardioWorkoutListFragment"
-    tools:listitem="@layout/fragment_gymcardioworkout" />
+    tools:context=".workout.HomeCardioWorkoutListFragment"
+    tools:listitem="@layout/fragment_homecardioworkout" />
