@@ -20,10 +20,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
 
 /**
@@ -32,17 +33,17 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.Breakfas
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class BreakfastListFragment extends Fragment {
+public class FoodListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private List<BreakfastVideo> mBreakfastVideoList;
+    private List<FoodVideo> mFoodVideoList;
+    private FoodVideo mFoodVideo;
 
-    private static final String BREAKFAST_URL
-            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=breakfast";
+    private static final String FOOD_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
 
     private RecyclerView mRecyclerView;
     private static final String TAG = "";
@@ -51,13 +52,12 @@ public class BreakfastListFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public BreakfastListFragment() {
+    public FoodListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static BreakfastListFragment newInstance(int columnCount) {
-        BreakfastListFragment fragment = new BreakfastListFragment();
+    public static FoodListFragment newInstance(int columnCount) {
+        FoodListFragment fragment = new FoodListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -76,7 +76,7 @@ public class BreakfastListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_breakfast_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_food_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -87,14 +87,15 @@ public class BreakfastListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            BreakfastVideoAsyncTask courseAsyncTask = new BreakfastVideoAsyncTask();
-            courseAsyncTask.execute(new String[]{BREAKFAST_URL});
+            FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
+            String url = buildFoodURL(view);
+            foodAsyncTask.execute(new String[]{url});
 
         }
         return view;
     }
 
-    private class BreakfastVideoAsyncTask extends AsyncTask<String, Void, String> {
+    private class FoodVideoAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -114,7 +115,7 @@ public class BreakfastListFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-                    response = "Unable to download the list of courses, Reason: "
+                    response = "Unable to download the list of meals, Reason: "
                             + e.getMessage();
                 }
                 finally {
@@ -125,6 +126,7 @@ public class BreakfastListFragment extends Fragment {
             return response;
 
         }
+
 
         @Override
         protected void onPostExecute(String result) {
@@ -137,7 +139,8 @@ public class BreakfastListFragment extends Fragment {
             }
 
             try {
-                mBreakfastVideoList = BreakfastVideo.parseCourseJSON(result);
+                mFoodVideoList = FoodVideo.parseCourseJSON(result);
+
             }
             catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
@@ -146,11 +149,34 @@ public class BreakfastListFragment extends Fragment {
             }
 
 // Everything is good, show the list of courses.
-            if (!mBreakfastVideoList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyBreakfastRecyclerViewAdapter(mBreakfastVideoList, mListener));
+            if (!mFoodVideoList.isEmpty()) {
+                mFoodVideo = mFoodVideoList.get(0);
+                mRecyclerView.setAdapter(new MyBreakfastRecyclerViewAdapter(mFoodVideoList, mListener));
             }
 
         }
+    }
+
+    public String buildFoodURL(View v) {
+
+        StringBuilder sb = new StringBuilder(FOOD_URL);
+
+        try {
+            sb.append("cmd=");
+
+            sb.append(URLEncoder.encode(mFoodVideo.getCategory(), "UTF-8"));
+
+            Log.i(TAG, "Url is " +sb.toString());
+            FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
+            foodAsyncTask.execute(sb.toString());
+
+
+        }
+        catch(Exception e) {
+            Toast.makeText(this.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
     }
 
     @Override
@@ -163,6 +189,8 @@ public class BreakfastListFragment extends Fragment {
                     + " must implement OnListFragmentInteractionListener");
         }
     }
+
+
 
     @Override
     public void onDetach() {
@@ -182,6 +210,7 @@ public class BreakfastListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
 
-        void selectVideo(BreakfastVideo item);
+        void selectVideo(FoodVideo item);
+
     }
 }

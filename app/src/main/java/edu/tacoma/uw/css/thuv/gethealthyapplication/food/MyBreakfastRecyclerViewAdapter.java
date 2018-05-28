@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.BreakfastListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodListFragment.OnListFragmentInteractionListener;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class MyBreakfastRecyclerViewAdapter extends RecyclerView.Adapter<MyBreakfastRecyclerViewAdapter.ViewHolder> {
 
-    private final List<BreakfastVideo> mValues;
+    private final List<FoodVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyBreakfastRecyclerViewAdapter(List<BreakfastVideo> items, OnListFragmentInteractionListener listener) {
+    public MyBreakfastRecyclerViewAdapter(List<FoodVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -67,7 +67,7 @@ public class MyBreakfastRecyclerViewAdapter extends RecyclerView.Adapter<MyBreak
         public final TextView mIdView;
         public final TextView mContentView;
         public final ImageView mImageView;
-        public BreakfastVideo mItem;
+        public FoodVideo mItem;
 
         public ViewHolder(View view) {
             super(view);

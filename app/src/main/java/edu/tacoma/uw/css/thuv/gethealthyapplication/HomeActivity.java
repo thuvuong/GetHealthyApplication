@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         TextView mTitle = (TextView) mToolbar.findViewById(R.id.home_toolbar);
         setSupportActionBar(mToolbar);
         mTitle.setText("Home");
-        getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
+        getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
     }

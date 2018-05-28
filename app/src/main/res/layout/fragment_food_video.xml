@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food.BreakfastVideoFragment">
+    tools:context=".food.FoodVideoFragment">
 
     <WebView
-        android:id="@+id/breakfast_wv1"
+        android:id="@+id/food_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

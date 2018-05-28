@@ -1,4 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,37 +8,48 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BreakfastVideo implements Serializable{
+public class FoodVideo implements Serializable{
+    public static final String CATEGORY = "category";
     public static final String TITLE = "title";
     public static final String URL = "url";
 
     String title;
     String url;
+    String category;
 
 
 
-    public BreakfastVideo(String title, String url) {
+    public FoodVideo(String title, String url, String category) {
         this.title = title;
         this.url = url;
+        this.category = category;
     }
 
-    public static List<BreakfastVideo> parseCourseJSON(String courseJSON) throws JSONException {
-        List<BreakfastVideo> breakfastVideoList = new ArrayList<BreakfastVideo>();
+    public static List<FoodVideo> parseCourseJSON(String courseJSON) throws JSONException {
+        List<FoodVideo> foodVideoList = new ArrayList<FoodVideo>();
         if (courseJSON != null) {
 
             JSONArray arr = new JSONArray(courseJSON);
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                BreakfastVideo breakfastVideo = new BreakfastVideo(obj.getString(BreakfastVideo.TITLE), obj.getString(BreakfastVideo.URL));
-                breakfastVideoList.add(breakfastVideo);
+                FoodVideo foodVideo = new FoodVideo(obj.getString(FoodVideo.TITLE), obj.getString(FoodVideo.URL),
+                        obj.getString(FoodVideo.CATEGORY));
+                foodVideoList.add(foodVideo);
             }
 
         }
 
-        return breakfastVideoList;
+        return foodVideoList;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public void setTitle(String title) {
         this.title = title;

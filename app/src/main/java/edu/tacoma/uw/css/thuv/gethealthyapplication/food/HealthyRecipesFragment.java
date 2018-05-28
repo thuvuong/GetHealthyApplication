@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
@@ -89,25 +88,42 @@ public class HealthyRecipesFragment extends Fragment {
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchBreakfast(v);
+                launchMeal(v);
+            }
+        });
+
+        btnLunch = (Button) v.findViewById(R.id.lunch_btn);
+        btnLunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchMeal(v);
+            }
+        });
+
+        btnDinner = (Button) v.findViewById(R.id.dinner_btn);
+        btnDinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchMeal(v);
             }
         });
         return v;
     }
 
     /**
-     * Launches the breakfast fagment.
+     * Launches the Meal list fragment.
      *
      * @param v The speicifcs of how the breakfast fragment should look.
      */
-    public void launchBreakfast(View v) {
+    public void launchMeal(View v) {
         FragmentManager fragmentManager = getFragmentManager();
-        BreakfastListFragment breakfastListFragment = new BreakfastListFragment();
+        FoodListFragment foodListFragment = new FoodListFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, breakfastListFragment, null)
+                .replace(R.id.fragment_container, foodListFragment, null)
                 .addToBackStack(null)
                 .commit();
     }
+
 
     /**
      * The listener notifies the activity about the button being pressed.
@@ -156,4 +172,6 @@ public class HealthyRecipesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
