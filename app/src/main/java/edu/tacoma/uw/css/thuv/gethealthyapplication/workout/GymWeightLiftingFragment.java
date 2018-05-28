@@ -30,22 +30,6 @@ public class GymWeightLiftingFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GymWeightLiftingFragment.
-     */
-    public static GymWeightLiftingFragment newInstance(String param1,
-                                                       String param2) {
-        GymWeightLiftingFragment fragment = new GymWeightLiftingFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    /**
      * Gathering how the fragment should be oriented.
      *
      * @param savedInstanceState The given data from an activity.
@@ -119,3 +103,43 @@ public class GymWeightLiftingFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
+
+/*
+Instructions:
+    Complete 3 Sets of 12 Repetitions with moderately
+    heavy weights for you for each exercise with a
+    (30 second) interval break between each set.
+
+Muscle Groups:
+    Biceps (Arms):
+        Bicep Pullups
+
+        Barbell Curls
+
+        Hammer Curls
+
+    Triceps (Arms):
+        Triceps Pulldown [using Cables and Pulleys machine]
+
+        Single Triceps Pull-down [using Cables and Pulleys machine]
+
+        Triceps Skull Crushers
+
+        Triceps Pushups [at the Dip Station]
+
+    Chest:
+        Flat Bench Press
+
+        Inclined Dumbbell Press
+
+        Dumbell Flies
+
+        Chest Cable Pulls [from low to high]
+
+    Shoulders:
+        Sitting Dumbbell Arnold Press
+
+
+
+
+*/

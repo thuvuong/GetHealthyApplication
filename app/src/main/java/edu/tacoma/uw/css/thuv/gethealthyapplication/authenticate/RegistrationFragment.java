@@ -115,8 +115,20 @@ public class RegistrationFragment extends Fragment {
                 String weight = mWeight.getText().toString();
                 String sex = mSex.getText().toString();
                 String age = mAge.getText().toString();
-                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
-                    Toast.makeText(v.getContext(), "Enter valid email address which contains an @ and a dot"
+
+                if (TextUtils.isEmpty(fname) && TextUtils.isEmpty(lname)
+                        && TextUtils.isEmpty(email) && TextUtils.isEmpty(pwd)
+                        && TextUtils.isEmpty(height) && TextUtils.isEmpty(weight)
+                        && TextUtils.isEmpty(sex) && TextUtils.isEmpty(age)) {
+
+                    Toast.makeText(v.getContext(), "Please enter valid information"
+                            , Toast.LENGTH_SHORT)
+                            .show();
+                } else if (TextUtils.isEmpty(email) ||
+                        !email.contains("@") || !email.contains(".")) {
+
+                    Toast.makeText(v.getContext(),
+                            "Please enter valid email address which contains an @ and a dot"
                             , Toast.LENGTH_SHORT)
                             .show();
                     mEmail.requestFocus();
@@ -154,7 +166,7 @@ public class RegistrationFragment extends Fragment {
                 }
                 else {
                     String url = buildUserURL(v);
-                     mListener.addUser(url);
+                    mListener.addUser(url, email);
                 }
             }
         });
@@ -197,7 +209,7 @@ public class RegistrationFragment extends Fragment {
      * activity.
      */
     public interface UserAddListener {
-        void addUser(String url);
+        void addUser(String url, String email);
     }
 
     /**

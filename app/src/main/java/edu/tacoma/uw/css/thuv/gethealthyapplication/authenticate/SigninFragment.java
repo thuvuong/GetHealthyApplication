@@ -94,19 +94,27 @@ public class SigninFragment extends Fragment{
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
 
+                if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
 
-                if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
-                    Toast.makeText(v.getContext(), "Enter valid email address which contains an @ and a dot",
+                    Toast.makeText(v.getContext(),
+                            "Please enter a valid email address and password",
+                            Toast.LENGTH_SHORT).show();
+
+                } else if (TextUtils.isEmpty(email) || !email.contains("@") || !email.contains(".")) {
+
+                    Toast.makeText(v.getContext(),
+                            "Please enter valid email address which contains an @ and a dot",
                             Toast.LENGTH_SHORT).show();
 
                     mEmail.requestFocus();
                 } else if (TextUtils.isEmpty(password) || password.length() < 6) {
-                    Toast.makeText(v.getContext(), "Enter valid password (at least 6 characters)",
+                    Toast.makeText(v.getContext(),
+                            "Please enter valid password (at least 6 characters)",
                             Toast.LENGTH_SHORT).show();
+
                 } else {
                     String url = buildUserURL(v);
-                    //mListener.logInUser(url);
-                    mListener.login(email, password);
+                    mListener.logInUser(url, email);
                 }
             }
         });
@@ -196,7 +204,6 @@ public class SigninFragment extends Fragment{
      * activity.
      */
     public interface SigninInteractionListener {
-        void logInUser(String uri);
-        void login(String email, String password);
+        void logInUser(String url, String email);
     }
 }

@@ -14,9 +14,11 @@ public class ProfileActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.profile_fragment_contianer, new ProfileFragment())
-                .commit();
+        if (findViewById(R.id.profile_fragment_contianer) != null ) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.profile_fragment_contianer, new ProfileFragment())
+                    .commit();
+        }
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class User implements Serializable {
 
-    /* 1 pound is approximately to 0.45 killograms.*/
+    /* 1 pound is approximately to 0.45 kilograms.*/
     private static final double CONVERSION_RATIO_LB_TO_KG = 1 / 2.2;
 
     /* 1 inch is equal to 2.54 centimeters.*/
@@ -43,9 +43,9 @@ public class User implements Serializable {
      * in the web service.
      */
     private static final String EMAIL  = "email";
-    private static final String PASSWORD = "password";
-    private static final String FIRST_NAME = "first_name";
-    private static final String LAST_NAME = "last_name";
+    private static final String PASSWORD = "pwd";
+    private static final String FIRST_NAME = "firstname";
+    private static final String LAST_NAME = "lastname";
     private static final String HEIGHT = "height";
     private static final String WEIGHT = "weight";
     private static final String SEX = "sex";
@@ -97,30 +97,26 @@ public class User implements Serializable {
      * @return A list of User objects.
      * @throws JSONException
      */
-    public static List<User> parseUserJSON(final String theUserJSON)
+    public static User parseUserJSON(final String theUserJSON)
                                                 throws JSONException {
 
-        List<User> userList = new ArrayList<User>();
+        User current = null;
 
         if (theUserJSON != null) {
             JSONArray jArray = new JSONArray(theUserJSON);
 
-            for (int i = 0; i < jArray.length(); i++) {
-                JSONObject jObj = jArray.getJSONObject(i);
-                User user = new User(jObj.getString(User.EMAIL),
-                        jObj.getString(User.PASSWORD),
-                        jObj.getString(User.FIRST_NAME),
-                        jObj.getString(User.LAST_NAME),
-                        jObj.getString(User.HEIGHT),
-                        jObj.getString(User.WEIGHT),
-                        jObj.getString(User.SEX),
-                        jObj.getString(User.AGE));
-
-                userList.add(user);
-            }
+            JSONObject jObj = jArray.getJSONObject(0);
+            current = new User(jObj.getString(User.EMAIL),
+                    jObj.getString(User.PASSWORD),
+                    jObj.getString(User.FIRST_NAME),
+                    jObj.getString(User.LAST_NAME),
+                    jObj.getString(User.HEIGHT),
+                    jObj.getString(User.WEIGHT),
+                    jObj.getString(User.SEX),
+                    jObj.getString(User.AGE));
         }
 
-        return userList;
+        return current;
     }
 
     /**
@@ -128,7 +124,7 @@ public class User implements Serializable {
      *
      * @return The user's current BMI in pounds per inches squared.
      */
-    public String currentBMI() {
+    public String getCurrentBMI() {
         double result = 0;
 
         double weight = Double.parseDouble(mWeight);
@@ -136,12 +132,14 @@ public class User implements Serializable {
 
         result = weight / Math.pow(height, 2) * BMI_EQUATION_CONSTANT;
 
+        result = (double) Math.round(result);
+
         String stringResult = "" + result + " lb/(in)^2";
 
         return stringResult;
     }
 
-    public String healthyBMIRange() {
+    public String getHealthyBMIRange() {
         return BMI_HEALTHY_RANGE;
     }
 
@@ -153,20 +151,22 @@ public class User implements Serializable {
      * @return The amount of calories the user should consume daily;
      *              the units are Calories per day.
      */
-    public String currentCaloriesIntake() {
-        return "" + caloriesCalulator() + " Calories/day";
+    public String getCurrentCaloriesIntake() {
+        return "" + caloriesCalculator() + " Calories/day";
     }
 
-    public String caloriesToConsumeToLoseWeight() {
-        double result = caloriesCalulator() *
+    public String GetCaloriesToConsumeToLoseWeight() {
+        double result = caloriesCalculator() *
                 PERCENTAGE_CALORIES_TO_CONSUME_TO_LOSE_WEIGHT;
+
+        result = (double) Math.round(result);
 
         String stringResult = "" + result + " Calories/day";
 
         return stringResult;
     }
 
-    private double caloriesCalulator() {
+    private double caloriesCalculator() {
         double result = 0;
 
         double weight = Double.parseDouble(mWeight);
@@ -190,6 +190,8 @@ public class User implements Serializable {
             result += BMR_LAST_COEFFICIENT_IF_MALE;
         }
 
+        result = (double) Math.round(result);
+
         return result;
     }
 
@@ -198,7 +200,7 @@ public class User implements Serializable {
      *
      * @return The amount of water a user should consume in ounces.
      */
-    public String expectedWaterConsumption() {
+    public String getExpectedWaterConsumption() {
         int result = (int) Math.ceil(Double.parseDouble(mWeight) / 2);
         String stringResult = "" + result + " oz";
 
@@ -206,62 +208,69 @@ public class User implements Serializable {
     }
 
 
+    /* Getters and Setters below.*/
 
-
-
-    protected String getEmail() {
+    public String getEmail() {
         return mEmail;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return mPassword;
     }
 
-    protected String getFirstName() {
+    public String getFirstName() {
         return mFirstName;
     }
 
-    protected String getLastName() {
+    public String getLastName() {
         return mLastName;
     }
 
-    protected String getHeight() {
+    public String getHeight() {
         return mHeight;
     }
 
-    protected String getWeight() {
+    public String getWeight() {
         return mWeight;
     }
 
-    protected String getSex() {
+    public String getSex() {
         return mSex;
     }
 
-    private void setEmail(final String theEmail) {
-        mEmail = theEmail;
+    public String getAge() {
+        return mAge;
     }
 
-    private void setPassword(final String thePassword) {
-        mPassword = thePassword;
+    private void setEmail(final String email) {
+        mEmail = email;
     }
 
-    protected void setFirstName(final String theFirstName) {
-        mFirstName = theFirstName;
+    private void setPassword(final String password) {
+        mPassword = password;
     }
 
-    protected void setLastName(final String theLastName) {
-        mLastName = theLastName;
+    protected void setFirstName(final String firstName) {
+        mFirstName = firstName;
     }
 
-    protected void setHeight(final String theHeight) {
-        mHeight = theHeight;
+    protected void setLastName(final String lastName) {
+        mLastName = lastName;
     }
 
-    protected void setWeight(final String theWeight) {
-        mWeight = theWeight;
+    protected void setHeight(final String height) {
+        mHeight = height;
     }
 
-    protected void setSexFemale(final String theSexFemale) {
-        mSex = theSexFemale;
+    protected void setWeight(final String weight) {
+        mWeight = weight;
+    }
+
+    protected void setSex(final String sex) {
+        mSex = sex;
+    }
+
+    protected void setAge(String age) {
+        mAge = age;
     }
 }
