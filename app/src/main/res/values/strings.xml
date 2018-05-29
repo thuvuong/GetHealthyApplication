@@ -65,6 +65,7 @@
     <string name="dairy_product">Dairy product</string>
     <string name="time_message">Select a time to start your log</string>
     <string name="unit">Oz</string>
+    <string name="log">Make Log</string>
 
 
 </resources>

@@ -25,7 +25,7 @@
         android:text="@string/meal_log_btn"
         android:textSize="16sp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/time"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
@@ -33,8 +33,6 @@
         android:layout_below="@+id/sub_title"
         android:ems="10"
         android:hint="@string/time_message"
-        android:inputType="time"
-        tools:ignore="UnknownId"
         android:layout_alignParentLeft="true" />
 
     <TextView
@@ -119,8 +117,8 @@
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/vegi_consume"
-        android:layout_marginTop="247dp" />
+        android:layout_marginTop="222dp"
+        android:layout_toEndOf="@+id/title" />
 
 
     <EditText
@@ -156,22 +154,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="228dp"
+        android:layout_below="@+id/other_consume"
         android:text="@string/breakfast_btn"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_alignParentLeft="true" />
+        android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/mealmessage"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/vagetable"
-        android:layout_alignEnd="@+id/sub_title"
-        android:text="@string/nutri"
-        android:layout_alignRight="@+id/sub_title" />
+        android:layout_alignEnd="@+id/title"
+        android:layout_below="@+id/food"
+        android:text="@string/nutri" />
 
     <TextView
         android:id="@+id/vagetable"
@@ -179,8 +174,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="224dp"
-        android:layout_marginStart="63dp"
+        android:layout_marginBottom="256dp"
+        android:layout_marginStart="64dp"
         android:text="@string/vegi"
         android:textSize="16sp" />
 
@@ -188,37 +183,34 @@
         android:id="@+id/fruits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="179dp"
+        android:layout_alignBaseline="@+id/fruit_consume"
+        android:layout_alignEnd="@+id/breakfast_meal"
         android:text="@string/fruits"
         android:textSize="16sp" />
 
     <TextView
-            android:id="@+id/Grains"
+        android:id="@+id/Grains"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="133dp"
+        android:layout_alignBaseline="@+id/grains_consume2"
+        android:layout_alignEnd="@+id/breakfast_meal"
         android:text="@string/grains" />
 
     <TextView
         android:id="@+id/meat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/breakfast_meal"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="81dp"
+        android:layout_marginBottom="115dp"
         android:text="@string/meat" />
 
     <TextView
         android:id="@+id/dairy_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="31dp"
+        android:layout_alignBottom="@+id/dairy_product_consume"
+        android:layout_toStartOf="@+id/title"
         android:text="@string/dairy_product" />
 
     <TextView
@@ -228,5 +220,13 @@
         android:layout_alignBaseline="@+id/food_name"
         android:layout_alignStart="@+id/water"
         android:text="@string/food_name" />
+
+    <Button
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/log" />
 
 </RelativeLayout>

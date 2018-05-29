@@ -10,6 +10,7 @@ import android.widget.TextView;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeCardioWorkoutListFragment.OnListFragmentInteractionListener;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 import java.util.List;
 
@@ -23,51 +24,32 @@ import java.util.List;
 public class MyHomeCardioWorkoutRecyclerViewAdapter
         extends RecyclerView.Adapter<MyHomeCardioWorkoutRecyclerViewAdapter.ViewHolder> {
 
-    /**
-     * The list of HomeCardioWorkout exercises.
-     */
-    private final List<HomeCardioWorkout> mValues;
-
-    /**
-     * The listener for this adapter class to notify the activity on
-     * any changes.
-     */
+    private final List<HomeCardioVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    /**
-     * Initalizing the member variables.
-     *
-     * @param items The given list of GymCardioWorkout exercises.
-     * @param listener The given listener.
-     */
-    public MyHomeCardioWorkoutRecyclerViewAdapter(
-            List<HomeCardioWorkout> items,
-            OnListFragmentInteractionListener listener) {
-
+    public MyHomeCardioWorkoutRecyclerViewAdapter(List<HomeCardioVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
 
-    /**
-     * Storing the layout.
-     *
-     * @param parent The parent view group.
-     * @param viewType The specified view.
-     * @return The newly stored view holder.
-     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_homecardioworkout, parent,
-                        false);
-
+                .inflate(R.layout.fragment_bf, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mContentView.setText(mValues.get(position).getTitle());
+        holder.mIdView.setText(mValues.get(position).getTitle());
+        // holder.mContentView.setText(mValues.get(position).getUrl());
+        holder.mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.selectVideo(holder.mItem);
+            }
+        });
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,35 +62,24 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
         });
     }
 
-    /**
-     * Counts the number of items.
-     *
-     * @return The number of items.
-     */
     @Override
     public int getItemCount() {
         return mValues.size();
     }
 
-    /**
-     * Specifying how it should display a list of items.
-     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final TextView mIdView;
         public final TextView mContentView;
         public final ImageView mImageView;
-        public HomeCardioWorkout mItem;
+        public HomeCardioVideo mItem;
 
-        /**
-         * Initializing fields.
-         *
-         * @param view The given layout.
-         */
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.imageView9);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mImageView = (ImageView) view.findViewById(R.id.playyoutube_img);
+            mIdView = (TextView) view.findViewById(R.id.title_tv);
+            mContentView = (TextView) view.findViewById(R.id.url_tv);
         }
 
         @Override

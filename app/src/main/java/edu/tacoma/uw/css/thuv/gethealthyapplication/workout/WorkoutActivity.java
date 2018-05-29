@@ -20,6 +20,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 
 /**
@@ -183,16 +184,14 @@ public class WorkoutActivity extends AppCompatActivity
 
     }
 
-
-
     @Override
-    public void selectVideo(HomeCardioWorkout item) {
+    public void selectVideo(HomeCardioVideo item) {
         Bundle args = new Bundle();
         args.putSerializable(VIDEO_OBJECT, item);
         HomeCardioVideoFragment homeCardioVideoFragment = new HomeCardioVideoFragment();
         homeCardioVideoFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, homeCardioVideoFragment)
+                .replace(R.id.workout_fragment_container, homeCardioVideoFragment)
                 .addToBackStack(null)
                 .commit();
     }
