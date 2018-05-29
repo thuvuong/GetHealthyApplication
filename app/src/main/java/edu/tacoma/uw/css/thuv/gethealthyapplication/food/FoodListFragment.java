@@ -1,5 +1,6 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Network;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
+import edu.tacoma.uw.css.thuv.gethealthyapplication.MainActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
@@ -42,7 +45,7 @@ public class FoodListFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private List<FoodVideo> mFoodVideoList;
-    private FoodVideo mFoodVideo;
+
 
     private static final String FOOD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
@@ -79,7 +82,8 @@ public class FoodListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_list, container, false);
-
+        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
+        toolbar.setTitle("Food: Healthy Recipes Videos");
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -89,7 +93,7 @@ public class FoodListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            category = FoodActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
+            category = MainActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
             FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
             String url = buildFoodURL(view);
             foodAsyncTask.execute(new String[]{url});

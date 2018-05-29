@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.profile.ProfileActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.WorkoutActivity;
 
@@ -101,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
      */
     public void launchFoodActivity(View view) {
         // Launch Food Activity when user click on Food button
-        Intent intent = new Intent(this, FoodActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
     }

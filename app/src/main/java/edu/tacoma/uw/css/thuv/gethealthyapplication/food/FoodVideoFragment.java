@@ -1,5 +1,6 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import edu.tacoma.uw.css.thuv.gethealthyapplication.MainActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
@@ -31,7 +33,7 @@ public class FoodVideoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVideo = (FoodVideo) getArguments().getSerializable(FoodActivity.VIDEO_OBJECT);
+        mVideo = (FoodVideo) getArguments().getSerializable(MainActivity.VIDEO_OBJECT);
     }
 
     @Override

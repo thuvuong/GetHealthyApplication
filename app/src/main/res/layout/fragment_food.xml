@@ -12,13 +12,11 @@
         android:id="@+id/meal_log_btn"
         android:layout_width="190dp"
         android:layout_height="80dp"
-        android:layout_marginTop="112dp"
+
         android:text="@string/meal_log_btn"
         android:textColor="#aa66cc"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -30,11 +28,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_log_btn"
-        app:layout_constraintVertical_bias="0.02"
         app:srcCompat="@drawable/mealog_logo" />
 
     <Button
@@ -45,11 +38,7 @@
         android:layout_marginTop="44dp"
         android:text="@string/healthy_recipes_btn"
         android:textColor="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.0" />
+        />
 
 
     <ImageView
@@ -62,11 +51,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/healthy_recipe_btn"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/healthy_recipes_logo" />
 
 
