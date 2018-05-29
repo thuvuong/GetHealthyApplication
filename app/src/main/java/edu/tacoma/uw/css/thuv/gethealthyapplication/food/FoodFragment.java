@@ -77,7 +77,7 @@ public class FoodFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         HealthyRecipesFragment newFragment = new HealthyRecipesFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, newFragment, null)
+                .replace(R.id.food_fragment_container, newFragment, null)
                 .addToBackStack(null)
                 .commit();
 
