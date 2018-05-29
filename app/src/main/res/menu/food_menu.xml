@@ -8,6 +8,11 @@
         app:showAsAction="collapseActionView" />
 
     <item
+        android:id="@+id/action_log"
+        android:title="@string/meal_log_btn"
+        app:showAsAction="collapseActionView"/>
+
+    <item
         android:id="@+id/action_home"
         android:title="@string/menu_action_home"
         app:showAsAction="collapseActionView" />

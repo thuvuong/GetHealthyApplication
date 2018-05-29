@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -39,6 +40,8 @@ public class BreakfastMealFragment extends Fragment {
 
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addMealLog.php?";
+
+    private SharedPreferences mSharedPreferences;
 
 
     private OnFragmentInteractionListener mListener;
@@ -80,6 +83,8 @@ public class BreakfastMealFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_breakfast_meal, container, false);
+        mSharedPreferences = getActivity().getSharedPreferences(getString(R.string.LOGIN_PREFS),
+                Context.MODE_PRIVATE);
         datePicker = (TextView) v.findViewById(R.id.time);
         water = (EditText) v.findViewById(R.id.water_consume);
         other = (EditText) v.findViewById(R.id.other_consume);
@@ -147,6 +152,7 @@ public class BreakfastMealFragment extends Fragment {
                 } else if (TextUtils.isEmpty(dateTime)){
                     Toast.makeText(v.getContext(), "You forgot to select a date", Toast.LENGTH_SHORT)
                             .show();
+                    datePicker.requestFocus();
                 } else {
                     String url = buildLogURL(v);
                     mListener.addLog(url);
@@ -182,12 +188,16 @@ public class BreakfastMealFragment extends Fragment {
      * @return A url which contains the new user's private information.
      */
     private String buildLogURL(View v){
+        String email = mSharedPreferences.getString("email", "Missing");
+
         StringBuilder sb = new StringBuilder(USER_ADD_URL);
 
         try{
+            sb.append("email=");
+            sb.append(URLEncoder.encode(email, "UTF-8"));
 
             String date = datePicker.getText().toString();
-            sb.append("date=");
+            sb.append("&date=");
             sb.append(URLEncoder.encode(date, "UTF-8"));
 
             String type = "Breakfast";
