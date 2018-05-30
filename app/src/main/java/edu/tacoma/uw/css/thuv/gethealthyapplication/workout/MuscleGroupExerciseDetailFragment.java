@@ -46,7 +46,6 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
         mExerciseThree = (TextView) view.findViewById(R.id.exercise_three);
         mExerciseFour = (TextView) view.findViewById(R.id.exercise_four);
 
-
         return view;
     }
 
@@ -77,7 +76,7 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onExerciseDetailFragmentInteraction(uri, mExerciseGroup.toString());
+            mListener.onExerciseDetailFragmentInteraction(uri);
         }
     }
 
@@ -105,6 +104,6 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
      * activity.
      */
     public interface OnExerciseDetailFragmentInteractionListener {
-        void onExerciseDetailFragmentInteraction(Uri uri, String theTitle);
+        void onExerciseDetailFragmentInteraction(Uri uri);
     }
 }

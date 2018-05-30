@@ -182,8 +182,8 @@ public class WorkoutActivity extends AppCompatActivity
     }
 
     @Override
-    public void onExerciseDetailFragmentInteraction(Uri uri, String theTitle) {
-
+    public void onExerciseDetailFragmentInteraction(Uri uri) {
+        
     }
 
     @Override
