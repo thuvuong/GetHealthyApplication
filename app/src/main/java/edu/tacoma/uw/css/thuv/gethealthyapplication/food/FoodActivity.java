@@ -44,6 +44,8 @@ public class FoodActivity extends AppCompatActivity
         BreakfastListFragment.OnListFragmentInteractionListener,
         BreakfastVideoFragment.OnFragmentInteractionListener,
         LogFragment.OnListFragmentInteractionListener,
+        LogListFragment.OnListFragmentInteractionListener,
+        LogListDetailFragment.OnFragmentInteractionListener,
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
         LunchMealFragment.OnFragmentInteractionListener,
@@ -161,6 +163,19 @@ public class FoodActivity extends AppCompatActivity
     public void addLog(String url) {
         AddLogTask task = new AddLogTask();
         task.execute(new String[]{url.toString()});
+    }
+
+    @Override
+    public void onListFragmentInteraction(LogInformation item) {
+        LogListDetailFragment logDetailFragment = new LogListDetailFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(LogListDetailFragment.LOG_ITEM_SELECTED, item);
+        logDetailFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, logDetailFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     /**
