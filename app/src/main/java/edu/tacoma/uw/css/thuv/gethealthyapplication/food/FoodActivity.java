@@ -235,7 +235,7 @@ public class FoodActivity extends AppCompatActivity
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
                 if(status.equals("success")){
-                    Toast.makeText(getApplicationContext(), "Successfully Registered!",
+                    Toast.makeText(getApplicationContext(), "Successfully Logged",
                             Toast.LENGTH_LONG).show();
                     Intent i = new Intent(FoodActivity.this, HomeActivity.class);
                     startActivity(i);
