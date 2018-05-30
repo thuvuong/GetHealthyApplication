@@ -1,8 +1,6 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Network;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,13 +19,11 @@ import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
-import edu.tacoma.uw.css.thuv.gethealthyapplication.MainActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 

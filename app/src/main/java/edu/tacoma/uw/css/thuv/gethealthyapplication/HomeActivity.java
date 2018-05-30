@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.MainActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.profile.ProfileActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.WorkoutActivity;
 

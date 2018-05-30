@@ -1,4 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,18 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodFragment;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodListFragment;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodVideoFragment;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.HealthyRecipesFragment;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.OpenVideoActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
 public class MainActivity extends AppCompatActivity implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
-        FoodListFragment.OnListFragmentInteractionListener,
-        FoodVideoFragment.OnFragmentInteractionListener {
+        FoodListFragment.OnListFragmentInteractionListener {
 
     public static Bundle bundle = new Bundle();
     public static final String VIDEO_OBJECT ="video_object";
@@ -112,21 +108,9 @@ public class MainActivity extends AppCompatActivity implements FoodFragment.OnFr
 
     @Override
     public void selectVideo(FoodVideo item) {
-//        Bundle args = new Bundle();
-//        args.putSerializable(VIDEO_OBJECT, item);
 
         Uri webpage = Uri.parse(item.getUrl());
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-//        Intent intent = new Intent(this, OpenVideoActivity.class);
-//        intent.putExtra(VIDEO_OBJECT, item);
         startActivity(intent);
-//        finish();
-//        FoodVideoFragment foodVideoFragment = new FoodVideoFragment();
-//        foodVideoFragment.setArguments(args);
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.food_fragment_container, foodVideoFragment)
-//                .addToBackStack(null)
-//                .commit();
-
     }
 }
