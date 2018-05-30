@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,6 +76,7 @@ public class BreakfastMealFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -82,6 +84,8 @@ public class BreakfastMealFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_breakfast_meal, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.food_toolbar);
+        toolbar.setTitle("  Breakfast");
         mSharedPreferences = getActivity().getSharedPreferences(getString(R.string.LOGIN_PREFS),
                 Context.MODE_PRIVATE);
         datePicker = (TextView) v.findViewById(R.id.time_edit);

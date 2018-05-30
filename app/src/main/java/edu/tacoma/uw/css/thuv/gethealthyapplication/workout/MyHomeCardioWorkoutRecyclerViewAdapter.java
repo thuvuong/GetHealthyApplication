@@ -50,6 +50,12 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
                 mListener.selectVideo(holder.mItem);
             }
         });
+        holder.mShareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.shareVideo(holder.mItem);
+            }
+        });
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +63,7 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.selectVideo(holder.mItem);
+                    mListener.shareVideo(holder.mItem);
                 }
             }
         });
@@ -72,12 +79,14 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
         public final TextView mIdView;
         public final TextView mContentView;
         public final ImageView mImageView;
+        public final ImageView mShareView;
         public HomeCardioVideo mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.playyoutube_img);
+            mShareView = (ImageView) view.findViewById(R.id.share_image);
             mIdView = (TextView) view.findViewById(R.id.title_tv);
             mContentView = (TextView) view.findViewById(R.id.url_tv);
         }

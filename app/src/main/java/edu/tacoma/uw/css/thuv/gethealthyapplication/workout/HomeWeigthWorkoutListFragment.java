@@ -186,5 +186,6 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         void selectVideo(HomeWeightLiftingWorkout item);
+        void shareVideo(HomeWeightLiftingWorkout item);
     }
 }

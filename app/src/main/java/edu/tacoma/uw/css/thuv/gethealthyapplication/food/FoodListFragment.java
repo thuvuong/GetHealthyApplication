@@ -78,8 +78,8 @@ public class FoodListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_list, container, false);
-        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
-        toolbar.setTitle("Food: Healthy Recipes Videos");
+        Toolbar toolbar = getActivity().findViewById(R.id.food_toolbar);
+        toolbar.setTitle("  Food: Healthy Recipes Videos");
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

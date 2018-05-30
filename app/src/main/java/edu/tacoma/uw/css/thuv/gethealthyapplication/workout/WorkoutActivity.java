@@ -233,6 +233,21 @@ public class WorkoutActivity extends AppCompatActivity
     }
 
     @Override
+    public void shareVideo(HomeWeightLiftingWorkout item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
+    }
+
+    @Override
     public void selectVideo(HomeCardioVideo item) {
         Bundle args = new Bundle();
         args.putSerializable(VIDEO_OBJECT, item);
@@ -242,5 +257,20 @@ public class WorkoutActivity extends AppCompatActivity
                 .replace(R.id.workout_fragment_container, homeCardioVideoFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void shareVideo(HomeCardioVideo item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
     }
 }

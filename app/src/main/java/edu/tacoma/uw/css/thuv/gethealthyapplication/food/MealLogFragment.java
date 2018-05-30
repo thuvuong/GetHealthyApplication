@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
@@ -43,6 +45,7 @@ public class MealLogFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -50,6 +53,8 @@ public class MealLogFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_meal_log, container, false);
+        android.support.v7.widget.Toolbar toolbar = getActivity().findViewById(R.id.food_toolbar);
+        toolbar.setTitle("  Food: Meal Log");
 
         Button breakFastMeal = (Button) v.findViewById(R.id.breakfast_meal_btn);
         Button lunchMeal = (Button) v.findViewById(R.id.lunch_meal_btn);

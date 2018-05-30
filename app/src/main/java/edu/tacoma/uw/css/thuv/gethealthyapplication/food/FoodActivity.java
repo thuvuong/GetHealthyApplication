@@ -8,9 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +30,6 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
-import static java.net.Proxy.Type.HTTP;
 /**
  * Organizes the different Food fragments.
  *
@@ -61,10 +58,10 @@ public class FoodActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.food_toolbar);
         //TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
 
-        toolbar.setTitle("Food ");
+        toolbar.setTitle("  Food ");
         setSupportActionBar(toolbar);
         //mTitle.setText("Food");
         getSupportActionBar().setIcon(R.drawable.small_icon);
@@ -257,7 +254,7 @@ public class FoodActivity extends AppCompatActivity
         sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
         sendIntent.setType("text/plain");
 
-// Verify that the intent will resolve to an activity
+        // Verify that the intent will resolve to an activity
         if (sendIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(sendIntent);
         }

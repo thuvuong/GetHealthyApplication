@@ -181,5 +181,6 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
 
         void selectVideo(HomeCardioVideo item);
+        void shareVideo(HomeCardioVideo item);
     }
 }

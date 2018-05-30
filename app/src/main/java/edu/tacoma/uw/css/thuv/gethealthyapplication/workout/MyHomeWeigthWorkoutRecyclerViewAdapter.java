@@ -37,6 +37,18 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
+        holder.mShareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.shareVideo(holder.mItem);
+            }
+        });
+        holder.mShareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.shareVideo(holder.mItem);
+            }
+        });
         //holder.mContentView.setText(mValues.get(position).getUrl());
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +63,7 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.selectVideo(holder.mItem);
+                    mListener.shareVideo(holder.mItem);
                 }
             }
         });
@@ -66,12 +79,14 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
         public final TextView mIdView;
         public final TextView mContentView;
         public final ImageView mImageView;
+        public final ImageView mShareView;
         public HomeWeightLiftingWorkout mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.youtube_img);
+            mShareView = (ImageView) view.findViewById(R.id.share_image);
             mIdView = (TextView) view.findViewById(R.id.title_textview);
             mContentView = (TextView) view.findViewById(R.id.url_textview);
         }

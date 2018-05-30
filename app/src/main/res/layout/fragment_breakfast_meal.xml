@@ -7,44 +7,27 @@
 
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/food_txt"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meal_log_btn"
-        android:textSize="16sp"/>
-
-    <TextView
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sub_title"
         android:ems="10"
         android:hint="@string/time_message"
-        android:layout_alignParentLeft="true" />
+        android:textColor="@android:color/holo_blue_dark" />
 
     <TextView
         android:id="@+id/beverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/time_edit"
         android:text="@string/beverage_consumption"
-        android:layout_alignParentLeft="true"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/water"
@@ -117,8 +100,8 @@
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="222dp"
-        android:layout_toEndOf="@+id/title" />
+        android:layout_alignStart="@+id/vegi_consume_edit"
+        android:layout_marginTop="222dp" />
 
 
     <EditText
@@ -156,6 +139,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/other_consume_edit"
         android:text="@string/breakfast_btn"
+        android:textColor="@color/green"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -164,8 +148,8 @@
         android:id="@+id/mealmessage"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title"
-        android:layout_below="@+id/food"
+        android:layout_above="@+id/vegi_consume_edit"
+        android:layout_alignStart="@+id/water"
         android:text="@string/nutri" />
 
     <TextView
@@ -210,7 +194,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/dairy_product_consume_edit"
-        android:layout_toStartOf="@+id/title"
+        android:layout_alignStart="@+id/vagetable"
         android:text="@string/dairy_product" />
 
     <TextView
@@ -223,10 +207,12 @@
 
     <Button
         android:id="@+id/log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="77dp"
+        android:layout_height="24dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="#1ccde3"
         android:text="@string/log" />
 
 </RelativeLayout>

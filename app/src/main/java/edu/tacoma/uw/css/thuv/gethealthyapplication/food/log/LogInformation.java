@@ -26,8 +26,8 @@ public class LogInformation implements Serializable{
 
     private String mDate;
     private String mType;
-    private String mWater;
-    private String mOther;
+    private int mWater;
+    private int mOther;
     private String mFood;
     private String mVegi;
     private String mFruit;
@@ -36,7 +36,7 @@ public class LogInformation implements Serializable{
     private String mDairy;
 
     public LogInformation(String logDate, String logType,
-                          String logWater, String logOther,
+                          int logWater, int logOther,
                           String logFood, String logVegi,
                           String logFruit, String logGrain,
                           String logMeat, String logDairy){
@@ -76,8 +76,8 @@ public class LogInformation implements Serializable{
                 JSONObject obj = arr.getJSONObject(i);
                 LogInformation logInformation = new LogInformation(obj.getString(LogInformation.DATE),
                                                                    obj.getString(LogInformation.TYPE),
-                                                                   obj.getString(LogInformation.WATER),
-                                                                   obj.getString(LogInformation.OTHER),
+                                                                   obj.getInt(String.valueOf(LogInformation.WATER)),
+                                                                   obj.getInt(String.valueOf(LogInformation.OTHER)),
                                                                    obj.getString(LogInformation.FOOD),
                                                                    obj.getString(LogInformation.VEGI),
                                                                    obj.getString(LogInformation.FRUIT),
@@ -90,19 +90,19 @@ public class LogInformation implements Serializable{
         return logList;
     }
 
-    public String getmWater() {
+    public int getmWater() {
         return mWater;
     }
 
-    public void setmWater(String mWater) {
+    public void setmWater(int mWater) {
         this.mWater = mWater;
     }
 
-    public String getmOther() {
+    public int getmOther() {
         return mOther;
     }
 
-    public void setmOther(String mOther) {
+    public void setmOther(int mOther) {
         this.mOther = mOther;
     }
 
