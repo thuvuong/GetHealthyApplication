@@ -1,5 +1,6 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,12 @@ public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecycl
                 mListener.selectVideo(holder.mItem);
             }
         });
+        holder.mShareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.shareVideo(holder.mItem);
+            }
+        });
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +59,7 @@ public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecycl
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.selectVideo(holder.mItem);
+                    mListener.shareVideo(holder.mItem);
                 }
             }
         });
@@ -66,12 +74,14 @@ public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final ImageView mShareView;
         public final ImageView mImageView;
         public FoodVideo mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            mShareView = (ImageView) view.findViewById(R.id.share_image);
             mImageView = (ImageView) view.findViewById(R.id.playyoutube_img);
             mIdView = (TextView) view.findViewById(R.id.title_tv);
             mContentView = (TextView) view.findViewById(R.id.url_tv);

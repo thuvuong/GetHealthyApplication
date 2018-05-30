@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,10 +18,13 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
+import static java.net.Proxy.Type.HTTP;
+
 public class FoodActivity extends AppCompatActivity implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
         FoodListFragment.OnListFragmentInteractionListener {
 
+    private static final String TAG = "";
     public static Bundle bundle = new Bundle();
     public static final String VIDEO_OBJECT ="video_object";
 
@@ -112,5 +116,20 @@ public class FoodActivity extends AppCompatActivity implements FoodFragment.OnFr
         Uri webpage = Uri.parse(item.getUrl());
         Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
         startActivity(intent);
+    }
+
+    @Override
+    public void shareVideo(FoodVideo item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+// Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
     }
 }

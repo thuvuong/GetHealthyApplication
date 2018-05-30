@@ -217,6 +217,7 @@ public class FoodListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         void selectVideo(FoodVideo item);
+        void shareVideo(FoodVideo item);
 
     }
 }
