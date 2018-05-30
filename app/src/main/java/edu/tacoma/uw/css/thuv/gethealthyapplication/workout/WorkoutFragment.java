@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
 
 /**
  * A fragment displaying the different options for working out.

@@ -19,6 +19,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
 
 
 /**
@@ -30,7 +31,9 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
  */
 public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
-        GymCardioWorkoutListFragment.OnListFragmentInteractionListener{
+        GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        MuscleGroupExerciseListFragment.OnListFragmentInteractionListener,
+        MuscleGroupExerciseDetailFragment.OnExerciseDetailFragmentInteractionListener {
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
     /**
@@ -143,6 +146,13 @@ public class WorkoutActivity extends AppCompatActivity
                             gymCardioFragment, null).addToBackStack(null).commit();
         } else if (gymBtn.isChecked() && weightLiftingBtn.isChecked()) {
 
+            MuscleGroupExerciseListFragment muscleGroupExerciseListFragment =
+                                            new MuscleGroupExerciseListFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            muscleGroupExerciseListFragment, null).addToBackStack(null).commit();
+
         } else if (homeBtn.isChecked() && cardioBtn.isChecked()) {
 
         } else if (homeBtn.isChecked() && weightLiftingBtn.isChecked()) {
@@ -153,13 +163,31 @@ public class WorkoutActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * Empty interaction listener
-     *
-     * @param item
-     */
+    @Override
+    public void onListFragmentInteraction(MuscleGroupExercise item) {
+        MuscleGroupExerciseDetailFragment muscleGroupExerciseDetailFragment
+                                    = new MuscleGroupExerciseDetailFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable(MuscleGroupExerciseDetailFragment
+                .Muscle_Group_Exercise_ITEM_SELECTED, item);
+
+        muscleGroupExerciseDetailFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.workout_fragment_container, muscleGroupExerciseDetailFragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onExerciseDetailFragmentInteraction(Uri uri) {
+        
+    }
+
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
-
+        
     }
 }

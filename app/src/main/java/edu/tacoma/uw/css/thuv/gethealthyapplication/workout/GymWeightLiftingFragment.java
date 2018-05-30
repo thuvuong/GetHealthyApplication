@@ -111,6 +111,13 @@ Instructions:
     (30 second) interval break between each set.
 
 Muscle Groups:
+    Legs:
+        Barbell Squats
+
+        Barbell Lunges
+
+        Deadlifts
+
     Biceps (Arms):
         Bicep Pullups
 
@@ -132,14 +139,27 @@ Muscle Groups:
 
         Inclined Dumbbell Press
 
-        Dumbell Flies
+        Dumbbell Flies
 
         Chest Cable Pulls [from low to high]
 
     Shoulders:
-        Sitting Dumbbell Arnold Press
+        Standing Military-Bar Press
 
+        Side Lateral Raises
 
+        Bent Over Lateral Raises
+
+        Barbell Shrugs
+
+    Back:
+        Wide Grip Lats Pullups
+
+        Wide Grip Lats Pulldown Machine
+
+        Bent Over Barbell Row
+
+        Low Barbell V-Bar Row
 
 
 */
