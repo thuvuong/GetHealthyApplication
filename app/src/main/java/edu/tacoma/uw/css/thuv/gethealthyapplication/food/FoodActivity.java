@@ -49,7 +49,7 @@ public class FoodActivity extends AppCompatActivity
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
         LunchMealFragment.OnFragmentInteractionListener,
-        DinnerMealFragment.OnFragmentInteractionListener{
+        DinnerMealFragment.OnFragmentInteractionListener, LogFragment.OnFragmentInteractionListener{
 
     public static final String VIDEO_OBJECT ="video_object";
 
@@ -176,6 +176,11 @@ public class FoodActivity extends AppCompatActivity
                 .replace(R.id.fragment_container, logDetailFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(LogInformation logInformation) {
+
     }
 
     /**
