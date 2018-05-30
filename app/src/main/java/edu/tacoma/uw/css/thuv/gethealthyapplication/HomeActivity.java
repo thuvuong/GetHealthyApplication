@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         TextView mTitle = (TextView) mToolbar.findViewById(R.id.home_toolbar);
         setSupportActionBar(mToolbar);
         mTitle.setText("Home");
-        getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
+        getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
     }
@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.action_log_out:
                 SharedPreferences sharedPreferences =
                         getSharedPreferences(getString(R.string.LOGIN_PREFS), Context.MODE_PRIVATE);
-                sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN), false)
+                sharedPreferences.edit().putBoolean(getString(R.string.LOGGEDIN), false).remove("email")
                         .commit();
 
                 Intent intent = new Intent(this, LoginActivity.class);

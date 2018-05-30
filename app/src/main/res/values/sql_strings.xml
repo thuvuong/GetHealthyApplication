@@ -5,17 +5,8 @@
     (title TEXT PRIMARY KEY)
     </string>
 
-    <string name="CREATE_HOME_CARDIO_SQL">
-        CREATE TABLE IF NOT EXISTS HomeCardio
-        (title TEXT PRIMARY KEY)
-    </string>
-
     <string name="DROP_GYM_CARDIO_SQL">
     DROP TABLE IF EXISTS GymCardio
-    </string>
-
-    <string name="DROP_HOME_CARDIO_SQL">
-        DROP TABLE IF EXISTS HomeCardio
     </string>
 
 </resources>

@@ -23,15 +23,12 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".food.FoodActivity" /><![CDATA[
-        android:theme="@style/AppTheme.NoActionBar"/>
-        ]]>
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".food.FoodActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

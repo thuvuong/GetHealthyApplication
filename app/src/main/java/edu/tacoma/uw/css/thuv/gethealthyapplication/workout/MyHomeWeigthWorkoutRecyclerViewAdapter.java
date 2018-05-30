@@ -8,26 +8,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeCardioWorkoutListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
 /**
- * A RecyclerView, which allows us to reuse the formatting for
- * part of the style.
  *
- * @author Team 11
- * @version May 10, 2018
  */
-public class MyHomeCardioWorkoutRecyclerViewAdapter
-        extends RecyclerView.Adapter<MyHomeCardioWorkoutRecyclerViewAdapter.ViewHolder> {
+public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<MyHomeWeigthWorkoutRecyclerViewAdapter.ViewHolder> {
 
-    private final List<HomeCardioVideo> mValues;
+    private final List<HomeWeightLiftingWorkout> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyHomeCardioWorkoutRecyclerViewAdapter(List<HomeCardioVideo> items, OnListFragmentInteractionListener listener) {
+    public MyHomeWeigthWorkoutRecyclerViewAdapter(List<HomeWeightLiftingWorkout> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -35,7 +29,7 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_video, parent, false);
+                .inflate(R.layout.fragment_homeweigthworkout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -43,7 +37,7 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
-        // holder.mContentView.setText(mValues.get(position).getUrl());
+        //holder.mContentView.setText(mValues.get(position).getUrl());
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,14 +66,14 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
         public final TextView mIdView;
         public final TextView mContentView;
         public final ImageView mImageView;
-        public HomeCardioVideo mItem;
+        public HomeWeightLiftingWorkout mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.playyoutube_img);
-            mIdView = (TextView) view.findViewById(R.id.title_tv);
-            mContentView = (TextView) view.findViewById(R.id.url_tv);
+            mImageView = (ImageView) view.findViewById(R.id.youtube_img);
+            mIdView = (TextView) view.findViewById(R.id.title_textview);
+            mContentView = (TextView) view.findViewById(R.id.url_textview);
         }
 
         @Override

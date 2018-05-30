@@ -59,7 +59,7 @@ public class MealLogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new BreakfastMealFragment())
+                        .replace(R.id.food_fragment_container, new BreakfastMealFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -69,7 +69,7 @@ public class MealLogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new LunchMealFragment())
+                        .replace(R.id.food_fragment_container, new LunchMealFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -79,7 +79,7 @@ public class MealLogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new DinnerMealFragment())
+                        .replace(R.id.food_fragment_container, new DinnerMealFragment())
                         .addToBackStack(null)
                         .commit();
             }

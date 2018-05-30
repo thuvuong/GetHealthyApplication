@@ -1,5 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
-
+package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,13 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-
 
 import org.json.JSONException;
 
@@ -23,39 +21,44 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
+
 
 /**
- * A fragment representing a list of cardio workout at home.
- *
- * @author Team 11
- * @version May 10, 2018
+ * A fragment representing a list of Items.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * interface.
  */
-public class HomeCardioWorkoutListFragment extends Fragment {
+public class FoodListFragment extends Fragment {
+
     private static final String ARG_COLUMN_COUNT = "column-count";
+
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private List<HomeCardioVideo> mHomeCardioList;
+    private List<FoodVideo> mFoodVideoList;
 
-    private static final String HOMECARDIO_URL
-            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homecardiovideo";
+
+    private static final String FOOD_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
 
     private RecyclerView mRecyclerView;
-    private static final String TAG = "";
-
+    private static final String TAG = "food";
+    private String category;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public HomeCardioWorkoutListFragment() {
+    public FoodListFragment() {
     }
 
     @SuppressWarnings("unused")
-    public static HomeCardioWorkoutListFragment newInstance(int columnCount) {
-        HomeCardioWorkoutListFragment fragment = new HomeCardioWorkoutListFragment();
+    public static FoodListFragment newInstance(int columnCount) {
+        FoodListFragment fragment = new FoodListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -74,8 +77,9 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_food_list, container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
+        toolbar.setTitle("Food: Healthy Recipes Videos");
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -85,14 +89,16 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            HomeCardioVideoAsyncTask courseAsyncTask = new HomeCardioVideoAsyncTask();
-            courseAsyncTask.execute(new String[]{HOMECARDIO_URL});
+            category = FoodActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
+            FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
+            String url = buildFoodURL(view);
+            foodAsyncTask.execute(new String[]{url});
 
         }
         return view;
     }
 
-    private class HomeCardioVideoAsyncTask extends AsyncTask<String, Void, String> {
+    private class FoodVideoAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -112,7 +118,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-                    response = "Unable to download the list of courses, Reason: "
+                    response = "Unable to download the list of meals, Reason: "
                             + e.getMessage();
                 }
                 finally {
@@ -124,6 +130,12 @@ public class HomeCardioWorkoutListFragment extends Fragment {
 
         }
 
+        /** It checks to see if there was a problem with the URL(Network) which is when an
+         * exception is caught. It tries to call the parse Method and checks to see if it was successful.
+         * If not, it displays the exception.
+         *
+         * @param result
+         */
         @Override
         protected void onPostExecute(String result) {
             Log.i(TAG, "onPostExecute");
@@ -135,7 +147,10 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             }
 
             try {
-                mHomeCardioList = HomeCardioVideo.parseCourseJSON(result);
+                mFoodVideoList = FoodVideo.parseCourseJSON(result);
+
+                mFoodVideoList = FoodVideo.getVideosByCategory(category, mFoodVideoList);
+
             }
             catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
@@ -144,11 +159,31 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             }
 
 // Everything is good, show the list of courses.
-            if (!mHomeCardioList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyHomeCardioWorkoutRecyclerViewAdapter(mHomeCardioList, mListener));
+            if (!mFoodVideoList.isEmpty()) {
+                mRecyclerView.setAdapter(new MyFoodRecyclerViewAdapter(mFoodVideoList, mListener));
             }
 
         }
+    }
+
+    public String buildFoodURL(View v) {
+
+        StringBuilder sb = new StringBuilder(FOOD_URL);
+
+        try {
+            sb.append("cmd=");
+
+            sb.append(URLEncoder.encode("breakfast", "UTF-8"));
+
+            Log.i(TAG, "Url is " +sb.toString());
+            FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
+            foodAsyncTask.execute(sb.toString());
+        }
+        catch(Exception e) {
+            Toast.makeText(this.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
+                    .show();
+        }
+        return sb.toString();
     }
 
     @Override
@@ -161,6 +196,8 @@ public class HomeCardioWorkoutListFragment extends Fragment {
                     + " must implement OnListFragmentInteractionListener");
         }
     }
+
+
 
     @Override
     public void onDetach() {
@@ -179,7 +216,8 @@ public class HomeCardioWorkoutListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
+        void selectVideo(FoodVideo item);
+        void shareVideo(FoodVideo item);
 
-        void selectVideo(HomeCardioVideo item);
     }
 }

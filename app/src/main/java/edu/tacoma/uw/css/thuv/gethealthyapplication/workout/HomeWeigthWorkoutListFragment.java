@@ -1,6 +1,5 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
 
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,15 +7,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import org.json.JSONException;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,37 +28,36 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
-
 /**
- * A fragment representing a list of cardio workout at home.
- *
- * @author Team 11
- * @version May 10, 2018
+ * A fragment representing a list of Items.
+ * <p/>
+ * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * interface.
  */
-public class HomeCardioWorkoutListFragment extends Fragment {
+public class HomeWeigthWorkoutListFragment extends Fragment {
+
+
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String HOMEWEIGHT_WORKOUT_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homeweightworkout";
+    private static final String TAG = "homeweight";
+    private List<HomeWeightLiftingWorkout> mHomeWeightWorkoutList;
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
-    private List<HomeCardioVideo> mHomeCardioList;
-
-    private static final String HOMECARDIO_URL
-            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homecardiovideo";
-
     private RecyclerView mRecyclerView;
-    private static final String TAG = "";
+    private OnListFragmentInteractionListener mListener;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public HomeCardioWorkoutListFragment() {
+    public HomeWeigthWorkoutListFragment() {
     }
 
+
     @SuppressWarnings("unused")
-    public static HomeCardioWorkoutListFragment newInstance(int columnCount) {
-        HomeCardioWorkoutListFragment fragment = new HomeCardioWorkoutListFragment();
+    public static HomeWeigthWorkoutListFragment newInstance(int columnCount) {
+        HomeWeigthWorkoutListFragment fragment = new HomeWeigthWorkoutListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -65,6 +67,10 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
+        toolbar.setTitle("");
+        TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
+        title.setText("Weightlifting At Home Videos");
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -74,7 +80,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_homeweigthworkout_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -85,14 +91,15 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            HomeCardioVideoAsyncTask courseAsyncTask = new HomeCardioVideoAsyncTask();
-            courseAsyncTask.execute(new String[]{HOMECARDIO_URL});
+            HomeWeightAsyncTask homeWeightAsyncTask = new HomeWeightAsyncTask();
+            homeWeightAsyncTask.execute(new String[]{HOMEWEIGHT_WORKOUT_URL});
+
 
         }
         return view;
     }
 
-    private class HomeCardioVideoAsyncTask extends AsyncTask<String, Void, String> {
+    private class HomeWeightAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -135,7 +142,7 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             }
 
             try {
-                mHomeCardioList = HomeCardioVideo.parseCourseJSON(result);
+                mHomeWeightWorkoutList = HomeWeightLiftingWorkout.parseWorkoutJSON(result);
             }
             catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
@@ -144,13 +151,12 @@ public class HomeCardioWorkoutListFragment extends Fragment {
             }
 
 // Everything is good, show the list of courses.
-            if (!mHomeCardioList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyHomeCardioWorkoutRecyclerViewAdapter(mHomeCardioList, mListener));
+            if (!mHomeWeightWorkoutList.isEmpty()) {
+                mRecyclerView.setAdapter(new MyHomeWeigthWorkoutRecyclerViewAdapter(mHomeWeightWorkoutList, mListener));
             }
 
         }
     }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -179,7 +185,6 @@ public class HomeCardioWorkoutListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-
-        void selectVideo(HomeCardioVideo item);
+        void selectVideo(HomeWeightLiftingWorkout item);
     }
 }

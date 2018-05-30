@@ -60,7 +60,7 @@ public class LogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new LogListFragment())
+                        .replace(R.id.food_fragment_container, new LogListFragment())
                         .addToBackStack(null)
                         .commit();
             }
@@ -70,7 +70,7 @@ public class LogFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new MealLogFragment())
+                        .replace(R.id.food_fragment_container, new MealLogFragment())
                         .addToBackStack(null)
                         .commit();
             }

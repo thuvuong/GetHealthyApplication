@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -29,14 +30,19 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
  */
 public class LoginActivity extends AppCompatActivity implements
                         RegistrationFragment.UserAddListener,
-        SigninFragment.SigninInteractionListener {
+                        SigninFragment.SigninInteractionListener {
 
 
+    private static final String TAG = "LoginActivity";
+
+    private boolean mSuccessfulLogin;
+    private boolean mSuccessfulRegistration;
     private SharedPreferences mSharedPreferences;
 
-    /** An empty constructor.*/
+    /** Initializes member variables.*/
     public LoginActivity() {
-
+        mSuccessfulLogin = false;
+        mSuccessfulRegistration = false;
     }
 
     /**
@@ -49,19 +55,18 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mSharedPreferences = getSharedPreferences(getString(R.string.LOGIN_PREFS)
-                , Context.MODE_PRIVATE);
-        if (!mSharedPreferences.getBoolean(getString(R.string.LOGGEDIN), false)) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.login_fragment_container, new SigninFragment())
-                    .commit();
-        } else {
+        mSharedPreferences = getSharedPreferences(getString(R.string.LOGIN_PREFS),
+                                                    Context.MODE_PRIVATE);
+
+        if (mSharedPreferences.getBoolean(getString(R.string.LOGGEDIN), false)) {
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
             finish();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.login_fragment_container, new SigninFragment())
+                    .commit();
         }
-
-
     }
 
     /**
@@ -71,9 +76,19 @@ public class LoginActivity extends AppCompatActivity implements
      *            the new user.
      */
     @Override
-    public void addUser(String url) {
+    public void addUser(String url, String email) {
         AddUserTask task = new AddUserTask();
         task.execute(new String[]{url.toString()});
+        if (mSuccessfulRegistration) {
+            mSharedPreferences
+                    .edit()
+                    .putBoolean(getString(R.string.LOGGEDIN), true)
+                    .putString("email", email)
+                    .commit();
+
+            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(i);
+        }
     }
 
     /**
@@ -83,21 +98,21 @@ public class LoginActivity extends AppCompatActivity implements
      *            about the current user.
      */
     @Override
-    public void logInUser(String url) {
+    public void logInUser(String url, String email) {
         LogInUserTask task = new LogInUserTask();
         task.execute(new String[]{url.toString()});
-    }
 
-    @Override
-    public void login(String email, String pwd) {
-        mSharedPreferences
-                .edit()
-                .putBoolean(getString(R.string.LOGGEDIN), true)
-                .commit();
+        if (mSuccessfulLogin) {
+            mSharedPreferences
+                    .edit()
+                    .putBoolean(getString(R.string.LOGGEDIN), true)
+                    .putString("email", email)
+                    .commit();
 
-        Intent i = new Intent(this, HomeActivity.class);
-        startActivity(i);
-        finish();
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     /**
@@ -157,17 +172,15 @@ public class LoginActivity extends AppCompatActivity implements
                 String status = (String) jsonObject.get("result");
                 if(status.equals("success")){
                     Toast.makeText(getApplicationContext(), "Successfully Registered!",
-                            Toast.LENGTH_LONG).show();
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(i);
-
+                            Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getApplicationContext(), "Failed to register",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
+                mSuccessfulRegistration = status.equals("success");
             }catch(JSONException e){
                 Toast.makeText(getApplicationContext(), "Something wrong with the data" +
-                        e.getMessage(), Toast.LENGTH_LONG).show();
+                        e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -231,16 +244,14 @@ public class LoginActivity extends AppCompatActivity implements
             try{
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
-                if(status.equals("success")){
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(i);
-                }else{
+                if(!status.equals("success")){
                     Toast.makeText(getApplicationContext(), "Failed to log in",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 }
+                mSuccessfulLogin = status.equals("success");
             }catch(JSONException e){
                 Toast.makeText(getApplicationContext(), "Something wrong with the data" +
-                        e.getMessage(), Toast.LENGTH_LONG).show();
+                        e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }

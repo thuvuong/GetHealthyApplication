@@ -12,8 +12,10 @@
         android:layout_height="60dp"
         android:layout_marginLeft="40dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:text="Your current BMI:"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +24,16 @@
         android:layout_width="135dp"
         android:layout_height="57dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:text=""
+        android:textColor="@android:color/holo_purple"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toEndOf="@+id/text_current_bmi"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,6 +44,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="The healthy BMI range:"
+        android:textColor="@color/green"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_current_bmi" />
 
@@ -43,9 +54,15 @@
         android:layout_width="135dp"
         android:layout_height="57dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:textColor="@color/green"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toEndOf="@+id/text_healthy_bmi_range"
         app:layout_constraintTop_toBottomOf="@+id/text_current_bmi_display" />
 
     <TextView
@@ -56,6 +73,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Your daily expected calories intake:"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_healthy_bmi_range" />
 
@@ -64,9 +83,15 @@
         android:layout_width="135dp"
         android:layout_height="57dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:textColor="@android:color/holo_purple"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toEndOf="@+id/text_current_calories"
         app:layout_constraintTop_toBottomOf="@+id/text_healthy_bmi_range_display" />
 
     <TextView
@@ -77,6 +102,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Calories to consume to lose 1 pound per week:"
+        android:textColor="@color/green"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_current_calories" />
 
@@ -85,30 +112,50 @@
         android:layout_width="135dp"
         android:layout_height="57dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:textColor="@color/green"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toEndOf="@+id/text_calories_to_consume_to_lose_weight"
         app:layout_constraintTop_toBottomOf="@+id/text_current_calories_display" />
 
     <TextView
         android:id="@+id/text_expected_water_consumption"
         android:layout_width="125dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="40dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:text="Your expected water daily consumption:"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_calories_to_consume_to_lose_weight" />
+        app:layout_constraintTop_toBottomOf="@+id/text_calories_to_consume_to_lose_weight"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text_expected_water_consumption_display"
         android:layout_width="135dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="40dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:textColor="@android:color/holo_purple"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_calories_to_consume_to_lose_weight_display" />
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toEndOf="@+id/text_expected_water_consumption"
+        app:layout_constraintTop_toBottomOf="@+id/text_calories_to_consume_to_lose_weight_display"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

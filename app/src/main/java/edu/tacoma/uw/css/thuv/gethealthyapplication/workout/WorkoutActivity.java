@@ -19,8 +19,13 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
+
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
+
 
 
 /**
@@ -34,8 +39,10 @@ public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
         HomeCardioWorkoutListFragment.OnListFragmentInteractionListener,
-        HomeCardioVideoFragment.OnFragmentInteractionListener{
-
+        HomeCardioVideoFragment.OnFragmentInteractionListener,
+        HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener,
+        MuscleGroupExerciseListFragment.OnListFragmentInteractionListener,
+        MuscleGroupExerciseDetailFragment.OnExerciseDetailFragmentInteractionListener {
     public static final String VIDEO_OBJECT ="video_object";
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
@@ -54,7 +61,7 @@ public class WorkoutActivity extends AppCompatActivity
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mTitle.setText("Workout");
-        getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
+        getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         if (findViewById(R.id.workout_fragment_container) != null) {
@@ -149,13 +156,23 @@ public class WorkoutActivity extends AppCompatActivity
                             gymCardioFragment, null).addToBackStack(null).commit();
         } else if (gymBtn.isChecked() && weightLiftingBtn.isChecked()) {
 
+            MuscleGroupExerciseListFragment muscleGroupExerciseListFragment =
+                                            new MuscleGroupExerciseListFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            muscleGroupExerciseListFragment, null).addToBackStack(null).commit();
+
         } else if (homeBtn.isChecked() && cardioBtn.isChecked()) {
             HomeCardioWorkoutListFragment homeCardioFragment = new HomeCardioWorkoutListFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.workout_fragment_container,
                             homeCardioFragment, null).addToBackStack(null).commit();
         } else if (homeBtn.isChecked() && weightLiftingBtn.isChecked()) {
-
+            HomeWeigthWorkoutListFragment homeWeigthWorkoutListFragment = new HomeWeigthWorkoutListFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            homeWeigthWorkoutListFragment, null).addToBackStack(null).commit();
         } else {
             Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
                     " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
@@ -180,8 +197,39 @@ public class WorkoutActivity extends AppCompatActivity
      * @param item
      */
     @Override
-    public void onListFragmentInteraction(GymCardioWorkout item) {
+    public void onListFragmentInteraction(MuscleGroupExercise item) {
+        MuscleGroupExerciseDetailFragment muscleGroupExerciseDetailFragment
+                                    = new MuscleGroupExerciseDetailFragment();
 
+        Bundle args = new Bundle();
+        args.putSerializable(MuscleGroupExerciseDetailFragment
+                .Muscle_Group_Exercise_ITEM_SELECTED, item);
+
+        muscleGroupExerciseDetailFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.workout_fragment_container, muscleGroupExerciseDetailFragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onExerciseDetailFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(GymCardioWorkout item) {
+        
+    }
+
+    @Override
+    public void selectVideo(HomeWeightLiftingWorkout item) {
+
+        Uri webpage = Uri.parse(item.getUrl());
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 
     @Override

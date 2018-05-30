@@ -5,11 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
@@ -27,6 +27,7 @@ public class HealthyRecipesFragment extends Fragment {
      */
     private OnFragmentInteractionListener mListener;
 
+    public final static String BUTTON_SELECTED = "button_selected";
     /** The breakfast button.*/
     private Button btnBreakfast;
 
@@ -78,36 +79,59 @@ public class HealthyRecipesFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_healthy_recipes, container,
                                     false);
-       // TextView mTitle = (TextView) getActivity().findViewById(R.id.food_toolbar_tv);
-       // mTitle.setText("Food: Healthy Recipes");
+        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
+        toolbar.setTitle("Food: Healthy Recipes");
+
         btnBreakfast = (Button) v.findViewById(R.id.breakfast_btn);
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchBreakfast(v);
+               FoodActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
+                launchMeal(v);
+            }
+        });
+
+        btnLunch = (Button) v.findViewById(R.id.lunch_btn);
+        btnLunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "lunch");
+                launchMeal(v);
+            }
+        });
+
+        btnDinner = (Button) v.findViewById(R.id.dinner_btn);
+        btnDinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "dinner");
+                launchMeal(v);
             }
         });
         return v;
     }
 
     /**
-     * Launches the breakfast fagment.
+     * Launches the Meal list fragment.
      *
      * @param v The speicifcs of how the breakfast fragment should look.
      */
-    public void launchBreakfast(View v) {
+    public void launchMeal(View v) {
+
         FragmentManager fragmentManager = getFragmentManager();
-        BreakfastListFragment breakfastListFragment = new BreakfastListFragment();
+        FoodListFragment foodListFragment = new FoodListFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, breakfastListFragment, null)
+                .replace(R.id.food_fragment_container, foodListFragment, null)
                 .addToBackStack(null)
                 .commit();
     }
+
 
     /**
      * The listener notifies the activity about the button being pressed.
@@ -156,4 +180,6 @@ public class HealthyRecipesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

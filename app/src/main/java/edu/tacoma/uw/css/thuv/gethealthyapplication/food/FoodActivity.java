@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,9 +28,11 @@ import java.net.URL;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
+
+import static java.net.Proxy.Type.HTTP;
 /**
  * Organizes the different Food fragments.
  *
@@ -37,43 +42,42 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 public class FoodActivity extends AppCompatActivity
                 implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
-        BreakfastListFragment.OnListFragmentInteractionListener,
-        BreakfastVideoFragment.OnFragmentInteractionListener,
         LogFragment.OnListFragmentInteractionListener,
         LogListFragment.OnLogListFragmentInteractionListener,
         LogListDetailFragment.OnFragmentInteractionListener,
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
         LunchMealFragment.OnFragmentInteractionListener,
-        DinnerMealFragment.OnFragmentInteractionListener, LogFragment.OnFragmentInteractionListener{
+        DinnerMealFragment.OnFragmentInteractionListener, LogFragment.OnFragmentInteractionListener,
+        FoodListFragment.OnListFragmentInteractionListener {
 
+
+    private static final String TAG = "";
+    public static Bundle bundle = new Bundle();
     public static final String VIDEO_OBJECT ="video_object";
 
-    /**
-     * Displays a fragment.
-     *
-     * @param savedInstanceState The given data from the previous activity.
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.food_toolbar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         //TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
 
-        mToolbar.setTitle("Food ");
-        setSupportActionBar(mToolbar);
+        toolbar.setTitle("Food ");
+        setSupportActionBar(toolbar);
         //mTitle.setText("Food");
-        getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
+        getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        if (findViewById(R.id.fragment_container) != null) {
+        if (findViewById(R.id.food_fragment_container) != null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new FoodFragment())
+                    .add(R.id.food_fragment_container, new FoodFragment())
                     .commit();
         }
-    }
 
+
+    }
     /**
      * Gathering how the activity should be oriented.
      *
@@ -128,29 +132,22 @@ public class FoodActivity extends AppCompatActivity
     }
 
 
-    /**
-     * An empty method implementation to make the implemented
-     * fragments work properly.
-     */
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
 
-
     @Override
-    public void selectVideo(BreakfastVideo item) {
-        Bundle args = new Bundle();
-        args.putSerializable(VIDEO_OBJECT, item);
-        BreakfastVideoFragment breakfastVideoFragment = new BreakfastVideoFragment();
-        breakfastVideoFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, breakfastVideoFragment)
-                .addToBackStack(null)
-                .commit();
+    public void selectVideo(FoodVideo item) {
+
+        Uri webpage = Uri.parse(item.getUrl());
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 
     @Override
+
     public void mealLog(Uri uri) {
 
     }
@@ -169,7 +166,7 @@ public class FoodActivity extends AppCompatActivity
         logDetailFragment.setArguments(args);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, logDetailFragment)
+                .replace(R.id.food_fragment_container, logDetailFragment)
                 .addToBackStack(null)
                 .commit();
     }
@@ -250,5 +247,20 @@ public class FoodActivity extends AppCompatActivity
             }
 
         }
+    }
+
+
+    public void shareVideo(FoodVideo item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+// Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
     }
 }

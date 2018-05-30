@@ -24,6 +24,8 @@
     <string name="menu_action_log_out">Log out</string>
     <string name="menu_action_home">Home</string>
 
+    <string name="chooser_title">Share with</string>
+
 
     <string name="meal_log_btn">Meal Log</string>
     <string name="food_txt">Food</string>

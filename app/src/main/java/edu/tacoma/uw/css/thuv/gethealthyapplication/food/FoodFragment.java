@@ -87,7 +87,7 @@ public class FoodFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         HealthyRecipesFragment newFragment = new HealthyRecipesFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, newFragment, null)
+                .replace(R.id.food_fragment_container, newFragment, null)
                 .addToBackStack(null)
                 .commit();
 
@@ -99,7 +99,7 @@ public class FoodFragment extends Fragment {
         MealLogFragment mealLogFragment = new MealLogFragment();
         LogFragment logFragment = new LogFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, logFragment, null)
+                .replace(R.id.food_fragment_container, logFragment, null)
                 .addToBackStack(null)
                 .commit();
     }
