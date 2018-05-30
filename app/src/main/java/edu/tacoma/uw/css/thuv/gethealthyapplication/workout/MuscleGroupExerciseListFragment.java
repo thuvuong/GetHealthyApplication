@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class MuscleGroupExerciseListFragment extends Fragment {
 
-//    // TODO: Customize parameter argument names
+
 //    private static final String ARG_COLUMN_COUNT = "column-count";
 
     private static final String GYM_WEIGHT_LIFTING_URL =
@@ -55,7 +55,7 @@ public class MuscleGroupExerciseListFragment extends Fragment {
     public MuscleGroupExerciseListFragment() {
     }
 
-//    // TODO: Customize parameter initialization
+
 //    @SuppressWarnings("unused")
 //    public static MuscleGroupExerciseListFragment newInstance(int columnCount) {
 //        MuscleGroupExerciseListFragment fragment = new MuscleGroupExerciseListFragment();
