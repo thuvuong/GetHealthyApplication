@@ -97,8 +97,9 @@ public class FoodFragment extends Fragment {
     public void launchMealLog(View v){
         FragmentManager fragmentManager = getFragmentManager();
         MealLogFragment mealLogFragment = new MealLogFragment();
+        LogFragment logFragment = new LogFragment();
         fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, mealLogFragment, null)
+                .replace(R.id.fragment_container, logFragment, null)
                 .addToBackStack(null)
                 .commit();
     }

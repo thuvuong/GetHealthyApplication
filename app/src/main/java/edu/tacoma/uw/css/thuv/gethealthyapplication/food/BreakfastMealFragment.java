@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -85,15 +84,15 @@ public class BreakfastMealFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_breakfast_meal, container, false);
         mSharedPreferences = getActivity().getSharedPreferences(getString(R.string.LOGIN_PREFS),
                 Context.MODE_PRIVATE);
-        datePicker = (TextView) v.findViewById(R.id.time);
+        datePicker = (TextView) v.findViewById(R.id.time_edit);
         water = (EditText) v.findViewById(R.id.water_consume);
-        other = (EditText) v.findViewById(R.id.other_consume);
-        food = (EditText) v.findViewById(R.id.food_name);
-        vegi = (EditText) v.findViewById(R.id.vegi_consume);
-        fruit = (EditText) v.findViewById(R.id.fruit_consume);
-        grain = (EditText) v.findViewById(R.id.grains_consume2);
-        meat = (EditText) v.findViewById(R.id.meat_consume);
-        dairy = (EditText) v.findViewById(R.id.dairy_product_consume);
+        other = (EditText) v.findViewById(R.id.other_consume_edit);
+        food = (EditText) v.findViewById(R.id.food_name_edit);
+        vegi = (EditText) v.findViewById(R.id.vegi_consume_edit);
+        fruit = (EditText) v.findViewById(R.id.fruit_consume_edit);
+        grain = (EditText) v.findViewById(R.id.grains_consume2_edit);
+        meat = (EditText) v.findViewById(R.id.meat_consume_edit);
+        dairy = (EditText) v.findViewById(R.id.dairy_product_consume_edit);
         log = (Button) v.findViewById(R.id.log);
 
         datePicker.setOnClickListener(new View.OnClickListener() {

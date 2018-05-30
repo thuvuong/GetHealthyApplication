@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food.BreakfastMealFragment">
-
+    tools:context=".food.LogListDetailFragment">
 
     <TextView
         android:id="@+id/title"
@@ -25,16 +24,13 @@
         android:text="@string/meal_log_btn"
         android:textSize="16sp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sub_title"
         android:ems="10"
-        android:hint="@string/time_message"
-        android:inputType="time"
-        tools:ignore="UnknownId"
         android:layout_alignParentLeft="true" />
 
     <TextView
@@ -70,7 +66,7 @@
         android:text="Other"
         android:textSize="16sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/other_consume_edit"
         android:layout_width="69dp"
         android:layout_height="wrap_content"
@@ -78,7 +74,7 @@
         android:layout_alignStart="@+id/vegi_consume_edit"
         android:layout_marginStart="22dp" />
 
-    <EditText
+    <TextView
         android:id="@+id/vegi_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
@@ -86,45 +82,45 @@
         android:layout_alignEnd="@+id/unit2"
         android:layout_alignRight="@+id/unit2" />
 
-    <EditText
+    <TextView
         android:id="@+id/fruit_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
         android:layout_below="@+id/vegi_consume_edit" />
 
-    <EditText
+    <TextView
         android:id="@+id/meat_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/meat"
         android:layout_alignStart="@+id/vegi_consume_edit" />
 
-    <EditText
+    <TextView
         android:id="@+id/dairy_product_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
         android:layout_below="@+id/meat_consume_edit" />
 
-    <EditText
+    <TextView
         android:id="@+id/grains_consume2_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
         android:layout_below="@+id/fruit_consume_edit" />
 
-    <EditText
+    <TextView
         android:id="@+id/food_name_edit"
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/vegi_consume_edit"
-        android:layout_marginTop="247dp" />
+        android:layout_marginTop="222dp"
+        android:layout_toEndOf="@+id/title" />
 
 
-    <EditText
-        android:id="@+id/water_consume"
+    <TextView
+        android:id="@+id/water_consume_edit"
         android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/water"
@@ -155,11 +151,8 @@
         android:id="@+id/breakfast_meal_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="228dp"
-        android:text="@string/lunch_consume"
+        android:layout_below="@+id/other_consume_edit"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -168,10 +161,9 @@
         android:id="@+id/mealmessage"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/vagetable"
-        android:layout_alignEnd="@+id/sub_title"
-        android:text="@string/nutri"
-        android:layout_alignRight="@+id/sub_title" />
+        android:layout_alignEnd="@+id/title"
+        android:layout_below="@+id/food"
+        android:text="@string/nutri" />
 
     <TextView
         android:id="@+id/vagetable"
@@ -179,8 +171,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="224dp"
-        android:layout_marginStart="63dp"
+        android:layout_marginBottom="256dp"
+        android:layout_marginStart="64dp"
         android:text="@string/vegi"
         android:textSize="16sp" />
 
@@ -188,9 +180,8 @@
         android:id="@+id/fruits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="179dp"
+        android:layout_below="@+id/vegi_consume_edit"
         android:text="@string/fruits"
         android:textSize="16sp" />
 
@@ -198,9 +189,8 @@
         android:id="@+id/Grains"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="133dp"
+        android:layout_below="@+id/fruits"
         android:text="@string/grains" />
 
     <TextView
@@ -209,16 +199,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="81dp"
+        android:layout_marginBottom="126dp"
         android:text="@string/meat" />
 
     <TextView
         android:id="@+id/dairy_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
-        android:layout_marginBottom="31dp"
+        android:layout_alignBottom="@+id/dairy_product_consume_edit"
+        android:layout_toStartOf="@+id/title"
         android:text="@string/dairy_product" />
 
     <TextView
@@ -228,5 +217,6 @@
         android:layout_alignBaseline="@+id/food_name_edit"
         android:layout_alignStart="@+id/water"
         android:text="@string/food_name" />
+
 
 </RelativeLayout>

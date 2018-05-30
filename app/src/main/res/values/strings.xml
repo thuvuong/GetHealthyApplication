@@ -66,6 +66,8 @@
     <string name="time_message">Select a time to start your log</string>
     <string name="unit">Oz</string>
     <string name="log">Make Log</string>
+    <string name="view_log">View Log</string>
+    <string name="write_log">Write Log</string>
 
 
 </resources>

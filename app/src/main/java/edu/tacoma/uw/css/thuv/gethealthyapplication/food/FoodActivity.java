@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.breakfastvideo.BreakfastVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
 /**
  * Organizes the different Food fragments.
@@ -40,6 +43,7 @@ public class FoodActivity extends AppCompatActivity
         HealthyRecipesFragment.OnFragmentInteractionListener,
         BreakfastListFragment.OnListFragmentInteractionListener,
         BreakfastVideoFragment.OnFragmentInteractionListener,
+        LogFragment.OnListFragmentInteractionListener,
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
         LunchMealFragment.OnFragmentInteractionListener,
