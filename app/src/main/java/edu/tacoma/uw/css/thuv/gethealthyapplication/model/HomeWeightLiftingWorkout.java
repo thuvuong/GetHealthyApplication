@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +17,17 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
  * @author Team 11
  * @version May 19, 2018
  */
-public class HomeWeightLiftingWorkout {
+public class HomeWeightLiftingWorkout implements Serializable {
     /* These class constants are used to match attributes in database.*/
     public static final String TITLE = "title";
+    public static final String CATEGORY = "category";
+    public static final String URL = "url";
+
 
     /** The title of the workout.*/
     private String mTitle;
+    private String mUrl;
+    private String mCategory;
     // image to display for each workout
     // private static int mImageID;
 
@@ -29,12 +35,15 @@ public class HomeWeightLiftingWorkout {
     /**
      * Initializes the fields.
      *
-     * @param mTitle The title of the workout.
+     * @param title The title of the workout.
+     * @param url The link to the video
+     * @param category The category for the workout video
      */
-    public HomeWeightLiftingWorkout( String mTitle) {
+    public HomeWeightLiftingWorkout(String title, String url, String category) {
         //this.mImageID = imageID;
-        this.mTitle = mTitle;
-
+        this.mTitle = title;
+        this.mUrl = url;
+        this.mCategory = category;
 
     }
 
@@ -57,7 +66,8 @@ public class HomeWeightLiftingWorkout {
                 JSONObject obj = arr.getJSONObject(i);
 
                 HomeWeightLiftingWorkout workout = new HomeWeightLiftingWorkout(
-                        obj.getString(HomeWeightLiftingWorkout.TITLE));
+                        obj.getString(HomeWeightLiftingWorkout.TITLE),
+                                obj.getString(HomeWeightLiftingWorkout.URL), obj.getString(HomeWeightLiftingWorkout.CATEGORY));
 
                 workoutList.add(workout);
 
@@ -68,6 +78,22 @@ public class HomeWeightLiftingWorkout {
         return workoutList;
     }
 
+    public String getCategory() {
+        return mCategory;
+    }
+
+    public void setCategory(String mCategory) {
+        this.mCategory = mCategory;
+    }
+
+    public String getUrl() {
+
+        return mUrl;
+    }
+
+    public void setUrl(String mUrl) {
+        this.mUrl = mUrl;
+    }
 
     public String getTitle() {
         return mTitle;

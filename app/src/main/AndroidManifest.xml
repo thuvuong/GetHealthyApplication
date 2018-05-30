@@ -26,10 +26,9 @@
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".food.FoodActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".food.OpenVideoActivity"></activity>
     </application>
 
 </manifest>

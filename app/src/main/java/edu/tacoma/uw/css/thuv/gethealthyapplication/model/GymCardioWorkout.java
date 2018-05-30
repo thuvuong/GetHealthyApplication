@@ -18,9 +18,17 @@ public class GymCardioWorkout implements Serializable {
 
     /* These class constants are used to match attributes in database.*/
     public static final String TITLE = "title";
+    public static final String CATEGORY = "category";
+    public static final String URL = "url";
+
+
+
 
     /** The title of the workout.*/
     private String mTitle;
+    private String mUrl;
+    private String mCategory;
+
     // image to display for each workout
    // private static int mImageID;
     private static List<GymCardioWorkout> mWorkoutList;

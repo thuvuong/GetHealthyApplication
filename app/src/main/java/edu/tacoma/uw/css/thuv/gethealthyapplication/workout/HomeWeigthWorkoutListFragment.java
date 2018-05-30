@@ -18,7 +18,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -33,37 +34,35 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class MuscleGroupExerciseListFragment extends Fragment {
+public class HomeWeigthWorkoutListFragment extends Fragment {
 
-//    // TODO: Customize parameter argument names
-//    private static final String ARG_COLUMN_COUNT = "column-count";
 
-    private static final String GYM_WEIGHT_LIFTING_URL =
-            "https://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=gymweightlifting";
-
+    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String HOMEWEIGHT_WORKOUT_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homeweightworkout";
+    private static final String TAG = "homeweight";
+    private List<HomeWeightLiftingWorkout> mHomeWeightWorkoutList;
     private int mColumnCount = 1;
-
-
-    private List<MuscleGroupExercise> mMuscleGroupExerciseList;
-    private OnListFragmentInteractionListener mListener;
     private RecyclerView mRecyclerView;
+    private OnListFragmentInteractionListener mListener;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public MuscleGroupExerciseListFragment() {
+    public HomeWeigthWorkoutListFragment() {
     }
 
-//    // TODO: Customize parameter initialization
-//    @SuppressWarnings("unused")
-//    public static MuscleGroupExerciseListFragment newInstance(int columnCount) {
-//        MuscleGroupExerciseListFragment fragment = new MuscleGroupExerciseListFragment();
-//        Bundle args = new Bundle();
-//        args.putInt(ARG_COLUMN_COUNT, columnCount);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+
+    @SuppressWarnings("unused")
+    public static HomeWeigthWorkoutListFragment newInstance(int columnCount) {
+        HomeWeigthWorkoutListFragment fragment = new HomeWeigthWorkoutListFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,16 +70,17 @@ public class MuscleGroupExerciseListFragment extends Fragment {
         Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
         toolbar.setTitle("");
         TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
-        title.setText("Weightlifting At the Gym");
-//        if (getArguments() != null) {
-//            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-//        }
+        title.setText("Weightlifting At Home Videos");
+
+        if (getArguments() != null) {
+            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_musclegroupexercise_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_homeweigthworkout_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -91,45 +91,15 @@ public class MuscleGroupExerciseListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            GymWeightLiftingAsyncTask gymWeightLiftingAsyncTask = new GymWeightLiftingAsyncTask();
-            gymWeightLiftingAsyncTask.execute(new String[]{GYM_WEIGHT_LIFTING_URL});
+            HomeWeightAsyncTask homeWeightAsyncTask = new HomeWeightAsyncTask();
+            homeWeightAsyncTask.execute(new String[]{HOMEWEIGHT_WORKOUT_URL});
+
 
         }
         return view;
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     */
-    public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(MuscleGroupExercise theMuscleGroupExercise);
-    }
-
-
-    private class GymWeightLiftingAsyncTask extends AsyncTask<String, Void, String> {
-
-        private static final String TAG = "GymAsyncTask";
+    private class HomeWeightAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -158,6 +128,7 @@ public class MuscleGroupExerciseListFragment extends Fragment {
                 }
             }
             return response;
+
         }
 
         @Override
@@ -171,7 +142,7 @@ public class MuscleGroupExerciseListFragment extends Fragment {
             }
 
             try {
-                mMuscleGroupExerciseList = MuscleGroupExercise.parseCourseJSON(result);
+                mHomeWeightWorkoutList = HomeWeightLiftingWorkout.parseWorkoutJSON(result);
             }
             catch (JSONException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
@@ -179,12 +150,41 @@ public class MuscleGroupExerciseListFragment extends Fragment {
                 return;
             }
 
-            // Everything is good, show the list of exercises.
-            if (!mMuscleGroupExerciseList.isEmpty()) {
-                mRecyclerView.setAdapter(new
-                        MyMuscleGroupExerciseRecyclerViewAdapter(mMuscleGroupExerciseList, mListener));
+// Everything is good, show the list of courses.
+            if (!mHomeWeightWorkoutList.isEmpty()) {
+                mRecyclerView.setAdapter(new MyHomeWeigthWorkoutRecyclerViewAdapter(mHomeWeightWorkoutList, mListener));
             }
-        }
 
+        }
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnListFragmentInteractionListener {
+        void selectVideo(HomeWeightLiftingWorkout item);
     }
 }
