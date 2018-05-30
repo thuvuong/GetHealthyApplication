@@ -17,7 +17,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
-public class MainActivity extends AppCompatActivity implements FoodFragment.OnFragmentInteractionListener,
+public class FoodActivity extends AppCompatActivity implements FoodFragment.OnFragmentInteractionListener,
         HealthyRecipesFragment.OnFragmentInteractionListener,
         FoodListFragment.OnListFragmentInteractionListener {
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements FoodFragment.OnFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_food);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         //TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements FoodFragment.OnFr
         switch (theItem.getItemId()) {
 
             case R.id.action_about:
-                Toast.makeText(MainActivity.this,
+                Toast.makeText(FoodActivity.this,
                         "This is an app to help you get healthy! ;)",
                         Toast.LENGTH_LONG).show();
                 return true;

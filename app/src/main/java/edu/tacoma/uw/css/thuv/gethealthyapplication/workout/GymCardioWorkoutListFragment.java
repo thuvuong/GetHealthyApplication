@@ -114,7 +114,7 @@ public class GymCardioWorkoutListFragment extends Fragment {
         Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
         toolbar.setTitle("");
         TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
-        title.setText("Workout: Cardio At the Gym");
+        title.setText("Cardio At the Gym");
 
         // Set the adapter
         if (view instanceof RecyclerView) {

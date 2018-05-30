@@ -19,6 +19,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
 
 
@@ -32,6 +33,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercis
 public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseDetailFragment.OnExerciseDetailFragmentInteractionListener {
 
@@ -156,7 +158,10 @@ public class WorkoutActivity extends AppCompatActivity
         } else if (homeBtn.isChecked() && cardioBtn.isChecked()) {
 
         } else if (homeBtn.isChecked() && weightLiftingBtn.isChecked()) {
-
+            HomeWeigthWorkoutListFragment homeWeigthWorkoutListFragment = new HomeWeigthWorkoutListFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            homeWeigthWorkoutListFragment, null).addToBackStack(null).commit();
         } else {
             Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
                     " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
@@ -189,5 +194,13 @@ public class WorkoutActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
         
+    }
+
+    @Override
+    public void selectVideo(HomeWeightLiftingWorkout item) {
+
+        Uri webpage = Uri.parse(item.getUrl());
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 }

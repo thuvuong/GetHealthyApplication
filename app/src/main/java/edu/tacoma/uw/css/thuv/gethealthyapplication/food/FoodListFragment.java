@@ -47,7 +47,7 @@ public class FoodListFragment extends Fragment {
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
 
     private RecyclerView mRecyclerView;
-    private static final String TAG = "";
+    private static final String TAG = "food";
     private String category;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -89,7 +89,7 @@ public class FoodListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            category = MainActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
+            category = FoodActivity.bundle.getString(HealthyRecipesFragment.BUTTON_SELECTED);
             FoodVideoAsyncTask foodAsyncTask = new FoodVideoAsyncTask();
             String url = buildFoodURL(view);
             foodAsyncTask.execute(new String[]{url});
@@ -160,7 +160,7 @@ public class FoodListFragment extends Fragment {
 
 // Everything is good, show the list of courses.
             if (!mFoodVideoList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyBreakfastRecyclerViewAdapter(mFoodVideoList, mListener));
+                mRecyclerView.setAdapter(new MyFoodRecyclerViewAdapter(mFoodVideoList, mListener));
             }
 
         }

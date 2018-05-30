@@ -26,7 +26,7 @@
         <activity android:name=".workout.WorkoutActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity
-            android:name=".food.MainActivity"
+            android:name=".food.FoodActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
     </application>

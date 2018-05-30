@@ -91,7 +91,7 @@ public class HealthyRecipesFragment extends Fragment {
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               MainActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
+               FoodActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
                 launchMeal(v);
             }
         });
@@ -101,7 +101,7 @@ public class HealthyRecipesFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                MainActivity.bundle.putString(BUTTON_SELECTED, "lunch");
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "lunch");
                 launchMeal(v);
             }
         });
@@ -110,7 +110,7 @@ public class HealthyRecipesFragment extends Fragment {
         btnDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.bundle.putString(BUTTON_SELECTED, "dinner");
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "dinner");
                 launchMeal(v);
             }
         });

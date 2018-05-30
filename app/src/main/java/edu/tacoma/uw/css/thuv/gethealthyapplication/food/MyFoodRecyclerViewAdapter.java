@@ -17,12 +17,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyBreakfastRecyclerViewAdapter extends RecyclerView.Adapter<MyBreakfastRecyclerViewAdapter.ViewHolder> {
+public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecyclerViewAdapter.ViewHolder> {
 
     private final List<FoodVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyBreakfastRecyclerViewAdapter(List<FoodVideo> items, OnListFragmentInteractionListener listener) {
+    public MyFoodRecyclerViewAdapter(List<FoodVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -30,7 +30,7 @@ public class MyBreakfastRecyclerViewAdapter extends RecyclerView.Adapter<MyBreak
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_bf, parent, false);
+                .inflate(R.layout.fragment_video, parent, false);
         return new ViewHolder(view);
     }
 
@@ -38,7 +38,7 @@ public class MyBreakfastRecyclerViewAdapter extends RecyclerView.Adapter<MyBreak
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
-       // holder.mContentView.setText(mValues.get(position).getUrl());
+        //holder.mContentView.setText(mValues.get(position).getUrl());
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

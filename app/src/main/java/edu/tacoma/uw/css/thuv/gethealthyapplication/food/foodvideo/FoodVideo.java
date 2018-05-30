@@ -13,16 +13,22 @@ public class FoodVideo implements Serializable{
     public static final String TITLE = "title";
     public static final String URL = "url";
 
-    String title;
-    String url;
-    String category;
+    private String mTitle;
+    private String mUrl;
+    private String mCategory;
 
 
-
+    /**
+     * Initializes the fields.
+     *
+     * @param title The title of the workout.
+     * @param url The URL video link
+     * @param category the category for diffent meal: breakfast, lunch, or dinner
+     */
     public FoodVideo(String title, String url, String category) {
-        this.title = title;
-        this.url = url;
-        this.category = category;
+        this.mTitle = title;
+        this.mUrl = url;
+        this.mCategory = category;
     }
 
     public static List<FoodVideo> parseCourseJSON(String videoJSON) throws JSONException {
@@ -54,26 +60,26 @@ public class FoodVideo implements Serializable{
     }
 
     public String getCategory() {
-        return category;
+        return mCategory;
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.mCategory = category;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.mTitle = title;
     }
 
     public String getTitle() {
 
-        return this.title;
+        return this.mTitle;
     }
     public String getUrl() {
-        return this.url;
+        return this.mUrl;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.mUrl = url;
     }
 }
