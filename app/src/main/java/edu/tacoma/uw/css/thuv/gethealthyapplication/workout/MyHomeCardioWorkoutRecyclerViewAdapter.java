@@ -8,20 +8,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeCardioWorkoutListFragment.OnListFragmentInteractionListener;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 import java.util.List;
 
 /**
+ * A RecyclerView, which allows us to reuse the formatting for
+ * part of the style.
  *
+ * @author Team 11
+ * @version May 10, 2018
  */
-public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<MyHomeWeigthWorkoutRecyclerViewAdapter.ViewHolder> {
+public class MyHomeCardioWorkoutRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyHomeCardioWorkoutRecyclerViewAdapter.ViewHolder> {
 
-    private final List<HomeWeightLiftingWorkout> mValues;
+    private final List<HomeCardioVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyHomeWeigthWorkoutRecyclerViewAdapter(List<HomeWeightLiftingWorkout> items, OnListFragmentInteractionListener listener) {
+    public MyHomeCardioWorkoutRecyclerViewAdapter(List<HomeCardioVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +35,7 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_homeweigthworkout, parent, false);
+                .inflate(R.layout.fragment_video, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,23 +43,17 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getTitle());
-        holder.mShareView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.shareVideo(holder.mItem);
-            }
-        });
-        holder.mShareView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.shareVideo(holder.mItem);
-            }
-        });
-        //holder.mContentView.setText(mValues.get(position).getUrl());
+        // holder.mContentView.setText(mValues.get(position).getUrl());
         holder.mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.selectVideo(holder.mItem);
+            }
+        });
+        holder.mShareView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.shareVideo(holder.mItem);
             }
         });
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -80,15 +80,15 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
         public final TextView mContentView;
         public final ImageView mImageView;
         public final ImageView mShareView;
-        public HomeWeightLiftingWorkout mItem;
+        public HomeCardioVideo mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.youtube_img);
+            mImageView = (ImageView) view.findViewById(R.id.playyoutube_img);
             mShareView = (ImageView) view.findViewById(R.id.share_image);
-            mIdView = (TextView) view.findViewById(R.id.title_textview);
-            mContentView = (TextView) view.findViewById(R.id.url_textview);
+            mIdView = (TextView) view.findViewById(R.id.title_tv);
+            mContentView = (TextView) view.findViewById(R.id.url_tv);
         }
 
         @Override

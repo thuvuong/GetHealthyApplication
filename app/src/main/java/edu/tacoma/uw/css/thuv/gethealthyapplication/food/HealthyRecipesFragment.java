@@ -84,8 +84,8 @@ public class HealthyRecipesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_healthy_recipes, container,
                                     false);
-        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
-        toolbar.setTitle("Food: Healthy Recipes");
+        Toolbar toolbar = getActivity().findViewById(R.id.food_toolbar);
+        toolbar.setTitle("  Food: Healthy Recipes");
 
         btnBreakfast = (Button) v.findViewById(R.id.breakfast_btn);
         btnBreakfast.setOnClickListener(new View.OnClickListener() {

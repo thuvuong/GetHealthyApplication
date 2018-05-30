@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="CREATE_GYM_CARDIO_SQL">
-        CREATE TABLE IF NOT EXISTS GymCardio
-        (title TEXT PRIMARY KEY)
+    CREATE TABLE IF NOT EXISTS GymCardio
+    (title TEXT PRIMARY KEY)
     </string>
 
     <string name="DROP_GYM_CARDIO_SQL">
-        DROP TABLE IF EXISTS GymCardio
+    DROP TABLE IF EXISTS GymCardio
     </string>
 
 </resources>

@@ -7,83 +7,60 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.webkit.WebView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 /**
- * A fragment displaying the different options for working out.
- *
- * @author Team 11
- * @version May 10, 2018
+ * Use this fragment to display the video based on user selection
  */
-public class WorkoutFragment extends Fragment {
+public class HomeCardioVideoFragment extends Fragment {
 
-    /**
-     * The listener for this fragment to notify the activity which
-     * button was pressed.
-     */
     private OnFragmentInteractionListener mListener;
-
-    /** Required empty public constructor.*/
-    public WorkoutFragment() {
-
+    private HomeCardioVideo mVideo;
+    public HomeCardioVideoFragment() {
+        // Required empty public constructor
     }
 
 
-    /**
-     * Figuring how the fragment should be oriented.
-     *
-     * @param savedInstanceState The given data from an activity.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mVideo = (HomeCardioVideo) getArguments().getSerializable(WorkoutActivity.VIDEO_OBJECT);
     }
 
-    /**
-     * Selecting the layout of this fragment.
-     *
-     * @param inflater Specifies how to display the fragment.
-     * @param container The container where this fragment will reside.
-     * @param savedInstanceState The given data from an activity.
-     * @return The view of how this fragment will be displayed.
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_workout, container,
-                                false);
+        View v = inflater.inflate(R.layout.fragment_home_cardio_video, container, false);
 
+        String url = mVideo.getUrl();
+        WebView wv = (WebView) v.findViewById(R.id.home_cardio_wv1);
+
+//        wv.getSettings().setJavaScriptEnabled(true);
+//        wv.getSettings().setDomStorageEnabled(true);
+//
+//        wv.setWebViewClient(new WebViewClient());
+////webView.setWebChromeClient(new WebChromeClient());
+
+        wv.loadUrl(url);
         return v;
-
     }
 
-    /**
-     * Setting up listener when the fragment is first attached
-     * to the activity.
-     *
-     * @param context The new activity where this fragment will be placed.
-     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement SigninInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
-    /**
-     * Disassociating with the current activity and stopping the
-     * listener.
-     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -95,10 +72,12 @@ public class WorkoutFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-
-        void onListFragmentInteraction(HomeCardioWorkout item);
     }
 }

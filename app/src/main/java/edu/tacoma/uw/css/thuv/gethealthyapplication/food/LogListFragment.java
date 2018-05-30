@@ -1,63 +1,62 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnLogListFragmentInteractionListener}
  * interface.
  */
-public class HomeWeigthWorkoutListFragment extends Fragment {
+public class LogListFragment extends Fragment {
 
+    private static final String LOG_URL
+            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private static final String HOMEWEIGHT_WORKOUT_URL
-            = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homeweightworkout";
-    private static final String TAG = "homeweight";
-    private List<HomeWeightLiftingWorkout> mHomeWeightWorkoutList;
     private int mColumnCount = 1;
+    private OnLogListFragmentInteractionListener mListener;
+    private List<LogInformation> mLogList;
     private RecyclerView mRecyclerView;
-    private OnListFragmentInteractionListener mListener;
+    private String TAG = "";
 
+    private SharedPreferences mSharedPreferences;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public HomeWeigthWorkoutListFragment() {
+    public LogListFragment() {
     }
 
-
     @SuppressWarnings("unused")
-    public static HomeWeigthWorkoutListFragment newInstance(int columnCount) {
-        HomeWeigthWorkoutListFragment fragment = new HomeWeigthWorkoutListFragment();
+    public static LogListFragment newInstance(int columnCount) {
+        LogListFragment fragment = new LogListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -67,10 +66,6 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
-        toolbar.setTitle("");
-        TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
-        title.setText("Weightlifting At Home Videos");
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -80,7 +75,10 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homeweigthworkout_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_loglist_list, container, false);
+
+        mSharedPreferences = getActivity().getSharedPreferences(getString(R.string.LOGIN_PREFS),
+                Context.MODE_PRIVATE);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -91,21 +89,21 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
             } else {
                 mRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            HomeWeightAsyncTask homeWeightAsyncTask = new HomeWeightAsyncTask();
-            homeWeightAsyncTask.execute(new String[]{HOMEWEIGHT_WORKOUT_URL});
 
-
+            LogAsyncTask logAsyncTask = new LogAsyncTask();
+            String url = buildLogURL(view);
+            logAsyncTask.execute(new String[]{url});
         }
         return view;
     }
 
-    private class HomeWeightAsyncTask extends AsyncTask<String, Void, String> {
+    private class LogAsyncTask extends AsyncTask<String, Void, String>{
 
         @Override
         protected String doInBackground(String... urls) {
             String response = "";
             HttpURLConnection urlConnection = null;
-            for (String url : urls) {
+            for (String url : urls){
                 try {
                     URL urlObject = new URL(url);
                     urlConnection = (HttpURLConnection) urlObject.openConnection();
@@ -114,21 +112,20 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
 
                     BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
                     String s = "";
-                    while ((s = buffer.readLine()) != null) {
+                    while ((s = buffer.readLine()) != null){
                         response += s;
                     }
-
-                } catch (Exception e) {
-                    response = "Unable to download the list of courses, Reason: "
+                } catch (Exception e){
+                    response = "Unable to download the list of logs, Reason: "
                             + e.getMessage();
-                }
-                finally {
-                    if (urlConnection != null)
+                } finally {
+                    if (urlConnection != null){
                         urlConnection.disconnect();
+                    }
                 }
             }
-            return response;
 
+            return response;
         }
 
         @Override
@@ -142,29 +139,51 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
             }
 
             try {
-                mHomeWeightWorkoutList = HomeWeightLiftingWorkout.parseWorkoutJSON(result);
-            }
-            catch (JSONException e) {
-                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT)
-                        .show();
+                mLogList = LogInformation.parseLogJSON(result);
+            } catch (JSONException e){
+                Toast.makeText(getActivity().getApplicationContext(), e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
 
-// Everything is good, show the list of courses.
-            if (!mHomeWeightWorkoutList.isEmpty()) {
-                mRecyclerView.setAdapter(new MyHomeWeigthWorkoutRecyclerViewAdapter(mHomeWeightWorkoutList, mListener));
+            if (!mLogList.isEmpty()){
+                mRecyclerView.setAdapter(new MyLogListRecyclerViewAdapter(mLogList, mListener));
             }
-
         }
     }
+
+    public String buildLogURL(View v){
+
+        StringBuilder sb = new StringBuilder(LOG_URL);
+
+        try{
+            sb.append("cmd=");
+            sb.append(URLEncoder.encode("meallog", "UTF-8"));
+
+            String email = mSharedPreferences.getString("email", "Missing");
+            Log.i(TAG, "Email" + email);
+            sb.append("&email=");
+            sb.append(URLEncoder.encode(email, "UTF-8"));
+
+            Log.i(TAG, "Url is " + sb.toString());
+            LogAsyncTask logAsyncTask = new LogAsyncTask();
+            logAsyncTask.execute(sb.toString());
+        } catch (Exception e){
+            Toast.makeText(this.getContext(), "Something wrong with the url" + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        }
+        return sb.toString();
+    }
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof OnLogListFragmentInteractionListener) {
+            mListener = (OnLogListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement OnLogListFragmentInteractionListener");
         }
     }
 
@@ -184,8 +203,7 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
-        void selectVideo(HomeWeightLiftingWorkout item);
-        void shareVideo(HomeWeightLiftingWorkout item);
+    public interface OnLogListFragmentInteractionListener {
+        void onListFragmentInteraction(LogInformation item);
     }
 }
