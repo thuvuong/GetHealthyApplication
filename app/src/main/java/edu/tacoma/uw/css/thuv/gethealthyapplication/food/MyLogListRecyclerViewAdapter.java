@@ -1,48 +1,47 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.MuscleGroupExerciseListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.LogListFragment.OnLogListFragmentInteractionListener;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link MuscleGroupExercise} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link LogInformation} and makes a call to the
+ * specified {@link OnLogListFragmentInteractionListener}.
+ * TODO: Replace the implementation with code for your data type.
  */
-public class MyMuscleGroupExerciseRecyclerViewAdapter
-        extends RecyclerView.Adapter<MyMuscleGroupExerciseRecyclerViewAdapter.ViewHolder> {
+public class MyLogListRecyclerViewAdapter extends RecyclerView.Adapter<MyLogListRecyclerViewAdapter.ViewHolder> {
 
-    private final List<MuscleGroupExercise> mMuscleGroupExerciseListValues;
-    private final OnListFragmentInteractionListener mListener;
-
-    public MyMuscleGroupExerciseRecyclerViewAdapter(List<MuscleGroupExercise>
-                                                            theMuscleGroupExerciseList,
-                                                    OnListFragmentInteractionListener listener) {
-        mMuscleGroupExerciseListValues = theMuscleGroupExerciseList;
+    private final List<LogInformation> mValues;
+    private final OnLogListFragmentInteractionListener mListener;
+    private final String TAG = "OnBindViewHolder";
+    public MyLogListRecyclerViewAdapter(List<LogInformation> items, OnLogListFragmentInteractionListener listener) {
+        mValues = items;
         mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_musclegroupexercise, parent, false);
+                .inflate(R.layout.fragment_log, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
-        holder.mIdView.setText(mMuscleGroupExerciseListValues.get(position).getId());
-        holder.mContentView.setText(mMuscleGroupExerciseListValues.get(position).getMuscleGroup());
-
-        holder.mItem = mMuscleGroupExerciseListValues.get(position);
+        holder.mItem = mValues.get(position);
+        Log.i(TAG, "onBineViewHolder");
+        holder.mIdView.setText(mValues.get(position).getDate());
+        Log.i(TAG, "onBineViewHolderIDView");
+        holder.mContentView.setText(mValues.get(position).getType());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +57,14 @@ public class MyMuscleGroupExerciseRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return mMuscleGroupExerciseListValues.size();
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public MuscleGroupExercise mItem;
+        public LogInformation mItem;
 
         public ViewHolder(View view) {
             super(view);

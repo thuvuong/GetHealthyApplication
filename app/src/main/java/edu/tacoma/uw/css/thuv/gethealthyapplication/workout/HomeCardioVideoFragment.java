@@ -1,4 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.workout;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,29 +7,47 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-
+import edu.tacoma.uw.css.thuv.gethealthyapplication.food.FoodActivity;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 /**
- * Display a list of healthy Dinner recipe videos.
- *
- * @author Team 11
- * @version May 17, 2018
+ * Use this fragment to display the video based on user selection
  */
-public class DinnerFragment extends Fragment {
+public class HomeCardioVideoFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
-    public DinnerFragment() {
+    private HomeCardioVideo mVideo;
+    public HomeCardioVideoFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mVideo = (HomeCardioVideo) getArguments().getSerializable(WorkoutActivity.VIDEO_OBJECT);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dinner, container, false);
+        View v = inflater.inflate(R.layout.fragment_home_cardio_video, container, false);
+
+        String url = mVideo.getUrl();
+        WebView wv = (WebView) v.findViewById(R.id.home_cardio_wv1);
+
+//        wv.getSettings().setJavaScriptEnabled(true);
+//        wv.getSettings().setDomStorageEnabled(true);
+//
+//        wv.setWebViewClient(new WebViewClient());
+////webView.setWebChromeClient(new WebChromeClient());
+
+        wv.loadUrl(url);
+        return v;
     }
 
     @Override
@@ -39,7 +57,7 @@ public class DinnerFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement SigninInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 

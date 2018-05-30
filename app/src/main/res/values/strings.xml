@@ -24,6 +24,8 @@
     <string name="menu_action_log_out">Log out</string>
     <string name="menu_action_home">Home</string>
 
+    <string name="chooser_title">Share with</string>
+
 
     <string name="meal_log_btn">Meal Log</string>
     <string name="food_txt">Food</string>
@@ -50,6 +52,24 @@
     <string name="LOGIN_PREFS">edu.tacoma.uw.datalab.PREFS</string>
     <string name="LOGGEDIN">loggedin</string>
     <string name="title_activity_main">MainActivity</string>
+
+    <string name="beverage_consumption">Beverage Consumption</string>
+    <string name="water">Water</string>
+    <string name="breakfirst_consume">Breakfirst</string>
+    <string name="lunch_consume">Lunch</string>
+    <string name="dinner_consume">Dinner</string>
+    <string name="food_name">Food name</string>
+    <string name="nutri">Nutrients from this meal</string>
+    <string name="vegi">Vegetable</string>
+    <string name="fruits">Fruits</string>
+    <string name="grains">Grains</string>
+    <string name="meat">Meats</string>
+    <string name="dairy_product">Dairy product</string>
+    <string name="time_message">Select a time to start your log</string>
+    <string name="unit">Oz</string>
+    <string name="log">Make Log</string>
+    <string name="view_log">View Log</string>
+    <string name="write_log">Write Log</string>
 
 
 </resources>

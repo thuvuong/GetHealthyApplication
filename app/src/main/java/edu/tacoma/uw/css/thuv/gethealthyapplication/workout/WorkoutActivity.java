@@ -19,7 +19,13 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
+
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
+
 
 
 /**
@@ -32,8 +38,12 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercis
 public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        HomeCardioWorkoutListFragment.OnListFragmentInteractionListener,
+        HomeCardioVideoFragment.OnFragmentInteractionListener,
+        HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseDetailFragment.OnExerciseDetailFragmentInteractionListener {
+    public static final String VIDEO_OBJECT ="video_object";
 
     RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
     /**
@@ -154,15 +164,38 @@ public class WorkoutActivity extends AppCompatActivity
                             muscleGroupExerciseListFragment, null).addToBackStack(null).commit();
 
         } else if (homeBtn.isChecked() && cardioBtn.isChecked()) {
-
+            HomeCardioWorkoutListFragment homeCardioFragment = new HomeCardioWorkoutListFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            homeCardioFragment, null).addToBackStack(null).commit();
         } else if (homeBtn.isChecked() && weightLiftingBtn.isChecked()) {
-
+            HomeWeigthWorkoutListFragment homeWeigthWorkoutListFragment = new HomeWeigthWorkoutListFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.workout_fragment_container,
+                            homeWeigthWorkoutListFragment, null).addToBackStack(null).commit();
         } else {
             Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
                     " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
         }
     }
 
+
+    /**
+     * Empty interaction listener
+     *
+     * @param item
+     */
+    @Override
+    public void onListFragmentInteraction(HomeCardioWorkout item) {
+
+    }
+
+
+    /**
+     * Empty interaction listener
+     *
+     * @param item
+     */
     @Override
     public void onListFragmentInteraction(MuscleGroupExercise item) {
         MuscleGroupExerciseDetailFragment muscleGroupExerciseDetailFragment
@@ -189,5 +222,55 @@ public class WorkoutActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
         
+    }
+
+    @Override
+    public void selectVideo(HomeWeightLiftingWorkout item) {
+
+        Uri webpage = Uri.parse(item.getUrl());
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
+    }
+
+    @Override
+    public void shareVideo(HomeWeightLiftingWorkout item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
+    }
+
+    @Override
+    public void selectVideo(HomeCardioVideo item) {
+        Bundle args = new Bundle();
+        args.putSerializable(VIDEO_OBJECT, item);
+        HomeCardioVideoFragment homeCardioVideoFragment = new HomeCardioVideoFragment();
+        homeCardioVideoFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.workout_fragment_container, homeCardioVideoFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void shareVideo(HomeCardioVideo item) {
+        // Create the text message with a string
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Click on link to see this awesome video:) "+ item.getUrl());
+        sendIntent.setType("text/plain");
+
+        // Verify that the intent will resolve to an activity
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+
     }
 }

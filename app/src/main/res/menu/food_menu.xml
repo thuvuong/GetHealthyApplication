@@ -16,6 +16,4 @@
         android:id="@+id/action_log_out"
         android:title="@string/menu_action_log_out"
         app:showAsAction="collapseActionView" />
-
-
 </menu>

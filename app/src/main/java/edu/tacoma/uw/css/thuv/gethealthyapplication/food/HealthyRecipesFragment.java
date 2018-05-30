@@ -1,6 +1,5 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,11 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import edu.tacoma.uw.css.thuv.gethealthyapplication.MainActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 
 /**
  * A fragment which presents healthy recipes for all three meals.
@@ -88,14 +84,14 @@ public class HealthyRecipesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_healthy_recipes, container,
                                     false);
-        Toolbar toolbar = getActivity().findViewById(R.id.main_toolbar);
-        toolbar.setTitle("Food: Healthy Recipes");
+        Toolbar toolbar = getActivity().findViewById(R.id.food_toolbar);
+        toolbar.setTitle("  Food: Healthy Recipes");
 
         btnBreakfast = (Button) v.findViewById(R.id.breakfast_btn);
         btnBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               MainActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
+               FoodActivity.bundle.putString(BUTTON_SELECTED, "breakfast");
                 launchMeal(v);
             }
         });
@@ -105,7 +101,7 @@ public class HealthyRecipesFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                MainActivity.bundle.putString(BUTTON_SELECTED, "lunch");
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "lunch");
                 launchMeal(v);
             }
         });
@@ -114,7 +110,7 @@ public class HealthyRecipesFragment extends Fragment {
         btnDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.bundle.putString(BUTTON_SELECTED, "dinner");
+                FoodActivity.bundle.putString(BUTTON_SELECTED, "dinner");
                 launchMeal(v);
             }
         });

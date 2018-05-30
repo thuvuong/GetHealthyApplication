@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 
 /**
  * A fragment displaying the different options for working out.
@@ -95,5 +96,7 @@ public class WorkoutFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
+        void onListFragmentInteraction(HomeCardioWorkout item);
     }
 }

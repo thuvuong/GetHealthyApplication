@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food.FoodVideoFragment">
+    tools:context=".workout.HomeCardioVideoFragment">
 
     <WebView
-        android:id="@+id/food_webview"
+        android:id="@+id/home_cardio_wv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </FrameLayout>
