@@ -51,7 +51,7 @@ public class WorkoutActivity extends AppCompatActivity
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mTitle.setText("Workout");
-        getSupportActionBar().setIcon(R.drawable.get_healthy_logo_small);
+        getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         if (findViewById(R.id.workout_fragment_container) != null) {
