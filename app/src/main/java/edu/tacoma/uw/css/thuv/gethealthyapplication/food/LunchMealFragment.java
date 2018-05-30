@@ -81,7 +81,7 @@ public class LunchMealFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_breakfast_meal, container, false);
+        View v = inflater.inflate(R.layout.fragment_lunch_meal, container, false);
         mSharedPreferences = getActivity().getSharedPreferences(getString(R.string.LOGIN_PREFS),
                 Context.MODE_PRIVATE);
         datePicker = (TextView) v.findViewById(R.id.time_edit);

@@ -155,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/other_consume_edit"
-        android:text="@string/breakfast_btn"
+        android:text="@string/dinner_btn"
         android:textSize="24sp"
         android:textStyle="bold" />
 
