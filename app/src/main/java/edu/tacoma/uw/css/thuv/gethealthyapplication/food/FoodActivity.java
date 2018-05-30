@@ -1,20 +1,16 @@
 package edu.tacoma.uw.css.thuv.gethealthyapplication.food;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -44,7 +40,7 @@ public class FoodActivity extends AppCompatActivity
         BreakfastListFragment.OnListFragmentInteractionListener,
         BreakfastVideoFragment.OnFragmentInteractionListener,
         LogFragment.OnListFragmentInteractionListener,
-        LogListFragment.OnListFragmentInteractionListener,
+        LogListFragment.OnLogListFragmentInteractionListener,
         LogListDetailFragment.OnFragmentInteractionListener,
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
