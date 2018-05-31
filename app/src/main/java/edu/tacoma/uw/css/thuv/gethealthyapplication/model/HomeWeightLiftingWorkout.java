@@ -18,9 +18,12 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.HomeActivity;
  * @version May 19, 2018
  */
 public class HomeWeightLiftingWorkout implements Serializable {
-    /* These class constants are used to match attributes in database.*/
+
+    /* A constant are used to match title attribute in database.*/
     public static final String TITLE = "title";
+    /* A constant are used to match category attribute in database.*/
     public static final String CATEGORY = "category";
+    /* A constant are used to match url attribute in database.*/
     public static final String URL = "url";
 
 
@@ -28,8 +31,6 @@ public class HomeWeightLiftingWorkout implements Serializable {
     private String mTitle;
     private String mUrl;
     private String mCategory;
-    // image to display for each workout
-    // private static int mImageID;
 
 
     /**
@@ -78,27 +79,33 @@ public class HomeWeightLiftingWorkout implements Serializable {
         return workoutList;
     }
 
+    /** Get the category of the workout type.*/
     public String getCategory() {
         return mCategory;
     }
 
+    /** Set the category for the workout type. */
     public void setCategory(String mCategory) {
         this.mCategory = mCategory;
     }
 
+    /** Get the URL link of the home weightlifting video. */
     public String getUrl() {
 
         return mUrl;
     }
 
+    /** Get the URL for the workout video. */
     public void setUrl(String mUrl) {
         this.mUrl = mUrl;
     }
 
+    /** Get the title for the workout. */
     public String getTitle() {
         return mTitle;
     }
 
+    /** Set the title for the workout. */
     public void setTitle(String theTitle) {
         mTitle = theTitle;
     }

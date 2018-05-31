@@ -27,7 +27,9 @@ public class HealthyRecipesFragment extends Fragment {
      */
     private OnFragmentInteractionListener mListener;
 
+    /** A constant to pass data to other fragment*/
     public final static String BUTTON_SELECTED = "button_selected";
+
     /** The breakfast button.*/
     private Button btnBreakfast;
 

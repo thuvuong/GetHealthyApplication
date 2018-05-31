@@ -8,7 +8,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodVideo implements Serializable{
+/**
+ *  Class define each component of a video
+ *
+ * @author Team 11
+ * @version May 31/2018
+ */
+public class FoodVideo implements Serializable {
     public static final String CATEGORY = "category";
     public static final String TITLE = "title";
     public static final String URL = "url";
@@ -31,6 +37,11 @@ public class FoodVideo implements Serializable{
         this.mCategory = category;
     }
 
+    /**
+     * Method return the list of videos
+     *
+     * @param videoJSON a JSON String object
+     */
     public static List<FoodVideo> parseCourseJSON(String videoJSON) throws JSONException {
         List<FoodVideo> foodVideoList = new ArrayList<FoodVideo>();
         if (videoJSON != null) {
@@ -49,6 +60,12 @@ public class FoodVideo implements Serializable{
         return foodVideoList;
     }
 
+    /**
+     * Initializes the fields.
+     *
+     * @param category the category for diffent meal: breakfast, lunch, or dinner
+     * @param list the list of food videos
+     */
     public static List<FoodVideo> getVideosByCategory(String category, List<FoodVideo> list) {
         List<FoodVideo> customList = new ArrayList<FoodVideo>();
         for (int i=0; i<list.size(); i++) {
