@@ -35,7 +35,6 @@ public class LogFragment extends Fragment {
      *
      * @return A new instance of fragment LogFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static LogFragment newInstance() {
         LogFragment fragment = new LogFragment();
         Bundle args = new Bundle();
