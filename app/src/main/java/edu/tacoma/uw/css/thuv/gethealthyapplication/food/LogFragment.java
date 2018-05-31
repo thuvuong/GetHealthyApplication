@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
@@ -59,10 +60,11 @@ public class LogFragment extends Fragment {
         viewLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.food_fragment_container, new LogListFragment())
-                        .addToBackStack(null)
-                        .commit();
+                Toast.makeText(getActivity().getApplicationContext(), "Oops, view Log feature hasn't implemented yet! ", Toast.LENGTH_LONG).show();
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.food_fragment_container, new LogListFragment())
+//                        .addToBackStack(null)
+//                        .commit();
             }
         });
 
