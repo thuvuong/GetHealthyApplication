@@ -42,10 +42,7 @@ public class BreakfastMealFragment extends Fragment {
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addMealLog.php?";
 
     private SharedPreferences mSharedPreferences;
-
-
     private OnFragmentInteractionListener mListener;
-
     private static TextView datePicker;
     private EditText water;
     private EditText other;
@@ -56,6 +53,7 @@ public class BreakfastMealFragment extends Fragment {
     private EditText meat;
     private EditText dairy;
     private Button log;
+
 
     public BreakfastMealFragment() {
         // Required empty public constructor

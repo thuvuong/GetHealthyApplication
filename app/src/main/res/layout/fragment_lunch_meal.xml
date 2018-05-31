@@ -7,44 +7,27 @@
 
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/food_txt"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meal_log_btn"
-        android:textSize="16sp"/>
-
-    <TextView
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sub_title"
         android:ems="10"
         android:hint="@string/time_message"
-        android:layout_alignParentLeft="true" />
+        android:textColor="@android:color/holo_red_light" />
 
     <TextView
         android:id="@+id/beverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/time_edit"
         android:text="@string/beverage_consumption"
-        android:layout_alignParentLeft="true"
+        android:textColor="@color/green"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/water"
@@ -163,12 +146,13 @@
         android:id="@+id/breakfast_meal_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/other_consume_edit"
         android:text="@string/lunch_btn"
+        android:textColor="@android:color/holo_purple"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_alignParentLeft="true" />
+        android:textStyle="bold" />
 
 
     <TextView
@@ -243,9 +227,11 @@
     <Button
         android:id="@+id/log"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
+        android:background="@android:color/holo_blue_light"
         android:text="@string/log" />
 
 </RelativeLayout>

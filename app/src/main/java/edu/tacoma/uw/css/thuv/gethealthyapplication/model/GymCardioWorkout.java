@@ -18,20 +18,10 @@ public class GymCardioWorkout implements Serializable {
 
     /* These class constants are used to match attributes in database.*/
     public static final String TITLE = "title";
-    public static final String CATEGORY = "category";
     public static final String URL = "url";
-
-
-
 
     /** The title of the workout.*/
     private String mTitle;
-    private String mUrl;
-    private String mCategory;
-
-    // image to display for each workout
-   // private static int mImageID;
-    private static List<GymCardioWorkout> mWorkoutList;
 
     /**
      * Initializes the fields.
@@ -39,10 +29,7 @@ public class GymCardioWorkout implements Serializable {
      * @param mTitle The title of the workout.
      */
     public GymCardioWorkout( String mTitle) {
-        //this.mImageID = imageID;
         this.mTitle = mTitle;
-        mWorkoutList = new ArrayList<GymCardioWorkout>();
-
     }
 
     /**
@@ -67,25 +54,18 @@ public class GymCardioWorkout implements Serializable {
                                             obj.getString(GymCardioWorkout.TITLE));
 
                 workoutList.add(workout);
-                mWorkoutList.add(workout);
-
-
             }
 
         }
-
         return workoutList;
     }
 
-    public List<GymCardioWorkout> getGymCardioWorkoutList() {
-        return mWorkoutList;
-    }
-
+    /** Get the title of the gym cardio workout*/
     public String getTitle() {
         return mTitle;
     }
-    //public int getImageId() { return mImageID;}
-    //public void setImageId(int imageID) {mImageID = imageID;}
+
+    /** Set the title of the workout */
     public void setTitle(String theTitle) {
         mTitle = theTitle;
     }

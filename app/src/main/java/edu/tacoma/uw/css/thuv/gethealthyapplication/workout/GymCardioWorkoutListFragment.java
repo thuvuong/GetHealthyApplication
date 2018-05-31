@@ -41,22 +41,15 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorko
  */
 public class GymCardioWorkoutListFragment extends Fragment {
 
+    /** A constant to log the information for debugging. */
     public final static String TAG = "GymCardioWorkoutListFragment";
-
     private static final String ARG_COLUMN_COUNT = "column-count";
-
-
     private static final String GC_WORKOUT_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=gymcardioworkout";
-
-
     private static final String HW_WORKOUT_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homeweightworkout";
-
     private List<HomeWeightLiftingWorkout> mHWWorkoutList;
-
     private RecyclerView mRecyclerView;
-
     private int mColumnCount = 1;
 
     /**
@@ -68,9 +61,8 @@ public class GymCardioWorkoutListFragment extends Fragment {
     /** The list of cardio gym workouts.*/
     private List<GymCardioWorkout> mGCWorkoutList;
 
-
-
     private GymCardioDB mGymCardioDB;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment.
@@ -78,7 +70,6 @@ public class GymCardioWorkoutListFragment extends Fragment {
     public GymCardioWorkoutListFragment() {
 
     }
-
 
     /**
      * Figuring how the fragment should be oriented.

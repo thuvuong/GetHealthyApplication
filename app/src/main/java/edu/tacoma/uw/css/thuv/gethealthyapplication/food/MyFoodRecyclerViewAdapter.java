@@ -15,6 +15,11 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 import java.util.List;
 
 /**
+ * Recylar view adapter for the food list fragment
+ *
+ * @author Team 11
+ * @version May 31, 2018
+ *
  * specified {@link OnListFragmentInteractionListener}.
  */
 public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecyclerViewAdapter.ViewHolder> {
@@ -22,6 +27,12 @@ public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecycl
     private final List<FoodVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * Constructor for the adapter
+     *
+     * @param items the list of food videos
+     * @param listener the listener for the click on the list fragment items
+     */
     public MyFoodRecyclerViewAdapter(List<FoodVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
@@ -69,6 +80,9 @@ public class MyFoodRecyclerViewAdapter extends RecyclerView.Adapter<MyFoodRecycl
         return mValues.size();
     }
 
+    /**
+     * View holder to define the component of the view
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
