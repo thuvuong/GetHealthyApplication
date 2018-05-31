@@ -249,14 +249,9 @@ public class WorkoutActivity extends AppCompatActivity
 
     @Override
     public void selectVideo(HomeCardioVideo item) {
-        Bundle args = new Bundle();
-        args.putSerializable(VIDEO_OBJECT, item);
-        HomeCardioVideoFragment homeCardioVideoFragment = new HomeCardioVideoFragment();
-        homeCardioVideoFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.workout_fragment_container, homeCardioVideoFragment)
-                .addToBackStack(null)
-                .commit();
+        Uri webpage = Uri.parse(item.getUrl());
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 
     @Override
