@@ -35,14 +35,13 @@ public class LoginActivity extends AppCompatActivity implements
 
     private static final String TAG = "LoginActivity";
 
-    private boolean mSuccessfulLogin;
-    private boolean mSuccessfulRegistration;
     private SharedPreferences mSharedPreferences;
 
-    /** Initializes member variables.*/
+    private String mUserEmail;
+
+    /** Empty required constructor.*/
     public LoginActivity() {
-        mSuccessfulLogin = false;
-        mSuccessfulRegistration = false;
+
     }
 
     /**
@@ -76,19 +75,11 @@ public class LoginActivity extends AppCompatActivity implements
      *            the new user.
      */
     @Override
-    public void addUser(String url, String email) {
+    public void processingNewUser(String url, String email) {
+        mUserEmail = email;
+
         AddUserTask task = new AddUserTask();
         task.execute(new String[]{url.toString()});
-        if (mSuccessfulRegistration) {
-            mSharedPreferences
-                    .edit()
-                    .putBoolean(getString(R.string.LOGGEDIN), true)
-                    .putString("email", email)
-                    .commit();
-
-            Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(i);
-        }
     }
 
     /**
@@ -98,21 +89,23 @@ public class LoginActivity extends AppCompatActivity implements
      *            about the current user.
      */
     @Override
-    public void logInUser(String url, String email) {
+    public void processingUser(String url, String email) {
+        mUserEmail = email;
+
         LogInUserTask task = new LogInUserTask();
         task.execute(new String[]{url.toString()});
+    }
 
-        if (mSuccessfulLogin) {
-            mSharedPreferences
-                    .edit()
-                    .putBoolean(getString(R.string.LOGGEDIN), true)
-                    .putString("email", email)
-                    .commit();
+    public void loginUser() {
+        mSharedPreferences
+                .edit()
+                .putBoolean(getString(R.string.LOGGEDIN), true)
+                .putString("email", mUserEmail)
+                .commit();
 
-            Intent i = new Intent(this, HomeActivity.class);
-            startActivity(i);
-            finish();
-        }
+        Intent i = new Intent(this, HomeActivity.class);
+        startActivity(i);
+        finish();
     }
 
     /**
@@ -120,6 +113,8 @@ public class LoginActivity extends AppCompatActivity implements
      * asynchronous loading.
      */
     private class AddUserTask extends AsyncTask<String, Void, String> {
+
+        private static final String TAG = "AddUserTask";
 
         @Override
         protected void onPreExecute(){
@@ -173,11 +168,13 @@ public class LoginActivity extends AppCompatActivity implements
                 if(status.equals("success")){
                     Toast.makeText(getApplicationContext(), "Successfully Registered!",
                             Toast.LENGTH_SHORT).show();
+
+                    loginUser();
                 }else{
                     Toast.makeText(getApplicationContext(), "Failed to register",
                             Toast.LENGTH_SHORT).show();
                 }
-                mSuccessfulRegistration = status.equals("success");
+
             }catch(JSONException e){
                 Toast.makeText(getApplicationContext(), "Something wrong with the data" +
                         e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -244,11 +241,12 @@ public class LoginActivity extends AppCompatActivity implements
             try{
                 JSONObject jsonObject = new JSONObject(result);
                 String status = (String) jsonObject.get("result");
-                if(!status.equals("success")){
+                if(status.equals("success")){
+                    loginUser();
+                } else {
                     Toast.makeText(getApplicationContext(), "Failed to log in",
                             Toast.LENGTH_SHORT).show();
                 }
-                mSuccessfulLogin = status.equals("success");
             }catch(JSONException e){
                 Toast.makeText(getApplicationContext(), "Something wrong with the data" +
                         e.getMessage(), Toast.LENGTH_SHORT).show();
