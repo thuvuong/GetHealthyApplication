@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Gathers and displays cardio workouts which should be done at home.
+ *
+ * @author Team 11
+ * @version May 31, 2018
+ */
 public class HomeCardioVideo implements Serializable{
 
 
@@ -17,8 +23,8 @@ public class HomeCardioVideo implements Serializable{
     public static final String URL = "url";
 
     /** Private field for this class */
-    String title;
-    String url;
+    private String title;
+    private String url;
 
 
     /**

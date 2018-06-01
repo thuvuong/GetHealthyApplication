@@ -12,7 +12,7 @@ import java.util.List;
  *  Class define each component of a video
  *
  * @author Team 11
- * @version May 31/2018
+ * @version May 31,2018
  */
 public class FoodVideo implements Serializable {
     public static final String CATEGORY = "category";

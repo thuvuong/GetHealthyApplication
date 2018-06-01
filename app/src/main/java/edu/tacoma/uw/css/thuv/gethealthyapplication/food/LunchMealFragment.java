@@ -29,23 +29,18 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import static android.content.ContentValues.TAG;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LunchMealFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LunchMealFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The lunch meal fragment where the user can log their lunch meal.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class LunchMealFragment extends Fragment {
-
-
     /** All the private fields for this fragment */
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addMealLog.php?";
 
     private SharedPreferences mSharedPreferences;
-
-
     private OnFragmentInteractionListener mListener;
 
     private static TextView datePicker;
@@ -81,6 +76,14 @@ public class LunchMealFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Picking the layout of this lunch meal fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

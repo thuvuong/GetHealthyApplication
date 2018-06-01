@@ -14,17 +14,17 @@ import android.widget.Toolbar;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MealLogFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MealLogFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The meal log fragment where the user can log their meal.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class MealLogFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /** Emply constructor for this fragment */
     public MealLogFragment() {
         // Required empty public constructor
     }
@@ -42,12 +42,21 @@ public class MealLogFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    /**
+     * Picking the layout of this meal log fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

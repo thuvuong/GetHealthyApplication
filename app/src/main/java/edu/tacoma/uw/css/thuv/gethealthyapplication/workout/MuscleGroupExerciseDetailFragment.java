@@ -13,15 +13,14 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.musclegroupexercise.MuscleGroupExercise;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnExerciseDetailFragmentInteractionListener} interface
- * to handle interaction events.
+ * A fragment representing a detail of weight lifting workout at the gym.
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class MuscleGroupExerciseDetailFragment extends Fragment {
 
     private OnExerciseDetailFragmentInteractionListener mListener;
-
     private TextView mExerciseInstructions;
     private TextView mExerciseGroup;
     private TextView mExerciseOne;
@@ -29,11 +28,20 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
     private TextView mExerciseThree;
     private TextView mExerciseFour;
 
+    /**Empty constructor for this fragment */
     public MuscleGroupExerciseDetailFragment() {
         // Required empty public constructor
     }
 
 
+    /**
+     * Picking the layout of this fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +56,11 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
 
         return view;
     }
-
+    /**
+     * Update the View for each exercise
+     *
+     * @param theMuscleGroupExercise the item of the list
+     */
     public void updateView(MuscleGroupExercise theMuscleGroupExercise) {
         if (theMuscleGroupExercise != null) {
             mExerciseInstructions.setText(theMuscleGroupExercise.getInstructions());
@@ -59,6 +71,7 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
         }
     }
 
+    /** A constant to pass the data to other fragment. */
     public final static String Muscle_Group_Exercise_ITEM_SELECTED = "muscle_group_exercise_selected";
 
     @Override
@@ -70,12 +83,6 @@ public class MuscleGroupExerciseDetailFragment extends Fragment {
             updateView((MuscleGroupExercise) args.getSerializable(Muscle_Group_Exercise_ITEM_SELECTED));
         }
 
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onExerciseDetailFragmentInteraction(uri);
-        }
     }
 
     @Override
