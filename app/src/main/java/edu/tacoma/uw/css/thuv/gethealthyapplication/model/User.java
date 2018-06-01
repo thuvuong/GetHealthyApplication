@@ -20,7 +20,7 @@ public class User implements Serializable {
     /**
      * Email validation pattern.
      */
-    public static final Pattern EMAIL_PATTERN = Pattern.compile(
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
                     "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -31,8 +31,6 @@ public class User implements Serializable {
     );
 
     private final static int PASSWORD_LEN = 6;
-
-
 
     /* 1 pound is approximately to 0.45 kilograms.*/
     private static final double CONVERSION_RATIO_LB_TO_KG = 1 / 2.2;
@@ -56,8 +54,10 @@ public class User implements Serializable {
 
     private static final String BMI_HEALTHY_RANGE = "18.5 - 24.9 lb/(in)^2";
 
-    private static final int MIN_HEIGHT_IN_INCHES = 12;
-    private static final int MIN_WEIGHT_STRING_LENGTH = 2;
+    private static final double MIN_HEIGHT_IN_INCHES = 12;
+    private static final double MIN_WEIGHT = 10;
+    private static final int MIN_AGE = 0;
+    private static final int BODY_WEIGHT_WATER_CONSUMPTION_DIVISOR = 2;
 
     /*
      * These constants are the same as the JSON names used
@@ -188,7 +188,7 @@ public class User implements Serializable {
         return "" + caloriesCalculator() + " Calories/day";
     }
 
-    public String GetCaloriesToConsumeToLoseWeight() {
+    public String getCaloriesToConsumeToLoseWeight() {
         double result = caloriesCalculator() *
                 PERCENTAGE_CALORIES_TO_CONSUME_TO_LOSE_WEIGHT;
 
@@ -234,7 +234,9 @@ public class User implements Serializable {
      * @return The amount of water a user should consume in ounces.
      */
     public String getExpectedWaterConsumption() {
-        int result = (int) Math.ceil(Double.parseDouble(mWeight) / 2);
+        int result = (int) Math.ceil(Double.parseDouble(mWeight)
+                        / BODY_WEIGHT_WATER_CONSUMPTION_DIVISOR);
+
         String stringResult = "" + result + " oz";
 
         return stringResult;
@@ -312,7 +314,7 @@ public class User implements Serializable {
      * @param firstName
      */
     public void setFirstName(final String firstName) {
-        if (firstName != null && firstName.length() >= 1) {
+        if (firstName != null && !(firstName.isEmpty())) {
             mFirstName = firstName;
         } else {
             throw new IllegalArgumentException("Invalid first name provided.");
@@ -327,7 +329,7 @@ public class User implements Serializable {
      * @param lastName
      */
     public void setLastName(final String lastName) {
-        if (lastName != null && lastName.length() >= 1) {
+        if (lastName != null && !(lastName.isEmpty())) {
             mLastName = lastName;
         } else {
             throw new IllegalArgumentException("Invalid last name provided.");
@@ -357,7 +359,7 @@ public class User implements Serializable {
      * @param weight
      */
     public void setWeight(final String weight) {
-        if (weight != null && weight.length() >= MIN_WEIGHT_STRING_LENGTH) {
+        if (weight != null && isValidWeight(weight)) {
             mWeight = weight;
         } else {
             throw new IllegalArgumentException("Invalid weight provided.");
@@ -372,7 +374,7 @@ public class User implements Serializable {
      * @param sex
      */
     public void setSex(final String sex) {
-        if (sex != null && sex.length() >= 1) {
+        if (sex != null && !(sex.isEmpty())) {
             mSex = sex;
         } else {
             throw new IllegalArgumentException("No input provided for sex.");
@@ -387,7 +389,7 @@ public class User implements Serializable {
      * @param age
      */
     public void setAge(final String age) {
-        if (age != null && age.length() >= 1) {
+        if (age != null && isValidAge(age)) {
             mAge = age;
         } else {
             throw new IllegalArgumentException("Invalid age provided.");
@@ -402,7 +404,7 @@ public class User implements Serializable {
      * @param email The email to validate.
      * @return True if the input is a valid email else false.
      */
-    public static boolean isValidEmail(final String email) {
+    private static boolean isValidEmail(final String email) {
         return email != null && EMAIL_PATTERN.matcher(email).matches();
     }
 
@@ -414,7 +416,7 @@ public class User implements Serializable {
      * @param password The password to validate.
      * @return True if the input is a valid password else false.
      */
-    public static boolean isValidPassword(String password) {
+    private static boolean isValidPassword(String password) {
         boolean result = false;
         if (password != null && password.length() >= PASSWORD_LEN) {
             return true;
@@ -422,7 +424,15 @@ public class User implements Serializable {
         return result;
     }
 
-    public boolean isValidHeight(final String height) {
-        return Integer.parseInt(height) >= MIN_HEIGHT_IN_INCHES;
+    private boolean isValidHeight(final String height) {
+        return Double.parseDouble(height) >= MIN_HEIGHT_IN_INCHES;
+    }
+
+    private boolean isValidWeight(final String weight) {
+        return Double.parseDouble(weight) >= MIN_WEIGHT;
+    }
+
+    private boolean isValidAge(final String age) {
+        return Integer.parseInt(age) >= MIN_AGE;
     }
 }
