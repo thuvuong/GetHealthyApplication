@@ -24,6 +24,8 @@ import java.util.List;
 public class MyHomeCardioWorkoutRecyclerViewAdapter
         extends RecyclerView.Adapter<MyHomeCardioWorkoutRecyclerViewAdapter.ViewHolder> {
 
+
+    /** Private and public field for this fragment to recycle the view of the list of the fragment */
     private final List<HomeCardioVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 

@@ -41,6 +41,7 @@ public class BreakfastMealFragment extends Fragment {
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addMealLog.php?";
 
+    /** All the private fields for this fragment */
     private SharedPreferences mSharedPreferences;
     private OnFragmentInteractionListener mListener;
     private static TextView datePicker;
@@ -55,6 +56,7 @@ public class BreakfastMealFragment extends Fragment {
     private Button log;
 
 
+    /** Empty constructor for this fragment */
     public BreakfastMealFragment() {
         // Required empty public constructor
     }

@@ -35,6 +35,8 @@ import java.util.List;
  */
 public class LogListFragment extends Fragment {
 
+
+    /** All the private fields for this fragment*/
     private static final String LOG_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
 
@@ -97,6 +99,12 @@ public class LogListFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * Private class that allows the program to synchronize to the database
+     * and retrieve the data.
+     *
+     */
     private class LogAsyncTask extends AsyncTask<String, Void, String>{
 
         @Override
@@ -152,6 +160,14 @@ public class LogListFragment extends Fragment {
         }
     }
 
+
+    /**
+     * Method that will generated the corresponding url address to retrieve the data
+     * from the database
+     *
+     * @param v The view that is currently using
+     * @return string value of the url
+     */
     public String buildLogURL(View v){
 
         StringBuilder sb = new StringBuilder(LOG_URL);
