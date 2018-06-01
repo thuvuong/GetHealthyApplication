@@ -28,11 +28,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
+ /**
+ * A fragment representing a list of weight lifting workout at home.
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class HomeWeigthWorkoutListFragment extends Fragment {
 

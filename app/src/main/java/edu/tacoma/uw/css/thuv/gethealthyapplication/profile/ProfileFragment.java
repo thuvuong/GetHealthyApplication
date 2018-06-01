@@ -25,10 +25,11 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.User;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProfileFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
+ * The Profile fragment where the user can see their profile.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class ProfileFragment extends Fragment {
 
@@ -49,6 +50,14 @@ public class ProfileFragment extends Fragment {
     }
 
 
+    /**
+     * Picking the layout of this profile fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

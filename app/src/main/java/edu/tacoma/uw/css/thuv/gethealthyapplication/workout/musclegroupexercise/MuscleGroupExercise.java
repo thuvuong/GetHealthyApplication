@@ -8,6 +8,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Gathers and displays weightlifting workouts which should be done in the gym.
+ *
+ * @author Team 11
+ * @version May 31, 2018
+ */
 public class MuscleGroupExercise implements Serializable {
 
     private static final String ID = "id";
@@ -26,6 +32,17 @@ public class MuscleGroupExercise implements Serializable {
     private String mThirdExercise;
     private String mFourthExercise;
 
+    /**
+     * Simple constructor for the class
+     *
+     * @param theId
+     * @param theInstructions
+     * @param theMuscleGroup
+     * @param theFirstExercise
+     * @param theSecondExercise
+     * @param theThirdExercise
+     * @param theFourthExercise
+     */
     public MuscleGroupExercise(String theId, String theInstructions, String theMuscleGroup, String theFirstExercise,
                                String theSecondExercise, String theThirdExercise,
                                String theFourthExercise) {
@@ -39,6 +56,13 @@ public class MuscleGroupExercise implements Serializable {
         mFourthExercise = theFourthExercise;
     }
 
+    /**
+     * Retrieve data from the server and parse that to list of workout
+     *
+     * @param courseJSON JSON value that needs to be parsed and store in this class
+     * @return the list contains the HomeCardioVideo items
+     * @throws JSONException exception
+     */
     public static List<MuscleGroupExercise> parseCourseJSON(String courseJSON) throws JSONException {
         List<MuscleGroupExercise> muscleGroupExerciseList = new ArrayList<MuscleGroupExercise>();
         if (courseJSON != null) {

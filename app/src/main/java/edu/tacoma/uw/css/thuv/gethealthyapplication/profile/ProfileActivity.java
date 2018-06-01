@@ -23,7 +23,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.WorkoutActivity;
  *
  *
  * @author Team 11
- * @version May 10, 2018
+ * @version May 31, 2018
  */
 public class ProfileActivity extends AppCompatActivity
                 implements ProfileFragment.OnFragmentInteractionListener {

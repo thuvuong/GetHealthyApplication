@@ -16,12 +16,11 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LogListDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LogListDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The Log list detail frqagmnet where the user can see the detail of a log.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class LogListDetailFragment extends Fragment {
 
@@ -42,6 +41,7 @@ public class LogListDetailFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /** Constructor */
     public LogListDetailFragment() {
         // Required empty public constructor
     }

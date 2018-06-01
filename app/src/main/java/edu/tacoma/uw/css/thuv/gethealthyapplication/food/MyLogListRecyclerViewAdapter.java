@@ -14,6 +14,11 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 import java.util.List;
 
 /**
+ * Recylar view adapter for the food list fragment
+ *
+ * @author Team 11
+ * @version May 31, 2018
+ *
  * {@link RecyclerView.Adapter} that can display a {@link LogInformation} and makes a call to the
  * specified {@link OnLogListFragmentInteractionListener}.
  */
@@ -59,6 +64,9 @@ public class MyLogListRecyclerViewAdapter extends RecyclerView.Adapter<MyLogList
         return mValues.size();
     }
 
+    /**
+     * View holder to define the component of the view
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;

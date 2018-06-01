@@ -13,15 +13,26 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.musclegroupexercise.
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link MuscleGroupExercise} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ /**
+ * A RecyclerView, which allows us to reuse the formatting for
+ * part of the style.
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
+
 public class MyMuscleGroupExerciseRecyclerViewAdapter
         extends RecyclerView.Adapter<MyMuscleGroupExerciseRecyclerViewAdapter.ViewHolder> {
 
     private final List<MuscleGroupExercise> mMuscleGroupExerciseListValues;
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * Initalizing the member variables.
+     *
+     * @param theMuscleGroupExerciseList The given list of GymCardioWorkout exercises.
+     * @param listener The given listener.
+     */
     public MyMuscleGroupExerciseRecyclerViewAdapter(List<MuscleGroupExercise>
                                                             theMuscleGroupExerciseList,
                                                     OnListFragmentInteractionListener listener) {
@@ -61,6 +72,9 @@ public class MyMuscleGroupExerciseRecyclerViewAdapter
         return mMuscleGroupExerciseListValues.size();
     }
 
+    /**
+     * Specifying how it should display a list of items.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;

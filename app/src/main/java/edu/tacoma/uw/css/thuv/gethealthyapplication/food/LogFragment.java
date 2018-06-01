@@ -14,17 +14,17 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LogFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LogFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The log fragment where the user can see their log.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class LogFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /** Constructor */
     public LogFragment() {
         // Required empty public constructor
     }
@@ -59,11 +59,9 @@ public class LogFragment extends Fragment {
         viewLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "Oops, view Log feature hasn't implemented yet! ", Toast.LENGTH_LONG).show();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.food_fragment_container, new LogListFragment())
-//                        .addToBackStack(null)
-//                        .commit();
+                Toast.makeText(getActivity().getApplicationContext(),
+                        "Oops, view Log feature hasn't implemented yet! ",
+                        Toast.LENGTH_LONG).show();
             }
         });
 
@@ -111,6 +109,7 @@ public class LogFragment extends Fragment {
         void onFragmentInteraction(LogInformation logInformation);
     }
 
+    /**A listener for log fragment*/
     public interface OnListFragmentInteractionListener {
     }
 }
