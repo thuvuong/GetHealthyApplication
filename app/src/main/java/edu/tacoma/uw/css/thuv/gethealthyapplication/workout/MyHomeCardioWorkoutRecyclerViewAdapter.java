@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeCardioWorkoutListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 import java.util.List;
