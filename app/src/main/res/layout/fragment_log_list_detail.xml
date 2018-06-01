@@ -6,25 +6,6 @@
     tools:context=".food.LogListDetailFragment">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/food_txt"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meal_log_btn"
-        android:textSize="16sp"/>
-
-    <TextView
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
