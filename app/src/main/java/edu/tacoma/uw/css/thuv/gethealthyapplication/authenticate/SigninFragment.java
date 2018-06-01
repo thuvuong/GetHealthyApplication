@@ -114,7 +114,7 @@ public class SigninFragment extends Fragment{
 
                 } else {
                     String url = buildUserURL(v);
-                    mListener.logInUser(url, email);
+                    mListener.processingUser(url, email);
                 }
             }
         });
@@ -148,7 +148,6 @@ public class SigninFragment extends Fragment{
             sb.append("&password=");
             sb.append(URLEncoder.encode(password, "UTF-8"));
 
-            Log.i(TAG, sb.toString());
         }catch (Exception e){
             Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(),
                     Toast.LENGTH_LONG).show();
@@ -204,6 +203,6 @@ public class SigninFragment extends Fragment{
      * activity.
      */
     public interface SigninInteractionListener {
-        void logInUser(String url, String email);
+        void processingUser(String url, String email);
     }
 }

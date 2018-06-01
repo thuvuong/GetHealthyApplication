@@ -1,4 +1,4 @@
-package edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise;
+package edu.tacoma.uw.css.thuv.gethealthyapplication.workout.musclegroupexercise;
 
 import org.json.JSONArray;
 import org.json.JSONException;

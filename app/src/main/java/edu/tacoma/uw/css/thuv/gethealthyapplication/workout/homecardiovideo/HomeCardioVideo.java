@@ -12,9 +12,11 @@ import java.util.List;
 public class HomeCardioVideo implements Serializable{
 
 
+    /** Public static field for this class */
     public static final String TITLE = "title";
     public static final String URL = "url";
 
+    /** Private field for this class */
     String title;
     String url;
 
@@ -22,8 +24,8 @@ public class HomeCardioVideo implements Serializable{
     /**
      * Simple constructor for the class
      *
-     * @param title
-     * @param url
+     * @param title the tile of the video
+     * @param url the url of the video
      */
     public HomeCardioVideo(String title, String url) {
         this.title = title;
@@ -34,9 +36,9 @@ public class HomeCardioVideo implements Serializable{
     /**
      * Retrieve data from the server and parse that to list of videos
      *
-     * @param courseJSON
-     * @return
-     * @throws JSONException
+     * @param courseJSON JSON value that needs to be parsed and store in this class
+     * @return the list contains the HomeCardioVideo items
+     * @throws JSONException exception
      */
     public static List<HomeCardioVideo> parseCourseJSON(String courseJSON) throws JSONException {
         List<HomeCardioVideo> homeCardioVideoList = new ArrayList<HomeCardioVideo>();
@@ -56,6 +58,7 @@ public class HomeCardioVideo implements Serializable{
     }
 
 
+    /** Getters and Setters for this class */
     public void setTitle(String title) {
         this.title = title;
     }

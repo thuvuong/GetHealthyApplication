@@ -37,6 +37,8 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.Home
  * @version May 10, 2018
  */
 public class HomeCardioWorkoutListFragment extends Fragment {
+
+    /** All the private fields for this fragment to display the list */
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
@@ -95,6 +97,11 @@ public class HomeCardioWorkoutListFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * Private class that allows the program to synchronize with the database
+     * and retrieve the data
+     */
     private class HomeCardioVideoAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override

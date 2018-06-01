@@ -13,6 +13,8 @@ import java.util.List;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 
 public class LogInformation implements Serializable{
+
+    /** Public static value */
     public static final String DATE = "date";
     public static final String TYPE = "type";
     public static final String WATER = "water";
@@ -24,6 +26,7 @@ public class LogInformation implements Serializable{
     public static final String GRAIN = "grain";
     public static final String DAIRY = "dairy";
 
+    /** All the private fields for this fragment */
     private String mDate;
     private String mType;
     private String mWater;
@@ -35,6 +38,21 @@ public class LogInformation implements Serializable{
     private String mMeat;
     private String mDairy;
 
+
+    /**
+     * Constructor for this class
+     *
+     * @param logDate date value retrieve
+     * @param logType type value retrieve
+     * @param logWater water consume value retrieve
+     * @param logOther other consume value retrieve
+     * @param logFood food name value retrieve
+     * @param logVegi vegi consume value retrieve
+     * @param logFruit fruit consume value retrieve
+     * @param logGrain grain consume value retrieve
+     * @param logMeat meat consume value retrieve
+     * @param logDairy dairy consume value retrieve
+     */
     public LogInformation(String logDate, String logType,
                           String logWater, String logOther,
                           String logFood, String logVegi,
@@ -52,6 +70,7 @@ public class LogInformation implements Serializable{
         mDairy = logDairy;
     }
 
+    /** Getter and Setter methods */
     public String getDate(){
         return mDate;
     }

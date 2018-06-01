@@ -38,6 +38,8 @@ import static android.content.ContentValues.TAG;
  */
 public class DinnerMealFragment extends Fragment {
 
+
+    /** All the private fields for this fragment */
     private final static String USER_ADD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/addMealLog.php?";
 
@@ -57,6 +59,8 @@ public class DinnerMealFragment extends Fragment {
     private EditText dairy;
     private Button log;
 
+
+    /** Empty constructor for this fragment */
     public DinnerMealFragment() {
         // Required empty public constructor
     }

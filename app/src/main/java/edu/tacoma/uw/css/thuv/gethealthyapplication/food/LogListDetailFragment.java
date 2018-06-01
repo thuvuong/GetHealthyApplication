@@ -24,6 +24,9 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.log.LogInformation;
  * create an instance of this fragment.
  */
 public class LogListDetailFragment extends Fragment {
+
+
+    /** All the private fields for this fragment */
     public final static String LOG_ITEM_SELECTED = "log_selected";
 
     private TextView date;
@@ -82,6 +85,14 @@ public class LogListDetailFragment extends Fragment {
         return v;
     }
 
+
+    /**
+     * This is the method that will update the details being showed
+     * under the view log fragment
+     * (Not fully implemented)
+     *
+     * @param logInformation
+     */
     public void updateView(LogInformation logInformation){
         if (logInformation != null){
             date.setText(logInformation.getDate());
@@ -98,6 +109,12 @@ public class LogListDetailFragment extends Fragment {
         }
     }
 
+
+    /**
+     * Overrided method that will call updateView method to reload the detail displayed
+     * on the fragment
+     *
+     */
     @Override
     public void onResume(){
         super.onResume();

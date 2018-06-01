@@ -18,7 +18,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.muscle_group_exercise.MuscleGroupExercise;
+import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.musclegroupexercise.MuscleGroupExercise;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
