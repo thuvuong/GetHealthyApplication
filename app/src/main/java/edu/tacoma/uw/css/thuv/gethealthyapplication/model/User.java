@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Defines the characteristics which define a user in out application.
@@ -15,6 +16,23 @@ import java.util.List;
  * @version May 19, 2018
  */
 public class User implements Serializable {
+
+    /**
+     * Email validation pattern.
+     */
+    public static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+    );
+
+    private final static int PASSWORD_LEN = 6;
+
+
 
     /* 1 pound is approximately to 0.45 kilograms.*/
     private static final double CONVERSION_RATIO_LB_TO_KG = 1 / 2.2;
@@ -37,6 +55,9 @@ public class User implements Serializable {
     private static final Double PERCENTAGE_CALORIES_TO_CONSUME_TO_LOSE_WEIGHT = 0.8;
 
     private static final String BMI_HEALTHY_RANGE = "18.5 - 24.9 lb/(in)^2";
+
+    private static final int MIN_HEIGHT_IN_INCHES = 12;
+    private static final int MIN_WEIGHT_STRING_LENGTH = 2;
 
     /*
      * These constants are the same as the JSON names used
@@ -74,20 +95,32 @@ public class User implements Serializable {
 
     private String mAge;
 
-    /** Initializes the fields with the given parameters.*/
-    public User(final String theEmail, final String thePassword,
-                final String theFirstName, final String theLastName,
-                final String theHeight, final String theWeight,
-                final String theSex, final String theAge) {
+    /**
+     * Initializes the fields with the given parameters.
+     *
+     * @throws IllegalArgumentException If any of the input values are invalid.
+     * @param email
+     * @param password
+     * @param firstName
+     * @param lastName
+     * @param height
+     * @param weight
+     * @param sex
+     * @param age
+     */
+    public User(final String email, final String password,
+                final String firstName, final String lastName,
+                final String height, final String weight,
+                final String sex, final String age) {
 
-        mEmail = theEmail;
-        mPassword = thePassword;
-        mFirstName = theFirstName;
-        mLastName = theLastName;
-        mHeight = theHeight;
-        mWeight = theWeight;
-        mSex = theSex;
-        mAge = theAge;
+        setEmail(email);
+        setPassword(password);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setHeight(height);
+        setWeight(weight);
+        setSex(sex);
+        setAge(age);
     }
 
     /**
@@ -242,35 +275,154 @@ public class User implements Serializable {
         return mAge;
     }
 
-    private void setEmail(final String email) {
-        mEmail = email;
+    /**
+     * Sets the User's email address.
+     *
+     * @throws IllegalArgumentException if provided an invalid email.
+     * @param email The given email.
+     */
+    public void setEmail(final String email) {
+        if (isValidEmail(email)) {
+            mEmail = email;
+        } else {
+            throw new IllegalArgumentException("Invalid email provided.");
+        }
     }
 
-    private void setPassword(final String password) {
-        mPassword = password;
+    /**
+     * Sets the User's password.
+     *
+     * @throws IllegalArgumentException If provided a length less
+     *                                  than the specified PASSWORD_LEN.
+     * @param password
+     */
+    public void setPassword(final String password) {
+        if (isValidPassword(password)) {
+            mPassword = password;
+        } else {
+            throw new IllegalArgumentException("Invalid password provided.");
+        }
     }
 
-    protected void setFirstName(final String firstName) {
-        mFirstName = firstName;
+    /**
+     * Sets the User's first name.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains one letter.
+     * @param firstName
+     */
+    public void setFirstName(final String firstName) {
+        if (firstName != null && firstName.length() >= 1) {
+            mFirstName = firstName;
+        } else {
+            throw new IllegalArgumentException("Invalid first name provided.");
+        }
     }
 
-    protected void setLastName(final String lastName) {
-        mLastName = lastName;
+    /**
+     * Sets the User's last name.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains one letter.
+     * @param lastName
+     */
+    public void setLastName(final String lastName) {
+        if (lastName != null && lastName.length() >= 1) {
+            mLastName = lastName;
+        } else {
+            throw new IllegalArgumentException("Invalid last name provided.");
+        }
     }
 
-    protected void setHeight(final String height) {
-        mHeight = height;
+    /**
+     * Sets the User's height.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains one letter.
+     * @param height
+     */
+    public void setHeight(final String height) {
+        if (height != null && isValidHeight(height)) {
+            mHeight = height;
+        } else {
+            throw new IllegalArgumentException("Invalid height provided.");
+        }
     }
 
-    protected void setWeight(final String weight) {
-        mWeight = weight;
+    /**
+     * Sets the User's weight.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains MIN_WEIGHT_STRING_LENGTH.
+     * @param weight
+     */
+    public void setWeight(final String weight) {
+        if (weight != null && weight.length() >= MIN_WEIGHT_STRING_LENGTH) {
+            mWeight = weight;
+        } else {
+            throw new IllegalArgumentException("Invalid weight provided.");
+        }
     }
 
-    protected void setSex(final String sex) {
-        mSex = sex;
+    /**
+     * Sets the User's sex.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains one letter.
+     * @param sex
+     */
+    public void setSex(final String sex) {
+        if (sex != null && sex.length() >= 1) {
+            mSex = sex;
+        } else {
+            throw new IllegalArgumentException("No input provided for sex.");
+        }
     }
 
-    protected void setAge(String age) {
-        mAge = age;
+    /**
+     * Sets the User's age.
+     *
+     * @throws IllegalArgumentException If not provided with a string
+     *                                  which at least contains one letter.
+     * @param age
+     */
+    public void setAge(final String age) {
+        if (age != null && age.length() >= 1) {
+            mAge = age;
+        } else {
+            throw new IllegalArgumentException("Invalid age provided.");
+        }
+    }
+
+
+
+    /**
+     * Validates if the given input is a valid email address.
+     *
+     * @param email The email to validate.
+     * @return True if the input is a valid email else false.
+     */
+    public static boolean isValidEmail(final String email) {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    /**
+     * Validates if the given password is valid.
+     * Valid password must be at last 6 characters long
+     * with at least one digit and one symbol.
+     *
+     * @param password The password to validate.
+     * @return True if the input is a valid password else false.
+     */
+    public static boolean isValidPassword(String password) {
+        boolean result = false;
+        if (password != null && password.length() >= PASSWORD_LEN) {
+            return true;
+        }
+        return result;
+    }
+
+    public boolean isValidHeight(final String height) {
+        return Integer.parseInt(height) >= MIN_HEIGHT_IN_INCHES;
     }
 }
