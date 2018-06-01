@@ -29,12 +29,11 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import static android.content.ContentValues.TAG;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DinnerMealFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link DinnerMealFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The dinner meal fragment where the user can log their dinner meal.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class DinnerMealFragment extends Fragment {
 

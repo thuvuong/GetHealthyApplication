@@ -28,21 +28,17 @@ import java.net.URL;
 import java.util.List;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
+ * A fragment representing a list of weight lifting workout at the gym.
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class MuscleGroupExerciseListFragment extends Fragment {
-
-
-//    private static final String ARG_COLUMN_COUNT = "column-count";
 
     private static final String GYM_WEIGHT_LIFTING_URL =
             "https://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=gymweightlifting";
 
     private int mColumnCount = 1;
-
 
     private List<MuscleGroupExercise> mMuscleGroupExerciseList;
     private OnListFragmentInteractionListener mListener;
@@ -60,6 +56,14 @@ public class MuscleGroupExerciseListFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Picking the layout of this fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

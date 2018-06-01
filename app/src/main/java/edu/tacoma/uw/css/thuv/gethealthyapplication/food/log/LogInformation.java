@@ -12,6 +12,12 @@ import java.util.List;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 
+ /**
+  * The log information where each of its meal attributes is defined.
+  *
+  * @author Team 11
+  * @version May 31, 2018
+  */
 public class LogInformation implements Serializable{
 
     /** Public static value */

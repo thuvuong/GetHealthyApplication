@@ -28,6 +28,12 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
     private final List<HomeCardioVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 
+    /**
+     * Initalizing the member variables.
+     *
+     * @param items The given list of GymCardioWorkout exercises.
+     * @param listener The given listener.
+     */
     public MyHomeCardioWorkoutRecyclerViewAdapter(List<HomeCardioVideo> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
@@ -75,6 +81,9 @@ public class MyHomeCardioWorkoutRecyclerViewAdapter
         return mValues.size();
     }
 
+    /**
+     * Specifying how it should display a list of items.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;

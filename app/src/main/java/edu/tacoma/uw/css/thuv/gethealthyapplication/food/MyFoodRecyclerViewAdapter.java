@@ -15,7 +15,7 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
 import java.util.List;
 
 /**
- * Recylar view adapter for the food list fragment
+ * Recyler view adapter for the food list fragment
  *
  * @author Team 11
  * @version May 31, 2018

@@ -28,10 +28,11 @@ import java.net.URLEncoder;
 import java.util.List;
 
 /**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnLogListFragmentInteractionListener}
- * interface.
+ * The log list fragment where the user can see a list of log.
+ *
+ *
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class LogListFragment extends Fragment {
 
@@ -54,15 +55,6 @@ public class LogListFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public LogListFragment() {
-    }
-
-    @SuppressWarnings("unused")
-    public static LogListFragment newInstance(int columnCount) {
-        LogListFragment fragment = new LogListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
