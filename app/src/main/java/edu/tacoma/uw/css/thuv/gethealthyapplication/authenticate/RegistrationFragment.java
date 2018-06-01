@@ -166,7 +166,7 @@ public class RegistrationFragment extends Fragment {
                 }
                 else {
                     String url = buildUserURL(v);
-                    mListener.addUser(url, email);
+                    mListener.processingNewUser(url, email);
                 }
             }
         });
@@ -209,7 +209,7 @@ public class RegistrationFragment extends Fragment {
      * activity.
      */
     public interface UserAddListener {
-        void addUser(String url, String email);
+        void processingNewUser(String url, String email);
     }
 
     /**
@@ -255,8 +255,6 @@ public class RegistrationFragment extends Fragment {
             sb.append("&age=");
             sb.append(URLEncoder.encode(age, "UTF-8"));
 
-
-            Log.i(TAG, sb.toString());
         }catch (Exception e){
             Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(),
                     Toast.LENGTH_LONG).show();
