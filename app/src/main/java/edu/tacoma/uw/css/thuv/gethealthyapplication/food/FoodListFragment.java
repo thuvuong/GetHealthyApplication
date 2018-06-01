@@ -101,6 +101,12 @@ public class FoodListFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * The private class that allows the program to synchronize to the database
+     * and retrieve the data.
+     *
+     */
     private class FoodVideoAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
