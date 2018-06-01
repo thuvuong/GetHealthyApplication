@@ -77,7 +77,8 @@ public class HomeCardioWorkoutListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homecardioworkout_list,
                 container, false);
-
+        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
+        toolbar.setTitle("");
         TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
         title.setText("Cardio At Home");
         Toast.makeText(this.getContext(),

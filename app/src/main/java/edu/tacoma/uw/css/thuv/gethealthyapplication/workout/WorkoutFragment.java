@@ -56,8 +56,6 @@ public class WorkoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_workout, container,
                                 false);
-        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
-        toolbar.setTitle(" Workout");
         return v;
 
     }
