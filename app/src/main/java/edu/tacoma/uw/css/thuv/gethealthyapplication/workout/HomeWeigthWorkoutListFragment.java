@@ -79,6 +79,10 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_homeweigthworkout_list, container, false);
 
+        Toast.makeText(this.getContext(),
+                "Click on the item to see video! You can share by click on share icon :)"
+                , Toast.LENGTH_LONG)
+                .show();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
