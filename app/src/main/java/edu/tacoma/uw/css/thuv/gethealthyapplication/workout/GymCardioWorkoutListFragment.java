@@ -107,6 +107,9 @@ public class GymCardioWorkoutListFragment extends Fragment {
         TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
         title.setText("Cardio At the Gym");
 
+        Toast.makeText(this.getContext(), "Pick 2 exercises from the list, 30 minutes each :)"
+                , Toast.LENGTH_LONG)
+                .show();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

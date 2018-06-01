@@ -10,11 +10,13 @@
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/sub_title"
         android:ems="10"
         android:hint="@string/time_message"
-        android:layout_alignParentLeft="true" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColorHint="#F00" />
 
     <TextView
         android:id="@+id/beverage"
@@ -48,7 +50,8 @@
         android:layout_alignStart="@+id/water"
         android:layout_marginTop="173dp"
         android:text="Other"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_alignLeft="@+id/water" />
 
     <EditText
         android:id="@+id/other_consume_edit"
@@ -56,13 +59,15 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/other"
         android:layout_alignStart="@+id/vegi_consume_edit"
-        android:layout_marginStart="22dp" />
+        android:layout_marginStart="22dp"
+        android:layout_alignLeft="@+id/vegi_consume_edit"
+        android:layout_marginLeft="22dp" />
 
     <EditText
         android:id="@+id/vegi_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/vagetable"
+        android:layout_alignBaseline="@+id/vegetable"
         android:layout_alignEnd="@+id/unit2"
         android:layout_alignRight="@+id/unit2" />
 
@@ -71,36 +76,41 @@
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
-        android:layout_below="@+id/vegi_consume_edit" />
+        android:layout_below="@+id/vegi_consume_edit"
+        android:layout_alignLeft="@+id/vegi_consume_edit" />
 
     <EditText
         android:id="@+id/meat_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/meat"
-        android:layout_alignStart="@+id/vegi_consume_edit" />
+        android:layout_alignStart="@+id/vegi_consume_edit"
+        android:layout_alignLeft="@+id/vegi_consume_edit" />
 
     <EditText
         android:id="@+id/dairy_product_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
-        android:layout_below="@+id/meat_consume_edit" />
+        android:layout_below="@+id/meat_consume_edit"
+        android:layout_alignLeft="@+id/vegi_consume_edit" />
 
     <EditText
         android:id="@+id/grains_consume2_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/vegi_consume_edit"
-        android:layout_below="@+id/fruit_consume_edit" />
+        android:layout_below="@+id/fruit_consume_edit"
+        android:layout_alignLeft="@+id/vegi_consume_edit" />
 
     <EditText
         android:id="@+id/food_name_edit"
         android:layout_width="119dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="222dp"
-        android:layout_toEndOf="@+id/title" />
+        android:layout_alignStart="@+id/vegi_consume_edit"
+        android:layout_marginTop="215dp"
+        android:layout_alignLeft="@+id/vegi_consume_edit" />
 
 
     <EditText
@@ -108,7 +118,8 @@
         android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/water"
-        android:layout_toEndOf="@+id/time_edit" />
+        android:layout_toEndOf="@+id/time_edit"
+        android:layout_toRightOf="@+id/time_edit" />
 
     <TextView
         android:id="@+id/unit"
@@ -117,7 +128,8 @@
         android:layout_alignEnd="@+id/vegi_consume_edit"
         android:layout_alignTop="@+id/other"
         android:text="@string/unit"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_alignRight="@+id/vegi_consume_edit" />
 
     <TextView
         android:id="@+id/unit2"
@@ -140,19 +152,21 @@
         android:text="@string/dinner_btn"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true" />
 
 
     <TextView
         android:id="@+id/mealmessage"
         android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title"
-        android:layout_below="@+id/food"
-        android:text="@string/nutri" />
+        android:layout_above="@+id/vegi_consume_edit"
+        android:layout_alignParentStart="true"
+        android:text="@string/nutri"
+        android:layout_alignParentLeft="true" />
 
     <TextView
-        android:id="@+id/vagetable"
+        android:id="@+id/vegetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -160,49 +174,58 @@
         android:layout_marginBottom="256dp"
         android:layout_marginStart="64dp"
         android:text="@string/vegi"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="64dp" />
 
     <TextView
         android:id="@+id/fruits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/fruit_consume_edit"
-        android:layout_alignEnd="@+id/breakfast_meal_edit"
+        android:layout_toEndOf="@+id/water"
         android:text="@string/fruits"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/water" />
 
     <TextView
         android:id="@+id/Grains"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/grains_consume2_edit"
-        android:layout_alignEnd="@+id/breakfast_meal_edit"
-        android:text="@string/grains" />
+        android:layout_above="@+id/meat_consume_edit"
+        android:layout_toEndOf="@+id/other"
+        android:text="@string/grains"
+        android:layout_toRightOf="@+id/other" />
 
     <TextView
         android:id="@+id/meat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/breakfast_meal_edit"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="115dp"
-        android:text="@string/meat" />
+        android:layout_marginBottom="107dp"
+        android:layout_toEndOf="@+id/water"
+        android:text="@string/meat"
+        android:layout_toRightOf="@+id/water" />
 
     <TextView
         android:id="@+id/dairy_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/dairy_product_consume_edit"
-        android:layout_toStartOf="@+id/title"
-        android:text="@string/dairy_product" />
+        android:layout_alignStart="@+id/vegetable"
+        android:text="@string/dairy_product"
+        android:layout_alignLeft="@+id/vegetable" />
 
     <TextView
         android:id="@+id/food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/food_name_edit"
-        android:layout_alignStart="@+id/water"
-        android:text="@string/food_name" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="97dp"
+        android:text="@string/food_name"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="97dp" />
 
     <Button
         android:id="@+id/log"
@@ -210,8 +233,9 @@
         android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="18dp"
         android:background="@android:color/holo_purple"
-        android:text="@string/log" />
+        android:text="@string/log"
+        android:textColor="@color/blue50" />
 
 </RelativeLayout>

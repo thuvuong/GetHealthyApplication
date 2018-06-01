@@ -20,7 +20,6 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.GymCardioWorkout;
 
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeWeightLiftingWorkout;
@@ -176,17 +175,6 @@ public class WorkoutActivity extends AppCompatActivity
             Toast.makeText(this, "Only Gym and Cardio are implemented so far." +
                     " Please select Gym and Cardio", Toast.LENGTH_LONG).show();
         }
-    }
-
-
-    /**
-     * Empty interaction listener for home cardio workout list
-     *
-     * @param item
-     */
-    @Override
-    public void onListFragmentInteraction(HomeCardioWorkout item) {
-
     }
 
 

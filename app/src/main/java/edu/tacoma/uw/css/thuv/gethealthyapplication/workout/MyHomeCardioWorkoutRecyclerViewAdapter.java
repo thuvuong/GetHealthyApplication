@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeCardioWorkoutListFragment.OnListFragmentInteractionListener;
-import edu.tacoma.uw.css.thuv.gethealthyapplication.model.HomeCardioWorkout;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.HomeCardioVideo;
 
 import java.util.List;
@@ -24,6 +23,8 @@ import java.util.List;
 public class MyHomeCardioWorkoutRecyclerViewAdapter
         extends RecyclerView.Adapter<MyHomeCardioWorkoutRecyclerViewAdapter.ViewHolder> {
 
+
+    /** Private and public field for this fragment to recycle the view of the list of the fragment */
     private final List<HomeCardioVideo> mValues;
     private final OnListFragmentInteractionListener mListener;
 

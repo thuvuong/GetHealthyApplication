@@ -8,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -35,6 +37,8 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.homecardiovideo.Home
  * @version May 10, 2018
  */
 public class HomeCardioWorkoutListFragment extends Fragment {
+
+    /** All the private fields for this fragment to display the list */
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
@@ -71,7 +75,16 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list,
+                container, false);
+        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
+        toolbar.setTitle("");
+        TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
+        title.setText("Cardio At Home");
+        Toast.makeText(this.getContext(),
+                "Click on the item to see video! You can share by click on share icon :)"
+                , Toast.LENGTH_LONG)
+                .show();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -89,6 +102,11 @@ public class HomeCardioWorkoutListFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * Private class that allows the program to synchronize with the database
+     * and retrieve the data
+     */
     private class HomeCardioVideoAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override

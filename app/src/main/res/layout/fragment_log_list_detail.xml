@@ -6,25 +6,6 @@
     tools:context=".food.LogListDetailFragment">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/food_txt"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meal_log_btn"
-        android:textSize="16sp"/>
-
-    <TextView
         android:id="@+id/time_edit"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
@@ -78,7 +59,7 @@
         android:id="@+id/vegi_consume_edit"
         android:layout_width="122dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/vagetable"
+        android:layout_alignBaseline="@+id/vegetable"
         android:layout_alignEnd="@+id/unit2"
         android:layout_alignRight="@+id/unit2" />
 
@@ -166,7 +147,7 @@
         android:text="@string/nutri" />
 
     <TextView
-        android:id="@+id/vagetable"
+        android:id="@+id/vegetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -180,7 +161,7 @@
         android:id="@+id/fruits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/vagetable"
+        android:layout_alignStart="@+id/vegetable"
         android:layout_below="@+id/vegi_consume_edit"
         android:text="@string/fruits"
         android:textSize="16sp" />
@@ -189,7 +170,7 @@
         android:id="@+id/Grains"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/vagetable"
+        android:layout_alignStart="@+id/vegetable"
         android:layout_below="@+id/fruits"
         android:text="@string/grains" />
 
@@ -198,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/vagetable"
+        android:layout_alignStart="@+id/vegetable"
         android:layout_marginBottom="126dp"
         android:text="@string/meat" />
 
