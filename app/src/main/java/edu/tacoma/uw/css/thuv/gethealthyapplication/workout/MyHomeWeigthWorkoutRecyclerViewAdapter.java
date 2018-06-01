@@ -14,14 +14,26 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.HomeWeigthWorkoutLis
 import java.util.List;
 
 /**
+ * A RecyclerView, which allows us to reuse the formatting for
+ * part of the style.
  *
+ * @author Team 11
+ * @version May 31, 2018
  */
-public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<MyHomeWeigthWorkoutRecyclerViewAdapter.ViewHolder> {
+public class MyHomeWeigthWorkoutRecyclerViewAdapter extends
+        RecyclerView.Adapter<MyHomeWeigthWorkoutRecyclerViewAdapter.ViewHolder> {
 
     private final List<HomeWeightLiftingWorkout> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyHomeWeigthWorkoutRecyclerViewAdapter(List<HomeWeightLiftingWorkout> items, OnListFragmentInteractionListener listener) {
+    /**
+     * Initalizing the member variables.
+     *
+     * @param items The given list of GymCardioWorkout exercises.
+     * @param listener The given listener.
+     */
+    public MyHomeWeigthWorkoutRecyclerViewAdapter(List<HomeWeightLiftingWorkout> items,
+                                                  OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -74,6 +86,9 @@ public class MyHomeWeigthWorkoutRecyclerViewAdapter extends RecyclerView.Adapter
         return mValues.size();
     }
 
+    /**
+     * Specifying how it should display a list of items.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;

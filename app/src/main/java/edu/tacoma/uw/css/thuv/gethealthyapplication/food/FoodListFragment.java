@@ -33,22 +33,21 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.food.foodvideo.FoodVideo;
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
+ * @author Team 11
+ * @version May 31, 2018
  */
 public class FoodListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private List<FoodVideo> mFoodVideoList;
-
-
     private static final String FOOD_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?";
-
     private RecyclerView mRecyclerView;
     private static final String TAG = "food";
     private String category;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -56,15 +55,11 @@ public class FoodListFragment extends Fragment {
     public FoodListFragment() {
     }
 
-    @SuppressWarnings("unused")
-    public static FoodListFragment newInstance(int columnCount) {
-        FoodListFragment fragment = new FoodListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    /**
+     * Setting up the fragment.
+     *
+     * @param savedInstanceState The given data from an activity.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +69,14 @@ public class FoodListFragment extends Fragment {
         }
     }
 
+    /**
+     * Picking the layout of this fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -158,7 +161,7 @@ public class FoodListFragment extends Fragment {
                 return;
             }
 
-// Everything is good, show the list of courses.
+            // Everything is good, show the list of courses.
             if (!mFoodVideoList.isEmpty()) {
                 mRecyclerView.setAdapter(new MyFoodRecyclerViewAdapter(mFoodVideoList, mListener));
             }
@@ -166,6 +169,10 @@ public class FoodListFragment extends Fragment {
         }
     }
 
+    /**
+     * Method to build the url to retrieve the food videos to display
+     * @param v view
+     */
     public String buildFoodURL(View v) {
 
         StringBuilder sb = new StringBuilder(FOOD_URL);

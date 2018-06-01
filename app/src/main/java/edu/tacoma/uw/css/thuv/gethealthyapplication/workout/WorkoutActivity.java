@@ -39,13 +39,13 @@ public class WorkoutActivity extends AppCompatActivity
         implements WorkoutFragment.OnFragmentInteractionListener,
         GymCardioWorkoutListFragment.OnListFragmentInteractionListener,
         HomeCardioWorkoutListFragment.OnListFragmentInteractionListener,
-        HomeCardioVideoFragment.OnFragmentInteractionListener,
         HomeWeigthWorkoutListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseListFragment.OnListFragmentInteractionListener,
         MuscleGroupExerciseDetailFragment.OnExerciseDetailFragmentInteractionListener {
-    public static final String VIDEO_OBJECT ="video_object";
 
-    RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
+
+    private RadioButton gymBtn,homeBtn, cardioBtn, weightLiftingBtn;
+
     /**
      * Figuring how the activity should be oriented.
      *
@@ -137,8 +137,7 @@ public class WorkoutActivity extends AppCompatActivity
 
     /**
      * An interaction listener to launch the fragment to show the list
-     * of cardio workout list at the gym when gym and cardio options are selected,
-     * only gym and cardio option is implemented so far.
+     * of cardio workout list at the gym when gym and cardio options are selected
      *
      * @param uri
      */
@@ -181,7 +180,7 @@ public class WorkoutActivity extends AppCompatActivity
 
 
     /**
-     * Empty interaction listener
+     * Empty interaction listener for home cardio workout list
      *
      * @param item
      */
@@ -192,7 +191,7 @@ public class WorkoutActivity extends AppCompatActivity
 
 
     /**
-     * Empty interaction listener
+     * Interaction listener for gym weightlifting workout list
      *
      * @param item
      */
@@ -214,16 +213,32 @@ public class WorkoutActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Empty interaction listener for gym weightlifting workout detail fragment
+     *
+     * @param uri
+     */
     @Override
     public void onExerciseDetailFragmentInteraction(Uri uri) {
 
     }
 
+    /**
+     * Empty interaction listener for gym cardio workout
+     *
+     * @param item
+     */
     @Override
     public void onListFragmentInteraction(GymCardioWorkout item) {
         
     }
 
+
+    /**
+     * Implement method for launch the video on the brownser for home weightlifting workout
+     *
+     * @param item
+     */
     @Override
     public void selectVideo(HomeWeightLiftingWorkout item) {
 
@@ -232,6 +247,11 @@ public class WorkoutActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Implemented method for sharing the video for home weightlifting workout
+     *
+     * @param item
+     */
     @Override
     public void shareVideo(HomeWeightLiftingWorkout item) {
         // Create the text message with a string
@@ -247,6 +267,11 @@ public class WorkoutActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Implement method for launch the video on the brownser for home cardio workout
+     *
+     * @param item
+     */
     @Override
     public void selectVideo(HomeCardioVideo item) {
         Uri webpage = Uri.parse(item.getUrl());
@@ -254,6 +279,11 @@ public class WorkoutActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Implement method for launch the video for home cardio workout
+     *
+     * @param item
+     */
     @Override
     public void shareVideo(HomeCardioVideo item) {
         // Create the text message with a string

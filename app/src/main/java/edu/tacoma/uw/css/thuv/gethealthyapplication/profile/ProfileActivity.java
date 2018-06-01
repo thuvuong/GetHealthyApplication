@@ -18,6 +18,13 @@ import edu.tacoma.uw.css.thuv.gethealthyapplication.R;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.authenticate.LoginActivity;
 import edu.tacoma.uw.css.thuv.gethealthyapplication.workout.WorkoutActivity;
 
+/**
+ * The Profile activity where the user can see their profile.
+ *
+ *
+ * @author Team 11
+ * @version May 10, 2018
+ */
 public class ProfileActivity extends AppCompatActivity
                 implements ProfileFragment.OnFragmentInteractionListener {
 

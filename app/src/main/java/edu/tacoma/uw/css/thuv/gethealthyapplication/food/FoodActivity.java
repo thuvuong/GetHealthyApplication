@@ -45,13 +45,18 @@ public class FoodActivity extends AppCompatActivity
         MealLogFragment.OnFragmentInteractionListener,
         BreakfastMealFragment.OnFragmentInteractionListener,
         LunchMealFragment.OnFragmentInteractionListener,
-        DinnerMealFragment.OnFragmentInteractionListener, LogFragment.OnFragmentInteractionListener,
+        DinnerMealFragment.OnFragmentInteractionListener,
+        LogFragment.OnFragmentInteractionListener,
         FoodListFragment.OnListFragmentInteractionListener {
 
 
     private static final String TAG = "";
+
+    /**
+     * Use bundle to pass data to food fragment
+     */
     public static Bundle bundle = new Bundle();
-    public static final String VIDEO_OBJECT ="video_object";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +64,8 @@ public class FoodActivity extends AppCompatActivity
         setContentView(R.layout.activity_food);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.food_toolbar);
-        //TextView mTitle = (TextView) mToolbar.findViewById(R.id.food_toolbar_tv);
-
         toolbar.setTitle("  Food ");
         setSupportActionBar(toolbar);
-        //mTitle.setText("Food");
         getSupportActionBar().setIcon(R.drawable.small_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
@@ -129,7 +131,9 @@ public class FoodActivity extends AppCompatActivity
     }
 
 
-
+    /**
+     * Override interaction for fragment
+     */
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -143,18 +147,26 @@ public class FoodActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Override method for meal log fragment
+     */
     @Override
-
     public void mealLog(Uri uri) {
 
     }
 
+    /**
+     *  Override method for add log fragment
+     */
     @Override
     public void addLog(String url) {
         AddLogTask task = new AddLogTask();
         task.execute(new String[]{url.toString()});
     }
 
+    /**
+     * Override method for log information list fragment
+     */
     @Override
     public void onListFragmentInteraction(LogInformation item) {
         LogListDetailFragment logDetailFragment = new LogListDetailFragment();
@@ -168,6 +180,9 @@ public class FoodActivity extends AppCompatActivity
                 .commit();
     }
 
+    /**
+     * Override method for detail log fragment
+     */
     @Override
     public void onFragmentInteraction(LogInformation logInformation) {
 
@@ -247,6 +262,9 @@ public class FoodActivity extends AppCompatActivity
     }
 
 
+    /**
+     * Implemented method to share food video using email
+     */
     public void shareVideo(FoodVideo item) {
         // Create the text message with a string
         Intent sendIntent = new Intent();

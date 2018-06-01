@@ -39,10 +39,8 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     private List<HomeCardioVideo> mHomeCardioList;
-
     private static final String HOMECARDIO_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homecardiovideo";
-
     private RecyclerView mRecyclerView;
     private static final String TAG = "";
 
@@ -51,15 +49,6 @@ public class HomeCardioWorkoutListFragment extends Fragment {
      * fragment (e.g. upon screen orientation changes).
      */
     public HomeCardioWorkoutListFragment() {
-    }
-
-    @SuppressWarnings("unused")
-    public static HomeCardioWorkoutListFragment newInstance(int columnCount) {
-        HomeCardioWorkoutListFragment fragment = new HomeCardioWorkoutListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -71,6 +60,14 @@ public class HomeCardioWorkoutListFragment extends Fragment {
         }
     }
 
+    /**
+     * Picking the layout of this fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

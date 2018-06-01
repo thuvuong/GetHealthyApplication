@@ -21,9 +21,6 @@ public class HomeCardioWorkout implements Serializable {
 
     /** The title of the workout.*/
     private String mTitle;
-    // image to display for each workout
-    // private static int mImageID;
-    private static List<HomeCardioWorkout> mWorkoutList;
 
     /**
      * Initializes the fields.
@@ -31,10 +28,7 @@ public class HomeCardioWorkout implements Serializable {
      * @param mTitle The title of the workout.
      */
     public HomeCardioWorkout( String mTitle) {
-        //this.mImageID = imageID;
         this.mTitle = mTitle;
-        mWorkoutList = new ArrayList<HomeCardioWorkout>();
-
     }
 
     /**
@@ -59,23 +53,18 @@ public class HomeCardioWorkout implements Serializable {
                         obj.getString(HomeCardioWorkout.TITLE));
 
                 workoutList.add(workout);
-                mWorkoutList.add(workout);
-
-
             }
-
         }
 
         return workoutList;
     }
 
-    public List<HomeCardioWorkout> getHomeCardioWorkoutList() {
-        return mWorkoutList;
-    }
-
+    /**Get the title of the home cardio workout*/
     public String getTitle() {
         return mTitle;
     }
+
+    /**Set the title of the home cardio workout*/
     public void setTitle(String theTitle) {
         mTitle = theTitle;
     }

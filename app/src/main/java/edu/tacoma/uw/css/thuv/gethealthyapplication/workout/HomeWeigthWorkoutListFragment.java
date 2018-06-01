@@ -36,7 +36,6 @@ import java.util.List;
  */
 public class HomeWeigthWorkoutListFragment extends Fragment {
 
-
     private static final String ARG_COLUMN_COUNT = "column-count";
     private static final String HOMEWEIGHT_WORKOUT_URL
             = "http://tcssandroidthuv.000webhostapp.com/get_healthy_app/list.php?cmd=homeweightworkout";
@@ -54,16 +53,6 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
     public HomeWeigthWorkoutListFragment() {
     }
 
-
-    @SuppressWarnings("unused")
-    public static HomeWeigthWorkoutListFragment newInstance(int columnCount) {
-        HomeWeigthWorkoutListFragment fragment = new HomeWeigthWorkoutListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +66,14 @@ public class HomeWeigthWorkoutListFragment extends Fragment {
         }
     }
 
+    /**
+     * Picking the layout of this fragment
+     *
+     * @param inflater Specifies how to display the fragment.
+     * @param container The container where this fragment will reside.
+     * @param savedInstanceState The given data from an activity.
+     * @return The view of how this fragment will be displayed.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
