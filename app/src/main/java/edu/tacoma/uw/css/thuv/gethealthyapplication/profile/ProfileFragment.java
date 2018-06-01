@@ -161,7 +161,7 @@ public class ProfileFragment extends Fragment {
                 mBMIRange.setText(mUser.getHealthyBMIRange());
                 mCurrentCalories.setText(mUser.getCurrentCaloriesIntake());
                 mCaloriesToConsumeToLoseWeight
-                        .setText(mUser.GetCaloriesToConsumeToLoseWeight());
+                        .setText(mUser.getCaloriesToConsumeToLoseWeight());
 
                 mExpectedWaterConsumption.setText(mUser.getExpectedWaterConsumption());
 
