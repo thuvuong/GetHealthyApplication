@@ -55,26 +55,9 @@ public class MuscleGroupExerciseListFragment extends Fragment {
     public MuscleGroupExerciseListFragment() {
     }
 
-
-//    @SuppressWarnings("unused")
-//    public static MuscleGroupExerciseListFragment newInstance(int columnCount) {
-//        MuscleGroupExerciseListFragment fragment = new MuscleGroupExerciseListFragment();
-//        Bundle args = new Bundle();
-//        args.putInt(ARG_COLUMN_COUNT, columnCount);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
-        toolbar.setTitle("");
-        TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
-        title.setText("Weightlifting At the Gym");
-//        if (getArguments() != null) {
-//            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-//        }
     }
 
     @Override
@@ -82,6 +65,11 @@ public class MuscleGroupExerciseListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_musclegroupexercise_list, container, false);
 
+        TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
+        title.setText("Weightlifting At the Gym");
+        Toast.makeText(this.getContext(), "Click on the item to see detail! :)"
+                , Toast.LENGTH_LONG)
+                .show();
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

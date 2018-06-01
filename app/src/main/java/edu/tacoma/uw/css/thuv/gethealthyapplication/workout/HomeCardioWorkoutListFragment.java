@@ -75,12 +75,16 @@ public class HomeCardioWorkoutListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_homecardioworkout_list,
+                container, false);
 
-        Toolbar toolbar = getActivity().findViewById(R.id.workout_toolbar);
-        toolbar.setTitle("");
         TextView title = (TextView) getActivity().findViewById(R.id.workout_toolbar_tv);
         title.setText("Cardio At Home");
+        Toast.makeText(this.getContext(),
+                "Click on the item to see video! You can share by click on share icon :)"
+                , Toast.LENGTH_LONG)
+                .show();
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
